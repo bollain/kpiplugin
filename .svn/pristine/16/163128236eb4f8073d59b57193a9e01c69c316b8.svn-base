@@ -1,0 +1,284 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using OpenDental;
+using OpenDentBusiness;
+using OpenDental.UI;
+
+namespace PluginExample {
+	//This doesn't really need to be a user control unless we want to stash our own controls here for UI.
+	public partial class ContrChartP:UserControl {
+
+		public ContrChartP() {
+			InitializeComponent();
+		}
+
+		public static void FillPtInfo(OpenDental.ContrChart sender,Patient PatCur) {
+			//first, get all the objects we need. Because they are by ref, the original gets altered.
+			ODGrid gridPtInfo=(ODGrid)sender.Controls.Find("gridPtInfo",true)[0];
+			TabControl tabControlImages=(TabControl)sender.Controls.Find("tabControlImages",true)[0];
+			ODtextBox textTreatmentNotes=(ODtextBox)sender.Controls.Find("textTreatmentNotes",true)[0];
+			//bool TreatmentNoteChanged=sender.TreatmentNoteChanged;//might have to do a by ref here?
+			//Then get some data that we need
+			Family fam=null;
+			PatientNote PatientNoteCur=null;
+			List<PatPlan> PatPlanList=null;
+			List<InsSub> SubList=null;
+			List<InsPlan> PlanList=null;
+			if(PatCur!=null) {
+				fam=Patients.GetFamily(PatCur.PatNum);
+				PatientNoteCur=PatientNotes.Refresh(PatCur.PatNum,PatCur.Guarantor);
+				PatPlanList=PatPlans.Refresh(PatCur.PatNum);
+				SubList=InsSubs.RefreshForFam(fam);
+				PlanList=InsPlans.RefreshForSubList(SubList);
+			}
+			//Then, continue with the slightly altered original method.
+			gridPtInfo.Height=tabControlImages.Top-gridPtInfo.Top;
+			textTreatmentNotes.Text="";
+			if(PatCur!=null) {
+				textTreatmentNotes.Text=PatientNoteCur.Treatment;
+				textTreatmentNotes.Enabled=true;
+				textTreatmentNotes.Select(textTreatmentNotes.Text.Length+2,1);
+				textTreatmentNotes.ScrollToCaret();
+				sender.TreatmentNoteChanged=false;
+			}
+			gridPtInfo.BeginUpdate();
+			gridPtInfo.Columns.Clear();
+			ODGridColumn col=new ODGridColumn("",100);//Lan.g("TableChartPtInfo",""),);
+			gridPtInfo.Columns.Add(col);
+			col=new ODGridColumn("",300);
+			gridPtInfo.Columns.Add(col);
+			gridPtInfo.Rows.Clear();
+			if(PatCur==null) {
+				gridPtInfo.EndUpdate();
+				return;
+			}
+			ODGridRow row;
+			//Age
+			row=new ODGridRow();
+			row.Cells.Add("Age");
+			row.Cells.Add(PatientLogic.DateToAgeString(PatCur.Birthdate));
+			row.Tag=null;
+			gridPtInfo.Rows.Add(row);
+			//Credit type
+			row=new ODGridRow();
+			row.Cells.Add(Lan.g("TableChartPtInfo","ABC0"));
+			row.Cells.Add(PatCur.CreditType);
+			row.Tag=null;
+			gridPtInfo.Rows.Add(row);
+			//Billing type
+			row=new ODGridRow();
+			row.Cells.Add(Lan.g("TableChartPtInfo","Billing Type"));
+			row.Cells.Add(DefC.GetName(DefCat.BillingTypes,PatCur.BillingType));
+			row.Tag=null;
+			gridPtInfo.Rows.Add(row);
+			//Referrals
+			List<RefAttach> RefAttachList=RefAttaches.Refresh(PatCur.PatNum);
+			for(int i=0;i<RefAttachList.Count;i++) {
+				row=new ODGridRow();
+				row.ColorBackG=Color.Aquamarine;
+				if(RefAttachList[i].IsFrom) {
+					row.Cells.Add("Referred From");
+				}
+				else {
+					row.Cells.Add("Referred To");
+				}
+				row.Cells.Add(Referrals.GetNameLF(RefAttachList[i].ReferralNum));
+				row.Tag=null;
+				gridPtInfo.Rows.Add(row);
+			}
+			//Date First Visit
+			row=new ODGridRow();
+			row.Cells.Add(Lan.g("TableChartPtInfo","Date First Visit"));
+			if(PatCur.DateFirstVisit.Year<1880)
+				row.Cells.Add("??");
+			else if(PatCur.DateFirstVisit==DateTime.Today)
+				row.Cells.Add(Lan.g("TableChartPtInfo","NEW PAT"));
+			else
+				row.Cells.Add(PatCur.DateFirstVisit.ToShortDateString());
+			row.Tag=null;
+			gridPtInfo.Rows.Add(row);
+			//Prov - Pri & Sec
+			row = new ODGridRow();
+			row.Cells.Add(Lan.g("TableChartPtInfo","Prov. (Pri, Sec)"));
+			if(PatCur.SecProv != 0)
+				row.Cells.Add(Providers.GetAbbr(PatCur.PriProv) + ", " + Providers.GetAbbr(PatCur.SecProv));
+			else
+				row.Cells.Add(Providers.GetAbbr(PatCur.PriProv) + ", " + "None");
+			row.Tag = null;
+			gridPtInfo.Rows.Add(row);
+			//PriIns
+			row=new ODGridRow();
+			row.Cells.Add(Lan.g("TableChartPtInfo","Pri Ins"));
+			string name;
+			if(PatPlanList.Count>0) {
+				name=InsPlans.GetCarrierName(InsSubs.GetOne(PatPlanList[0].InsSubNum).PlanNum,PlanList);
+				if(PatPlanList[0].IsPending)
+					name+=Lan.g("TableChartPtInfo"," (pending)");
+				row.Cells.Add(name);
+			}
+			else {
+				row.Cells.Add("");
+			}
+			row.Tag=null;
+			gridPtInfo.Rows.Add(row);
+			//SecIns
+			row=new ODGridRow();
+			row.Cells.Add(Lan.g("TableChartPtInfo","Sec Ins"));
+			if(PatPlanList.Count>1) {
+				name=InsPlans.GetCarrierName(InsSubs.GetOne(PatPlanList[1].InsSubNum).PlanNum,PlanList);
+				if(PatPlanList[1].IsPending)
+					name+=Lan.g("TableChartPtInfo"," (pending)");
+				row.Cells.Add(name);
+			}
+			else {
+				row.Cells.Add("");
+			}
+			row.Tag=null;
+			gridPtInfo.Rows.Add(row);
+			//Registration keys-------------------------------------------------------------------------------------------
+			if(PrefC.GetBool(PrefName.DistributorKey)) {
+				RegistrationKey[] keys=RegistrationKeys.GetForPatient(PatCur.PatNum);
+				for(int i=0;i<keys.Length;i++) {
+					row=new ODGridRow();
+					row.Cells.Add(Lan.g("TableChartPtInfo","Registration Key"));
+					string str=keys[i].RegKey.Substring(0,4)+"-"+keys[i].RegKey.Substring(4,4)+"-"+
+						keys[i].RegKey.Substring(8,4)+"-"+keys[i].RegKey.Substring(12,4);
+					if(keys[i].IsForeign) {
+						str+="\r\nForeign";
+					}
+					else {
+						str+="\r\nUSA";
+					}
+					str+="\r\nStarted: "+keys[i].DateStarted.ToShortDateString();
+					if(keys[i].DateDisabled.Year>1880) {
+						str+="\r\nDisabled: "+keys[i].DateDisabled.ToShortDateString();
+					}
+					if(keys[i].DateEnded.Year>1880) {
+						str+="\r\nEnded: "+keys[i].DateEnded.ToShortDateString();
+					}
+					if(keys[i].Note!="") {
+						str+=keys[i].Note;
+					}
+					row.Cells.Add(str);
+					row.Tag=keys[i].Copy();
+					gridPtInfo.Rows.Add(row);
+				}
+			}
+			ODGridCell cell;
+			//medical fields-----------------------------------------------------------------
+			bool showMed=true;
+			if(Programs.IsEnabled(ProgramName.eClinicalWorks) && ProgramProperties.GetPropVal(ProgramName.eClinicalWorks,"IsStandalone")=="0") {
+				showMed=false;
+			}
+			if(showMed) {
+				//premed flag.
+				if(PatCur.Premed) {
+					row=new ODGridRow();
+					row.Cells.Add("");
+					cell=new ODGridCell();
+					cell.Text=Lan.g("TableChartPtInfo","Premedicate");
+					cell.ColorText=Color.Red;
+					cell.Bold=YN.Yes;
+					row.Cells.Add(cell);
+					row.ColorBackG=DefC.Long[(int)DefCat.MiscColors][3].ItemColor;
+					row.Tag="med";
+					gridPtInfo.Rows.Add(row);
+				}
+				//diseases
+				List<Disease> DiseaseList=Diseases.Refresh(PatCur.PatNum);
+				row=new ODGridRow();
+				cell=new ODGridCell(Lan.g("TableChartPtInfo","Diseases"));
+				cell.Bold=YN.Yes;
+				row.Cells.Add(cell);
+				if(DiseaseList.Count>0) {
+					row.Cells.Add("");
+				}
+				else {
+					row.Cells.Add(Lan.g("TableChartPtInfo","none"));
+				}
+				row.ColorBackG=DefC.Long[(int)DefCat.MiscColors][3].ItemColor;
+				row.Tag="med";
+				gridPtInfo.Rows.Add(row);
+				for(int i=0;i<DiseaseList.Count;i++) {
+					row=new ODGridRow();
+					cell=new ODGridCell(DiseaseDefs.GetName(DiseaseList[i].DiseaseDefNum));
+					cell.ColorText=Color.Red;
+					cell.Bold=YN.Yes;
+					row.Cells.Add(cell);
+					row.Cells.Add(DiseaseList[i].PatNote);
+					row.ColorBackG=DefC.Long[(int)DefCat.MiscColors][3].ItemColor;
+					row.Tag="med";
+					gridPtInfo.Rows.Add(row);
+				}
+				//MedUrgNote 
+				row=new ODGridRow();
+				row.Cells.Add(Lan.g("TableChartPtInfo","Med Urgent"));
+				cell=new ODGridCell();
+				cell.Text=PatCur.MedUrgNote;
+				cell.ColorText=Color.Red;
+				cell.Bold=YN.Yes;
+				row.Cells.Add(cell);
+				row.ColorBackG=DefC.Long[(int)DefCat.MiscColors][3].ItemColor;
+				row.Tag="med";
+				gridPtInfo.Rows.Add(row);
+				//Medical
+				row=new ODGridRow();
+				row.Cells.Add(Lan.g("TableChartPtInfo","Medical Summary"));
+				row.Cells.Add(PatientNoteCur.Medical);
+				row.ColorBackG=DefC.Long[(int)DefCat.MiscColors][3].ItemColor;
+				row.Tag="med";
+				gridPtInfo.Rows.Add(row);
+				//Service
+				row=new ODGridRow();
+				row.Cells.Add(Lan.g("TableChartPtInfo","Service Notes"));
+				row.Cells.Add(PatientNoteCur.Service);
+				row.ColorBackG=DefC.Long[(int)DefCat.MiscColors][3].ItemColor;
+				row.Tag="med";
+				gridPtInfo.Rows.Add(row);
+				//medications
+				Medications.Refresh();
+				List<MedicationPat> medList=MedicationPats.Refresh(PatCur.PatNum,false);
+				row=new ODGridRow();
+				cell=new ODGridCell(Lan.g("TableChartPtInfo","Medications"));
+				cell.Bold=YN.Yes;
+				row.Cells.Add(cell);
+				if(medList.Count>0) {
+					row.Cells.Add("");
+				}
+				else {
+					row.Cells.Add(Lan.g("TableChartPtInfo","none"));
+				}
+				row.ColorBackG=DefC.Long[(int)DefCat.MiscColors][3].ItemColor;
+				row.Tag="med";
+				gridPtInfo.Rows.Add(row);
+				string text;
+				Medication med;
+				for(int i=0;i<medList.Count;i++) {
+					row=new ODGridRow();
+					med=Medications.GetMedication(medList[i].MedicationNum);
+					text=med.MedName;
+					if(med.MedicationNum != med.GenericNum) {
+						text+="("+Medications.GetMedication(med.GenericNum).MedName+")";
+					}
+					row.Cells.Add(text);
+					text=medList[i].PatNote
+						+"("+Medications.GetGeneric(medList[i].MedicationNum).Notes+")";
+					row.Cells.Add(text);
+					row.ColorBackG=DefC.Long[(int)DefCat.MiscColors][3].ItemColor;
+					row.Tag="med";
+					gridPtInfo.Rows.Add(row);
+				}
+			}//if !eCW.enabled
+			gridPtInfo.EndUpdate();
+		}
+
+
+
+	}
+}

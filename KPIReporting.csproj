@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B4466E32-9259-4719-8D30-4400DC5095EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KPIReporting</RootNamespace>
+    <AssemblyName>KPIReporting</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <ResGenToolArchitecture>Managed32Bit</ResGenToolArchitecture>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KPIForm\FormKPIActiveRecall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPIActiveRecall.Designer.cs" />
+    <Compile Include="KPIForm\FormKPIBacklogRecall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPIBacklogRecall.Designer.cs" />
+    <Compile Include="KPIForm\FormKPIByReferralSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPIByReferralSource.Designer.cs" />
+    <Compile Include="KPIForm\FormKPICancel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPICancel.Designer.cs" />
+    <Compile Include="KPIForm\FormKPIMore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPINewPatients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPINewPatients.Designer.cs" />
+    <Compile Include="KPIForm\FormKPINewToRecall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPINewToRecall.Designer.cs" />
+    <Compile Include="KPIForm\FormKPINoShowAppt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPINoShowAppt.Designer.cs" />
+    <Compile Include="KPIForm\FormKPIPerioRecall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPIPerioRecall.Designer.cs" />
+    <Compile Include="KPI\KPIActiveRecall.cs" />
+    <Compile Include="KPI\KPIByReferralSource.cs" />
+    <Compile Include="KPI\KPICancel.cs" />
+    <Compile Include="KPI\KPINewPatients.cs" />
+    <Compile Include="KPI\KPINewToRecall.cs" />
+    <Compile Include="KPI\KPINoShowAppt.cs" />
+    <Compile Include="KPI\KPIPerioRecall.cs" />
+    <Compile Include="KPI\KPIRecallBacklog.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FreshOD\OpenDental\OpenDental.csproj">
+      <Project>{8136317d-c936-49b6-9e31-d90f02d2f207}</Project>
+      <Name>OpenDental</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FreshOD\OpenDentBusiness\OpenDentBusiness.csproj">
+      <Project>{3d0fc76e-803c-4de2-bdb1-47d63a4e2357}</Project>
+      <Name>OpenDentBusiness</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>call "C:\Users\Armando\Documents\Visual Studio 2015\Projects\OpenDental\KPIReporting\CopyDllToOD.bat"</PostBuildEvent>
+  </PropertyGroup>
+</Project>
