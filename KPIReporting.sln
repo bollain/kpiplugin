@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDental", "..\..\FreshOD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDentBusiness", "..\..\FreshOD\OpenDentBusiness\OpenDentBusiness.csproj", "{3D0FC76E-803C-4DE2-BDB1-47D63A4E2357}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{3D0FC76E-803C-4DE2-BDB1-47D63A4E2357}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3D0FC76E-803C-4DE2-BDB1-47D63A4E2357}.Release|x86.ActiveCfg = Release|x86
 		{3D0FC76E-803C-4DE2-BDB1-47D63A4E2357}.Release|x86.Build.0 = Release|x86
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Debug|x86.Build.0 = Debug|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.LinuxRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.LinuxRelease|Any CPU.Build.0 = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.LinuxRelease|x86.ActiveCfg = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.LinuxRelease|x86.Build.0 = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Release|x86.ActiveCfg = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
