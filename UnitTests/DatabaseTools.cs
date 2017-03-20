@@ -74,7 +74,7 @@ namespace UnitTests
                 command = "CREATE DATABASE unittest";
                 DataCore.NonQ(command);
                 SetDbConnection("unittest", serverAddr, port, userName, password, false);
-                command = File.ReadAllText(@"C:\Users\Armando\Documents\Visual Studio 2015\Projects\OpenDental\KPIReporting\UnitTests\Resources\dump.txt");
+                command = File.ReadAllText(@"..\..\Resources\dump.txt");
                 DataCore.NonQ(command);
                 string toVersion = Assembly.GetAssembly(typeof(OpenDental.PrefL)).GetName().Version.ToString();
                 //MessageBox.Show(Application.ProductVersion+" - "+
