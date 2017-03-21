@@ -76,20 +76,12 @@ namespace UnitTests
                 SetDbConnection("unittest", serverAddr, port, userName, password, false);
                 command = File.ReadAllText(@"..\..\Resources\dump.txt");
                 DataCore.NonQ(command);
-                string toVersion = Assembly.GetAssembly(typeof(OpenDental.PrefL)).GetName().Version.ToString();
-                //MessageBox.Show(Application.ProductVersion+" - "+
-//                if (!PrefL.ConvertDB(true, toVersion))
-//                {
-//                    throw new Exception("Wrong version.");
-//                }
-                //ProcedureCodes.TcodesClear();
-                //FormProcCodes.ImportProcCodes("", CDT.Class1.GetADAcodes(), "");//IF THIS LINE CRASHES:
-                                                                                //Go to Solution, Configuration Manager.  Exclude UnitTest project from build.
-//                AutoCodes.SetToDefault();
-//                ProcButtons.SetToDefault();
-//                ProcedureCodes.ResetApptProcsQuickAdd();
-                //RefreshCache (might be missing a few)  Or, it might make more sense to do this as an entirely separate method when running.
-                //ProcedureCodes.RefreshCache();
+                //Now insert all proccodes
+                command = File.ReadAllText(@"..\..\Resources\procedurecodes.txt");
+                DataCore.NonQ(command);
+                //And Inject the preferences 
+                command = File.ReadAllText(@"..\..\Resources\preferences.txt");
+                DataCore.NonQ(command);
             }
             else
             {
@@ -120,6 +112,20 @@ namespace UnitTests
             {
                 throw new Exception("Running cmd failed.");
             }
+        }
+
+        public static void ExecuteSqlScript(string serverAddr, string port, string userName, string password, string command)
+        {
+            try
+            {
+                SetDbConnection("unittest", serverAddr, port, userName, password, false);
+                DataCore.NonQ(command);
+            }
+            catch
+            {
+                throw new Exception("Cannot execute script");
+            }
+            
         }
 
 
