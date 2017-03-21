@@ -9,8 +9,6 @@ namespace UnitTests
         [TestMethod]
         public void TestMethod1()
         {
-            DatabaseTools.SetDbConnection("", "localhost", "3306", "root", "", false);
-            DatabaseTools.FreshFromDump("localhost", "3306", "root", "", false);
         }
     }
 }

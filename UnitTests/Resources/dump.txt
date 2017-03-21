@@ -18,6 +18,7 @@
 --
 -- Table structure for table `account`
 --
+USE `unittest`;
 
 DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -463,7 +464,7 @@ CREATE TABLE `appointment` (
   KEY `AppointmentTypeNum` (`AppointmentTypeNum`),
   KEY `Op` (`Op`),
   KEY `SecUserNumEntry` (`SecUserNumEntry`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -508,7 +509,7 @@ CREATE TABLE `appointmentdeleted` (
   PRIMARY KEY (`AppointmentDeletedNum`),
   KEY `AptNum` (`AptNum`),
   KEY `PatNum` (`PatNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -881,8 +882,8 @@ CREATE TABLE `carrier` (
   `SecDateTEdit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `TIN` varchar(255) NOT NULL,
   PRIMARY KEY (`CarrierNum`),
-  KEY `CarrierNumName` (`CarrierNum`,`CarrierName`),
-  KEY `SecUserNumEntry` (`SecUserNumEntry`)
+  KEY `SecUserNumEntry` (`SecUserNumEntry`),
+  KEY `CarrierNumName` (`CarrierNum`,`CarrierName`)
 ) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1067,8 +1068,8 @@ CREATE TABLE `claim` (
   KEY `InsSubNum2` (`InsSubNum2`),
   KEY `CustomTracking` (`CustomTracking`),
   KEY `ProvOrderOverride` (`ProvOrderOverride`),
-  KEY `indexOutClaimCovering` (`PlanNum`,`ClaimStatus`,`ClaimType`,`PatNum`,`ClaimNum`,`DateService`,`ProvTreat`,`ClaimFee`,`ClinicNum`),
   KEY `SecUserNumEntry` (`SecUserNumEntry`),
+  KEY `indexOutClaimCovering` (`PlanNum`,`ClaimStatus`,`ClaimType`,`PatNum`,`ClaimNum`,`DateService`,`ProvTreat`,`ClaimFee`,`ClinicNum`),
   KEY `OrderingReferralNum` (`OrderingReferralNum`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1256,8 +1257,8 @@ CREATE TABLE `claimproc` (
   KEY `indexPNPD` (`ProvNum`,`ProcDate`),
   KEY `indexPNDCP` (`ProvNum`,`DateCP`),
   KEY `ClaimPaymentTracking` (`ClaimPaymentTracking`),
-  KEY `indexOutClaimCovering` (`ClaimNum`,`ClaimPaymentNum`,`InsPayAmt`),
   KEY `SecUserNumEntry` (`SecUserNumEntry`),
+  KEY `indexOutClaimCovering` (`ClaimNum`,`ClaimPaymentNum`,`InsPayAmt`),
   KEY `indexAcctCov` (`ProcNum`,`PlanNum`,`Status`,`InsPayAmt`,`InsPayEst`,`WriteOff`,`NoBillIns`),
   KEY `indexAgingCovering` (`Status`,`PatNum`,`DateCP`,`PayPlanNum`,`InsPayAmt`,`WriteOff`,`InsPayEst`,`ProcDate`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1757,7 +1758,7 @@ CREATE TABLE `custreference` (
   `IsBadRef` tinyint(4) NOT NULL,
   PRIMARY KEY (`CustReferenceNum`),
   KEY `PatNum` (`PatNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1869,7 +1870,7 @@ CREATE TABLE `deletedobject` (
   `ObjectType` int(11) NOT NULL,
   `DateTStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`DeletedObjectNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2876,7 +2877,7 @@ CREATE TABLE `employer` (
   `Zip` varchar(255) DEFAULT '',
   `Phone` varchar(255) DEFAULT '',
   PRIMARY KEY (`EmployerNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3635,8 +3636,8 @@ CREATE TABLE `insplan` (
   KEY `CarrierNum` (`CarrierNum`),
   KEY `FilingCodeSubtype` (`FilingCodeSubtype`),
   KEY `TrojanID` (`TrojanID`),
-  KEY `CarrierNumPlanNum` (`CarrierNum`,`PlanNum`),
-  KEY `SecUserNumEntry` (`SecUserNumEntry`)
+  KEY `SecUserNumEntry` (`SecUserNumEntry`),
+  KEY `CarrierNumPlanNum` (`CarrierNum`,`PlanNum`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -3928,7 +3929,7 @@ CREATE TABLE `language` (
   `English` text,
   `IsObsolete` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`LanguageNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=1838 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=780 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4716,7 +4717,7 @@ CREATE TABLE `payment` (
   KEY `indexPatNum` (`PatNum`),
   KEY `DepositNum` (`DepositNum`),
   KEY `SecUserNumEntry` (`SecUserNumEntry`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4847,7 +4848,7 @@ CREATE TABLE `paysplit` (
   KEY `SecUserNumEntry` (`SecUserNumEntry`),
   KEY `PrepaymentNum` (`PrepaymentNum`),
   KEY `indexPNAmt` (`ProcNum`,`SplitAmt`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4947,7 +4948,7 @@ CREATE TABLE `plannedappt` (
   PRIMARY KEY (`PlannedApptNum`),
   KEY `PatNum` (`PatNum`),
   KEY `AptNum` (`AptNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4972,6 +4973,22 @@ CREATE TABLE `popup` (
   KEY `PopupNumArchive` (`PopupNumArchive`),
   KEY `PatNum` (`PatNum`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `preference`
+--
+
+DROP TABLE IF EXISTS `preference`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `preference` (
+  `PrefName` varchar(255) NOT NULL DEFAULT '',
+  `ValueString` text NOT NULL,
+  `PrefNum` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Comments` text,
+  PRIMARY KEY (`PrefNum`)
+) ENGINE=MyISAM AUTO_INCREMENT=541 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5214,7 +5231,7 @@ CREATE TABLE `procedurelog` (
   KEY `ClinicNum` (`ClinicNum`),
   KEY `indexAgingCovering` (`PatNum`,`ProcStatus`,`ProcFee`,`UnitQty`,`BaseUnits`,`ProcDate`),
   KEY `OrderingReferralNum` (`OrderingReferralNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5290,7 +5307,7 @@ CREATE TABLE `proctp` (
   KEY `indexPatNum` (`PatNum`),
   KEY `indexTreatPlanNum` (`TreatPlanNum`),
   KEY `SecUserNumEntry` (`SecUserNumEntry`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5313,7 +5330,7 @@ CREATE TABLE `program` (
   `FileTemplate` text NOT NULL,
   `FilePath` varchar(255) NOT NULL,
   PRIMARY KEY (`ProgramNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5332,7 +5349,7 @@ CREATE TABLE `programproperty` (
   `ClinicNum` bigint(20) NOT NULL,
   PRIMARY KEY (`ProgramPropertyNum`),
   KEY `ClinicNum` (`ClinicNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=156 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=155 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6096,7 +6113,7 @@ CREATE TABLE `securitylog` (
   KEY `PatNum` (`PatNum`),
   KEY `FKey` (`FKey`),
   KEY `DefNum` (`DefNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6112,7 +6129,7 @@ CREATE TABLE `securityloghash` (
   `LogHash` varchar(255) NOT NULL,
   PRIMARY KEY (`SecurityLogHashNum`),
   KEY `SecurityLogNum` (`SecurityLogNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=170 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6320,7 +6337,7 @@ CREATE TABLE `signalod` (
   PRIMARY KEY (`SignalNum`),
   KEY `indexSigDateTime` (`SigDateTime`),
   KEY `FKey` (`FKey`)
-) ENGINE=MyISAM AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6888,7 +6905,7 @@ CREATE TABLE `toolbutitem` (
   `ToolBar` smallint(5) unsigned NOT NULL DEFAULT '0',
   `ButtonText` varchar(255) DEFAULT '',
   PRIMARY KEY (`ToolButItemNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7019,7 +7036,7 @@ CREATE TABLE `treatplan` (
   KEY `DocNum` (`DocNum`),
   KEY `SecUserNumEntry` (`SecUserNumEntry`),
   KEY `UserNumPresenter` (`UserNumPresenter`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7038,7 +7055,7 @@ CREATE TABLE `treatplanattach` (
   KEY `TreatPlanNum` (`TreatPlanNum`),
   KEY `ProcNum` (`ProcNum`),
   KEY `Priority` (`Priority`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7502,4 +7519,4 @@ CREATE TABLE `zipcode` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-19 18:39:18
+-- Dump completed on 2017-03-20 21:05:06
