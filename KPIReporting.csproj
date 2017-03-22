@@ -113,11 +113,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FreshOD\OpenDental\OpenDental.csproj">
+    <ProjectReference Include="..\FreshOD\OpenDental\OpenDental.csproj">
       <Project>{8136317d-c936-49b6-9e31-d90f02d2f207}</Project>
       <Name>OpenDental</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\FreshOD\OpenDentBusiness\OpenDentBusiness.csproj">
+    <ProjectReference Include="..\FreshOD\OpenDentBusiness\OpenDentBusiness.csproj">
       <Project>{3d0fc76e-803c-4de2-bdb1-47d63a4e2357}</Project>
       <Name>OpenDentBusiness</Name>
     </ProjectReference>
@@ -131,6 +131,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>call "C:\Users\Armando\Documents\Visual Studio 2015\Projects\OpenDental\KPIReporting\CopyDllToOD.bat"</PostBuildEvent>
+    <PostBuildEvent>call "..\..\CopyDllToOD.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>

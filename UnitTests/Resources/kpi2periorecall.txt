@@ -1,0 +1,51 @@
+/* Truncate all involved tables */
+TRUNCATE TABLE unittest.patient;
+TRUNCATE TABLE unittest.recall;
+TRUNCATE TABLE unittest.procedurelog;
+TRUNCATE TABLE unittest.appointment;
+
+/* 1 Patient that should be added correctly to the report */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('Test', 'Patient', '1', '1', '1990-07-21', 'T6E1R1', '1');
+INSERT INTO `unittest`.`recall` (`PatNum`, `RecallInterval`, `IsDisabled`, `RecallTypeNum`) VALUES ('1', '16777216', '0', '3');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `AptNum`) VALUES ('1', '903', '1');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `ProvHyg`, `AptDateTime`, `IsHygiene`) VALUES ('1', '1', '2017-05-15', '1');
+
+/* Johnny NotHygiene - Appointment that is not a hygiene appointment */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('NotHygiene', 'Johnny', '0', '1990-07-21', 'T6E1R1', '1');
+INSERT INTO `unittest`.`recall` (`PatNum`, `RecallInterval`, `IsDisabled`, `RecallTypeNum`) VALUES ('2', '16777216', '0', '3');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `AptNum`) VALUES ('2', '903', '2');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `ProvHyg`, `AptDateTime`, `IsHygiene`) VALUES ('2', '1', '2017-05-15', '0');
+
+/* Hamarna TooLate - Appointment scheduled more than 12 months in advance */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('TooLate', 'Hamarna', '1', '1954-07-21', 'T6E1R1', '1');
+INSERT INTO `unittest`.`recall` (`PatNum`, `RecallInterval`, `IsDisabled`, `RecallTypeNum`) VALUES ('3', '16777216', '0', '3');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `AptNum`) VALUES ('3', '903', '3');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `ProvHyg`, `AptDateTime`, `IsHygiene`) VALUES ('3', '1', '2019-05-15', '1');
+
+/* Betsy WrongCode - Appointment that has the wrong procedure code */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('WrongCode', 'Betsy', '1', '1963-07-21', 'T6E1R1', '1');
+INSERT INTO `unittest`.`recall` (`PatNum`, `RecallInterval`, `IsDisabled`, `RecallTypeNum`) VALUES ('4', '16777216', '0', '3');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `AptNum`) VALUES ('4', '01202', '4');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `ProvHyg`, `AptDateTime`, `IsHygiene`) VALUES ('4', '1', '2017-05-15', '1');
+
+/* Kendall NoAppointment - No appointment made */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('NoAppointment', 'Kendall', '1', '1963-07-21', 'T6E1R1', '1');
+INSERT INTO `unittest`.`recall` (`PatNum`, `RecallInterval`, `IsDisabled`, `RecallTypeNum`) VALUES ('5', '16777216', '0', '3');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`) VALUES ('5', '903');
+
+/* Marshall NoLog - No procedurelog attached to patient */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('NoLog', 'Marshall', '0', '1954-07-21', 'T6E1R1', '1');
+INSERT INTO `unittest`.`recall` (`PatNum`, `RecallInterval`, `IsDisabled`, `RecallTypeNum`) VALUES ('6', '16777216', '0', '3');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `ProvHyg`, `AptDateTime`, `IsHygiene`) VALUES ('6', '1', '2017-05-15', '1');
+
+/* Tex IsDisabled - Recall is disabled | Kendall NoAppointment offsets AptNum by 1 */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('IsDisabled', 'Tex', '0', '1990-07-21', 'T6E1R1', '1');
+INSERT INTO `unittest`.`recall` (`PatNum`, `RecallInterval`, `IsDisabled`, `RecallTypeNum`) VALUES ('7', '16777216', '1', '3');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `AptNum`) VALUES ('7', '903', '6');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `ProvHyg`, `AptDateTime`, `IsHygiene`) VALUES ('7', '1', '2017-05-15', '1');
+
+/* Larry BadRecall - Recall type is not perio | Kendall NoAppointment offsets AptNum by 1 */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('BadRecall', 'Larry', '0', '1990-07-21', 'T6E1R1', '1');
+INSERT INTO `unittest`.`recall` (`PatNum`, `RecallInterval`, `IsDisabled`, `RecallTypeNum`) VALUES ('8', '16777216', '0', '1');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `AptNum`) VALUES ('8', '903', '7');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `ProvHyg`, `AptDateTime`, `IsHygiene`) VALUES ('8', '1', '2017-05-15', '1');

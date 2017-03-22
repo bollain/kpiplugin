@@ -5,9 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPIReporting", "KPIReporting.csproj", "{B4466E32-9259-4719-8D30-4400DC5095EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDental", "..\..\FreshOD\OpenDental\OpenDental.csproj", "{8136317D-C936-49B6-9E31-D90F02D2F207}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDentBusiness", "..\..\FreshOD\OpenDentBusiness\OpenDentBusiness.csproj", "{3D0FC76E-803C-4DE2-BDB1-47D63A4E2357}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDental", "..\FreshOD\OpenDental\OpenDental.csproj", "{8136317D-C936-49B6-9E31-D90F02D2F207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDentBusiness", "..\FreshOD\OpenDentBusiness\OpenDentBusiness.csproj", "{3D0FC76E-803C-4DE2-BDB1-47D63A4E2357}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,18 @@ Global
 		{B4466E32-9259-4719-8D30-4400DC5095EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B4466E32-9259-4719-8D30-4400DC5095EE}.Release|x86.ActiveCfg = Release|x86
 		{B4466E32-9259-4719-8D30-4400DC5095EE}.Release|x86.Build.0 = Release|x86
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Debug|x86.Build.0 = Debug|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.LinuxRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.LinuxRelease|Any CPU.Build.0 = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.LinuxRelease|x86.ActiveCfg = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.LinuxRelease|x86.Build.0 = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Release|x86.ActiveCfg = Release|Any CPU
+		{E788DF0F-205B-431D-839A-9C9F5F4CC1CC}.Release|x86.Build.0 = Release|Any CPU
 		{8136317D-C936-49B6-9E31-D90F02D2F207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8136317D-C936-49B6-9E31-D90F02D2F207}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8136317D-C936-49B6-9E31-D90F02D2F207}.Debug|x86.ActiveCfg = Debug|x86
