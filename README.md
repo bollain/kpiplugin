@@ -12,9 +12,9 @@ To compile:
 
 1) Open the solution (.sln file). You may get errors about some projects not being found.
 
-**Important: You must add as existing projects from a FRESH COPY of Open Dental. DO NOT USE the one you have been working on. Download it again (fresh) and compile it.**
 
 2) To fix the errors, remove both the OpenDental project and the OpenDentBusiness project by right clicking on them in the VS Solution explorer. Then, right click on the solution and add existing projects. Browse to ...\OpenDental\OpenDental.csproj, and add it.  Also, browse to ...\OpenDentBusiness\OpenDentBusiness.csproj, and add it.
+**Important: You must add as existing projects from a FRESH COPY of Open Dental. DO NOT USE the one you have been working on. Download it again (fresh) and compile it.**
 
 3) In Solution explorer, expand the PluginExample project, References folder. Right click, Add Reference... , Solution, OpenDental and OpenDentBusiness.
 
