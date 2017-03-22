@@ -4,7 +4,7 @@ using System.Data;
 using System.Reflection;
 using Tamir.SharpSsh.java.lang;
 
-namespace OpenDentBusiness
+namespace KPIReporting.KPI
 {
     public class KPIRecTreatment
     {
@@ -23,7 +23,7 @@ namespace OpenDentBusiness
             table.Columns.Add("Priority");
             table.Columns.Add("Status of Pre-Authorization");
 
-            
+
             DataRow row;
             string command = @"
 				SELECT r.ProcDate, p.LName, p.FName, p.MiddleI, rc.ProcCode, tpa.Priority, r.ProcStatus
@@ -32,11 +32,11 @@ namespace OpenDentBusiness
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate) 
+				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate)
                              FROM procedurelog r2
                              WHERE r.PatNum = r2.PatNum AND
                              r2.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
-                       AND rc.ProcCode = " + POut.String(pc) + @" 
+                       AND rc.ProcCode = " + POut.String(pc) + @"
                        AND p.PatNum = " + POut.Long(pnum) + @"
                 ORDER BY r.ProcDate";
 
@@ -62,7 +62,7 @@ namespace OpenDentBusiness
 
         public static DataTable GetRecTreatmentYYN(DateTime dateStart, DateTime dateEnd, long pnum)
         {
-            
+
             DataTable table = new DataTable();
             table.Columns.Add("Date of Service");
             table.Columns.Add("Name");
@@ -79,7 +79,7 @@ namespace OpenDentBusiness
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate) 
+				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate)
                              FROM procedurelog r2
                              WHERE r.PatNum = r2.PatNum AND
                              r2.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
@@ -125,11 +125,11 @@ namespace OpenDentBusiness
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate) 
+				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate)
                              FROM procedurelog r2
                              WHERE r.PatNum = r2.PatNum AND
                              r2.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
-                       AND rc.ProcCode = " + POut.String(pc) + @" 
+                       AND rc.ProcCode = " + POut.String(pc) + @"
                 ORDER BY r.ProcDate";
 
             DataTable raw = ReportsComplex.GetTable(command);
@@ -171,7 +171,7 @@ namespace OpenDentBusiness
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate) 
+				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate)
                              FROM procedurelog r2
                              WHERE r.PatNum = r2.PatNum AND
                              r2.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
@@ -376,7 +376,7 @@ namespace OpenDentBusiness
             return table;
         }
 
-       
+
 
     }
 }
