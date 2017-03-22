@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="DatabaseTools.cs" />
     <Compile Include="KPI1 - Active Recall.cs" />
+    <Compile Include="KPI2 - Perio Recall.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
