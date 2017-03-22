@@ -77,16 +77,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OpenDental\OpenDental\OpenDental.csproj">
+    <ProjectReference Include="..\..\opendental16.3\OpenDental\OpenDental.csproj">
       <Project>{8136317d-c936-49b6-9e31-d90f02d2f207}</Project>
       <Name>OpenDental</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\OpenDental\OpenDentBusiness\OpenDentBusiness.csproj">
+    <ProjectReference Include="..\..\opendental16.3\OpenDentBusiness\OpenDentBusiness.csproj">
       <Project>{3d0fc76e-803c-4de2-bdb1-47d63a4e2357}</Project>
       <Name>OpenDentBusiness</Name>
     </ProjectReference>
     <ProjectReference Include="..\KPIReporting.csproj">
-      <Project>{B4466E32-9259-4719-8D30-4400DC5095EE}</Project>
+      <Project>{b4466e32-9259-4719-8d30-4400dc5095ee}</Project>
       <Name>KPIReporting</Name>
     </ProjectReference>
   </ItemGroup>
