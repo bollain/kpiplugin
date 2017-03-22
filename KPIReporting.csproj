@@ -131,6 +131,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>call "C:\Users\Curtis\Documents\kpiplugin\CopyDllToOD.bat"</PostBuildEvent>
+    <PostBuildEvent>call "..\..\CopyDllToOD.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>
