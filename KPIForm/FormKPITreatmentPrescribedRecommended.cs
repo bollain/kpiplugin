@@ -21,7 +21,7 @@ using OpenDental.ReportingComplex;
 using OpenDentalGraph.Extensions;
 using Button = OpenDental.UI.Button;
 
-namespace OpenDental
+namespace KPIReporting.KPIForm
 {
     ///<summary>All this dialog does is set the patnum and it is up to the calling form to do an immediate refresh, or possibly just change the patnum back to what it was.  So the other patient fields must remain intact during all logic in this form, especially if SelectionModeOnly.</summary>
     public partial class FormKPIRecTreatment : ODForm
@@ -88,7 +88,7 @@ namespace OpenDental
         private DateTimePicker dateStart;
         ///<summary>List of all the clinics this userod has access to.  When comboClinic.SelectedIndex=0 it refers to all clinics in this list.  Otherwise their selected clinic will always be _listClinics[comboClinic.SelectedIndex-1].</summary>
         private List<Clinic> _listClinics;
-        ///<summary>Set to true if constructor passed in patient object to prefill text boxes.  Used to make sure fillGrid is not called 
+        ///<summary>Set to true if constructor passed in patient object to prefill text boxes.  Used to make sure fillGrid is not called
         ///before FormSelectPatient_Load.</summary>
         private bool _isPreFillLoad = false;
         ///<summary>If set, initial patient list will be set to these patients.</summary>
@@ -104,7 +104,7 @@ namespace OpenDental
         {
         }
 
-        ///<summary>This takes a partially built patient object and uses it to prefill textboxes to assist in searching.  
+        ///<summary>This takes a partially built patient object and uses it to prefill textboxes to assist in searching.
         ///Currently only implements FName,LName.</summary>
         public FormKPIRecTreatment(Patient pat)
         {
@@ -119,7 +119,7 @@ namespace OpenDental
             }
         }
 
- 
+
         private Patient preselectedPatient;
         private Button butAddPt;
 
@@ -613,7 +613,7 @@ namespace OpenDental
         }
 
 
-   
+
 
         private void OnDataEntered()
         {
@@ -642,7 +642,7 @@ namespace OpenDental
             {
                 siteNum = SiteC.List[comboSite.SelectedIndex - 1].SiteNum;
             }
-           
+
             DateTime birthdate = PIn.Date(textBirthdate.Text); //this will frequently be minval.
             if (birthdate == null)
             {
@@ -891,9 +891,9 @@ namespace OpenDental
             OnArrowsUpDown(e);
         }
 
-     
 
-       
+
+
 
         private void PatSelected()
         {
@@ -910,7 +910,7 @@ namespace OpenDental
 
         private void fill_cmbProc()
         {
-           
+
             DataTable table = new DataTable();
             table.Columns.Add("Procedure Code");
 
@@ -1019,7 +1019,7 @@ namespace OpenDental
             else if (DateRangeCheck.Checked == true)
             {
                 report.AddSubTitle("Date", SELECTDATE.Text);
-             
+
             }
             if (SelectedPatNum != 0)
             {
@@ -1055,7 +1055,7 @@ namespace OpenDental
             }
             FormReportComplex FormR = new FormReportComplex(report);
             FormR.ShowDialog();
-            //DialogResult=DialogResult.OK;		
+            //DialogResult=DialogResult.OK;
         }
 
         private void butCancel_Click(object sender, System.EventArgs e)
