@@ -171,6 +171,7 @@ namespace KPIReporting.KPIForm
                     break;
                 case 10:// Types of Treatments Prescribed/Recommended
 										FormKPIRecTreatment FormRT = new FormKPIRecTreatment();
+										FormAR9.ShowDialog();
                     break;
                 default:
                     return;
