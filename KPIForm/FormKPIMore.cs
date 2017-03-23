@@ -48,18 +48,18 @@ namespace KPIReporting.KPIForm
 			this.listKPI = new OpenDental.UI.ListBoxClickable();
 			this.butClose = new OpenDental.UI.Button();
 			this.SuspendLayout();
-			// 
+			//
 			// label1
-			// 
+			//
 			this.label1.Location = new System.Drawing.Point(291, 304);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(118, 18);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "KPI List";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			// 
+			//
 			// listLists
-			// 
+			//
 			this.listKPI.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.listKPI.FormattingEnabled = true;
 			this.listKPI.ItemHeight = 15;
@@ -69,9 +69,9 @@ namespace KPIReporting.KPIForm
 			this.listKPI.Size = new System.Drawing.Size(204, 214);
 			this.listKPI.TabIndex = 1;
 			this.listKPI.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listKPI_MouseDown);
-			// 
+			//
 			// butClose
-			// 
+			//
 			this.butClose.AdjustImageLocation = new System.Drawing.Point(0, 0);
 			this.butClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.butClose.Autosize = true;
@@ -84,9 +84,9 @@ namespace KPIReporting.KPIForm
 			this.butClose.TabIndex = 0;
 			this.butClose.Text = "Close";
 			this.butClose.Click += new System.EventHandler(this.butClose_Click);
-			// 
+			//
 			// FormKPIMore
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(680, 612);
 			this.Controls.Add(this.listKPI);
@@ -143,7 +143,7 @@ namespace KPIReporting.KPIForm
 			        FormBR.ShowDialog();
 			        break;
                 case 3: //Patients who did not show for their appt
-                    FormKPINoShowAppt FormNSA = new FormKPINoShowAppt(); 
+                    FormKPINoShowAppt FormNSA = new FormKPINoShowAppt();
                     FormNSA.ShowDialog();
                     break;
                 case 4: //Patients who cancelled short notice
@@ -155,7 +155,7 @@ namespace KPIReporting.KPIForm
                 case 6:
                     break;
                 case 7://New patients
-                    FormKPINewPatients FormAR7 = new FormKPINewPatients(); 
+                    FormKPINewPatients FormAR7 = new FormKPINewPatients();
                     FormAR7.ShowDialog();
                     //SecurityLogs.MakeLogEntry(Permissions.Reports,7,"New Patients"); TODOKPI ID800
                     break;
@@ -169,7 +169,8 @@ namespace KPIReporting.KPIForm
                     FormAR9.ShowDialog();
                     //SecurityLogs.MakeLogEntry(Permissions.Reports,9,"New Patients to Recall Patients"); TODOKPI ID1000
                     break;
-                case 10:
+                case 10:// Types of Treatments Prescribed/Recommended
+										FormKPIRecTreatment FormRT = new FormKPIRecTreatment();
                     break;
                 default:
                     return;

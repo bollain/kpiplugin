@@ -15,6 +15,7 @@ using OpenDental;
 using OpenDental.ReportingComplex;
 using Button = OpenDental.UI.Button;
 using CodeBase;
+using KPIReporting.KPI;
 
 namespace KPIReporting.KPIForm
 {
