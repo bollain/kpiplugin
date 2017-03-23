@@ -5,21 +5,16 @@ See header in FormOpenDental.cs for complete text.  Redistributions must retain 
 //#define TRIALONLY //Do not set here because ContrChart.ProcButtonClicked and FormOpenDental also need to test this value.
 using System;
 using System.Drawing;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
-using System.Reflection;
 using OpenDental.UI;
 using OpenDental.Bridges;
 using OpenDentBusiness;
-using CodeBase;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using OpenDental;
 using OpenDental.ReportingComplex;
-using OpenDentalGraph.Extensions;
 using Button = OpenDental.UI.Button;
+using CodeBase;
 
 namespace KPIReporting.KPIForm
 {
@@ -140,10 +135,6 @@ namespace KPIReporting.KPIForm
         ///<summary></summary>
         public void FormSelectPatient_Load(object sender, System.EventArgs e)
         {
-            // TODO: This line of code loads data into the 'opendentalDataSet1.procedurecode' table. You can move, or remove it, as needed.
-            this.procedurecodeTableAdapter1.Fill(this.opendentalDataSet1.procedurecode);
-            // TODO: This line of code loads data into the 'opendentalDataSet.procedurecode' table. You can move, or remove it, as needed.
-            this.procedurecodeTableAdapter.Fill(this.opendentalDataSet.procedurecode);
             if (!PrefC.GetBool(PrefName.DockPhonePanelShow))
             {
                 labelCountry.Visible = false;

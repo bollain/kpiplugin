@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using Tamir.SharpSsh.java.lang;
+using OpenDentBusiness;
+using OpenDental;
 
 namespace KPIReporting.KPI
 {

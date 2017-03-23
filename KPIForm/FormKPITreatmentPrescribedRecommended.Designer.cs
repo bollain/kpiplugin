@@ -1,10 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Web.UI.WebControls;
-using System.Windows.Forms;
-
-namespace KPIReporting.KPIForm
+﻿namespace KPIReporting.KPIForm
 
 {
 
@@ -60,8 +54,6 @@ namespace KPIReporting.KPIForm
             this.cmbProc = new System.Windows.Forms.ComboBox();
             this.textFName = new System.Windows.Forms.TextBox();
             this.FNameLabel = new System.Windows.Forms.Label();
-            this.procedurecodeBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-            this.opendentalDataSet1 = new OpenDental.opendentalDataSet1();
             this.textRegKey = new System.Windows.Forms.TextBox();
             this.comboClinic = new System.Windows.Forms.ComboBox();
             this.labelClinic = new System.Windows.Forms.Label();
@@ -95,31 +87,20 @@ namespace KPIReporting.KPIForm
             this.label5 = new System.Windows.Forms.Label();
             this.textHmPhone = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.procedurecodeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.opendentalDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.opendentalDataSet = new OpenDental.opendentalDataSet();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkRefresh = new System.Windows.Forms.CheckBox();
             this.butSearch = new OpenDental.UI.Button();
             this.gridMain = new OpenDental.UI.ODGrid();
             this.contrKeyboard1 = new OpenDental.User_Controls.ContrKeyboard();
-            this.procedurecodeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.procedurecodeTableAdapter = new OpenDental.opendentalDataSetTableAdapters.procedurecodeTableAdapter();
-            this.procedurecodeBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.procedurecodeTableAdapter1 = new OpenDental.opendentalDataSet1TableAdapters.procedurecodeTableAdapter();
+
             this.label1 = new System.Windows.Forms.Label();
             this.SELECTNAME = new System.Windows.Forms.Label();
             this.SELECTPROC = new System.Windows.Forms.Label();
             this.SELECTDATE = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.procedurecodeBindingSource3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.opendentalDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.procedurecodeBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.opendentalDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.opendentalDataSet)).BeginInit();
+
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.procedurecodeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.procedurecodeBindingSource2)).BeginInit();
+
             this.SuspendLayout();
             //
             // textLName
@@ -316,16 +297,7 @@ namespace KPIReporting.KPIForm
             this.FNameLabel.TabIndex = 5;
             this.FNameLabel.Text = "First Name";
             this.FNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            //
-            // procedurecodeBindingSource3
-            //
-            this.procedurecodeBindingSource3.DataMember = "procedurecode";
-            this.procedurecodeBindingSource3.DataSource = this.opendentalDataSet1;
-            //
-            // opendentalDataSet1
-            //
-            this.opendentalDataSet1.DataSetName = "opendentalDataSet1";
-            this.opendentalDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
             //
             // textRegKey
             //
@@ -560,21 +532,6 @@ namespace KPIReporting.KPIForm
             this.label4.Size = new System.Drawing.Size(10, 23);
             this.label4.TabIndex = 80;
             //
-            // procedurecodeBindingSource1
-            //
-            this.procedurecodeBindingSource1.DataMember = "procedurecode";
-            this.procedurecodeBindingSource1.DataSource = this.opendentalDataSetBindingSource;
-            //
-            // opendentalDataSetBindingSource
-            //
-            this.opendentalDataSetBindingSource.DataSource = this.opendentalDataSet;
-            this.opendentalDataSetBindingSource.Position = 0;
-            //
-            // opendentalDataSet
-            //
-            this.opendentalDataSet.DataSetName = "opendentalDataSet";
-            this.opendentalDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            //
             // groupBox1
             //
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -642,24 +599,7 @@ namespace KPIReporting.KPIForm
             this.contrKeyboard1.TabIndex = 10;
             this.contrKeyboard1.KeyClick += new OpenDental.User_Controls.KeyboardClickEventHandler(this.contrKeyboard1_KeyClick);
             this.contrKeyboard1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.contrKeyboard1_MouseDown);
-            //
-            // procedurecodeBindingSource
-            //
-            this.procedurecodeBindingSource.DataMember = "procedurecode";
-            this.procedurecodeBindingSource.DataSource = this.opendentalDataSetBindingSource;
-            //
-            // procedurecodeTableAdapter
-            //
-            this.procedurecodeTableAdapter.ClearBeforeFill = true;
-            //
-            // procedurecodeBindingSource2
-            //
-            this.procedurecodeBindingSource2.DataMember = "procedurecode";
-            this.procedurecodeBindingSource2.DataSource = this.opendentalDataSet;
-            //
-            // procedurecodeTableAdapter1
-            //
-            this.procedurecodeTableAdapter1.ClearBeforeFill = true;
+
             //
             // label1
             //
@@ -758,14 +698,8 @@ namespace KPIReporting.KPIForm
             this.Load += new System.EventHandler(this.FormSelectPatient_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.procedurecodeBindingSource3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.opendentalDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.procedurecodeBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.opendentalDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.opendentalDataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.procedurecodeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.procedurecodeBindingSource2)).EndInit();
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -780,15 +714,6 @@ namespace KPIReporting.KPIForm
         private System.Windows.Forms.Label DateEndLabel;
         private System.Windows.Forms.Label DateStartLabel;
         private System.Windows.Forms.CheckBox DateRangeCheck;
-        private System.Windows.Forms.BindingSource opendentalDataSetBindingSource;
-        private opendentalDataSet opendentalDataSet;
-        private System.Windows.Forms.BindingSource procedurecodeBindingSource;
-        private opendentalDataSetTableAdapters.procedurecodeTableAdapter procedurecodeTableAdapter;
-        private System.Windows.Forms.BindingSource procedurecodeBindingSource1;
-        private System.Windows.Forms.BindingSource procedurecodeBindingSource2;
-        private opendentalDataSet1 opendentalDataSet1;
-        private System.Windows.Forms.BindingSource procedurecodeBindingSource3;
-        private opendentalDataSet1TableAdapters.procedurecodeTableAdapter procedurecodeTableAdapter1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label SELECTNAME;
         private System.Windows.Forms.Label SELECTPROC;

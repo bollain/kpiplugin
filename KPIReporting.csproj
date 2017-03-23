@@ -56,6 +56,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeBase">
+      <HintPath>..\FreshOD\CodeBase\bin\Debug\CodeBase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -101,6 +104,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KPIForm\FormKPIPerioRecall.Designer.cs" />
+    <Compile Include="KPIForm\FormKPITreatmentPrescribedRecommended.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPITreatmentPrescribedRecommended.Designer.cs">
+      <DependentUpon>FormKPITreatmentPrescribedRecommended.cs</DependentUpon>
+    </Compile>
     <Compile Include="KPI\KPIActiveRecall.cs" />
     <Compile Include="KPI\KPIByReferralSource.cs" />
     <Compile Include="KPI\KPICancel.cs" />
@@ -109,6 +118,7 @@
     <Compile Include="KPI\KPINoShowAppt.cs" />
     <Compile Include="KPI\KPIPerioRecall.cs" />
     <Compile Include="KPI\KPIRecallBacklog.cs" />
+    <Compile Include="KPI\KPITreatmentPrescribedRecommended.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
