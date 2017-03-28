@@ -4,6 +4,7 @@ using System.Data;
 using System.Reflection;
 using OpenDentBusiness;
 using OpenDental;
+using KPIReporting.KPI;
 
 namespace KPIReporting.KPI
 {
@@ -33,11 +34,8 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate)
-                             FROM procedurelog r2
-                             WHERE r.PatNum = r2.PatNum AND
-                             r2.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
-                       AND rc.ProcCode = " + POut.String(pc) + @"
+                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
+                       AND rc.ProcCode = " + "'" + POut.String(pc) + "'" + @"
                        AND p.PatNum = " + POut.Long(pnum) + @"
                 ORDER BY r.ProcDate";
 
@@ -50,7 +48,6 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                pat.Preferred = raw.Rows[i]["Preferred"].ToString();
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
                 row["Name"] = pat.GetNameLF();
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
@@ -80,10 +77,7 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate)
-                             FROM procedurelog r2
-                             WHERE r.PatNum = r2.PatNum AND
-                             r2.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
+                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
                       AND  p.PatNum = " + POut.Long(pnum) + @"
                 ORDER BY r.ProcDate";
 
@@ -96,7 +90,6 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                pat.Preferred = raw.Rows[i]["Preferred"].ToString();
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
                 row["Name"] = pat.GetNameLF();
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
@@ -126,12 +119,10 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate)
-                             FROM procedurelog r2
-                             WHERE r.PatNum = r2.PatNum AND
-                             r2.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
-                       AND rc.ProcCode = " + POut.String(pc) + @"
+                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
+                       AND rc.ProcCode = " + "'" + POut.String(pc) + "'" + @"
                 ORDER BY r.ProcDate";
+
 
             DataTable raw = ReportsComplex.GetTable(command);
             Patient pat;
@@ -142,7 +133,6 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                pat.Preferred = raw.Rows[i]["Preferred"].ToString();
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
                 row["Name"] = pat.GetNameLF();
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
@@ -172,10 +162,7 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate)
-                             FROM procedurelog r2
-                             WHERE r.PatNum = r2.PatNum AND
-                             r2.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
+                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
                 ORDER BY r.ProcDate";
 
             DataTable raw = ReportsComplex.GetTable(command);
@@ -187,7 +174,6 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                pat.Preferred = raw.Rows[i]["Preferred"].ToString();
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
                 row["Name"] = pat.GetNameLF();
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
@@ -231,7 +217,6 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                pat.Preferred = raw.Rows[i]["Preferred"].ToString();
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
                 row["Name"] = pat.GetNameLF();
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
@@ -264,7 +249,7 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-                WHERE rc.ProcCode = " + POut.String(pc) + @" AND p.PatNum = " + POut.Long(pnum) + @"
+                WHERE rc.ProcCode = " + "'" + POut.String(pc) + "'" + @" AND p.PatNum = " + POut.Long(pnum) + @"
                 ORDER BY r.ProcDate";
 
             DataTable raw = ReportsComplex.GetTable(command);
@@ -276,7 +261,6 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                pat.Preferred = raw.Rows[i]["Preferred"].ToString();
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
                 row["Name"] = pat.GetNameLF();
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
@@ -321,7 +305,6 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                pat.Preferred = raw.Rows[i]["Preferred"].ToString();
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
                 row["Name"] = pat.GetNameLF();
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
@@ -354,7 +337,7 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-                WHERE rc.ProcCode = " + POut.String(pc) + @"
+                WHERE rc.ProcCode = " + "'" + POut.String(pc) + "'" + @"
                 ORDER BY r.ProcDate";
 
             DataTable raw = ReportsComplex.GetTable(command);
@@ -366,7 +349,6 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                pat.Preferred = raw.Rows[i]["Preferred"].ToString();
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
                 row["Name"] = pat.GetNameLF();
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
