@@ -118,7 +118,8 @@ namespace KPIReporting.KPIForm
                 Lan.g(this,"List of New Patients"),
                 Lan.g(this,"New Patients by Referral Source"),
                 Lan.g(this,"New Patients to Recall Patients"),
-                Lan.g(this,"Case Presentation")
+                Lan.g(this,"Case Presentation"),
+                Lan.g(this, "Conversion Rate")
             });
 		}
 		private void listKPI_MouseDown(object sender,MouseEventArgs e) {
@@ -171,7 +172,11 @@ namespace KPIReporting.KPIForm
                     break;
                 case 10:// Types of Treatments Prescribed/Recommended
 										FormKPIRecTreatment FormRT = new FormKPIRecTreatment();
-										FormAR9.ShowDialog();
+										FormRT.ShowDialog();
+                    break;
+                case 11: // Conversion Rate
+                    FormKPIConversionRate FormCR = new FormKPIConversionRate();
+                    FormCR.ShowDialog();
                     break;
                 default:
                     return;

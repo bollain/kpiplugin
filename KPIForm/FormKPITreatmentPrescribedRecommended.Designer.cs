@@ -695,7 +695,7 @@
             this.Name = "FormKPIRecTreatment";
             this.ShowInTaskbar = false;
             this.Text = "Treatments Recommended/Prescribed";
-            this.Load += new System.EventHandler(this.FormSelectPatient_Load);
+            this.Load += new System.EventHandler(this.FormRecTreatment_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -721,3 +721,4 @@
     }
 }
 #endregion
+

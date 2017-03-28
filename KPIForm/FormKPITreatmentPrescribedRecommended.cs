@@ -115,7 +115,6 @@ namespace KPIReporting.KPIForm
             }
         }
 
-
         private Patient preselectedPatient;
         private Button butAddPt;
 
@@ -134,7 +133,7 @@ namespace KPIReporting.KPIForm
         }
 
         ///<summary></summary>
-        public void FormSelectPatient_Load(object sender, System.EventArgs e)
+        public void FormRecTreatment_Load(object sender, System.EventArgs e)
         {
             if (!PrefC.GetBool(PrefName.DockPhonePanelShow))
             {
@@ -840,7 +839,7 @@ namespace KPIReporting.KPIForm
             {
                 FillGrid(limit);//in case data was entered while thread was running.
             }
-           gridMain.SetSelected(0, true);
+            gridMain.SetSelected(0, true);
             for (int i = 0; i < PtDataTable.Rows.Count; i++)
             {
                 if (PIn.Long(PtDataTable.Rows[i][0].ToString()) == InitialPatNum)
@@ -939,26 +938,26 @@ namespace KPIReporting.KPIForm
                     if (pc != null)
                     {
                         // YYY
-                        tablePats = KPIRecTreatment.GetRecTreatmentYYY(dateStartPick.Value, dateEndPick.Value, pc, SelectedPatNum);
+                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentYYY(dateStartPick.Value.Date, dateEndPick.Value.Date, pc, SelectedPatNum);
                     }
                     else if (pc == null)
                     {
                         // YYN
-                        tablePats = KPIRecTreatment.GetRecTreatmentYYN(dateStartPick.Value, dateEndPick.Value, SelectedPatNum);
+                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentYYN(dateStartPick.Value.Date, dateEndPick.Value.Date, SelectedPatNum);
                     }
 
-                else if (InitialPatNum == 0)
+                    else if (InitialPatNum == 0)
                     {
                         if (pc != null)
                         {
                             // YNY
-                            tablePats = KPIRecTreatment.GetRecTreatmentYNY(dateStartPick.Value, dateEndPick.Value, pc);
+                            tablePats = KPI.KPIRecTreatment.GetRecTreatmentYNY(dateStartPick.Value.Date, dateEndPick.Value.Date, pc);
                         }
 
                         else if (pc == null)
                         {
                             // YNN
-                            tablePats = KPIRecTreatment.GetRecTreatmentYNN(dateStartPick.Value, dateEndPick.Value);
+                            tablePats = KPI.KPIRecTreatment.GetRecTreatmentYNN(dateStartPick.Value.Date, dateEndPick.Value.Date);
                         }
                     }
                 }
@@ -972,13 +971,13 @@ namespace KPIReporting.KPIForm
                     if (pc != null)
                     {
                         //NYY
-                        tablePats = KPIRecTreatment.GetRecTreatmentNYY(SelectedPatNum, pc);
+                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentNYY(SelectedPatNum, pc);
                     }
 
                     else if (pc == null)
                     {
                         //NYN
-                        tablePats = KPIRecTreatment.GetRecTreatmentNYN(SelectedPatNum);
+                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentNYN(SelectedPatNum);
                     }
                 }
                 else if (InitialPatNum == 0)
@@ -986,14 +985,14 @@ namespace KPIReporting.KPIForm
                     if (pc != null)
                     {
                         // NNY
-                        tablePats = KPIRecTreatment.GetRecTreatmentNNY(pc);
+                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentNNY(pc);
 
                     }
 
                     else if (pc == null)
                     {
                         // NNN
-                        tablePats = KPIRecTreatment.GetRecTreatmentNNN();
+                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentNNN();
 
                     }
                 }
@@ -1028,7 +1027,7 @@ namespace KPIReporting.KPIForm
                 report.AddSubTitle("ProcedureCode", SELECTPROC.Text);
             }
 
-            else if (pc ==null)
+            else if (pc == null)
             {
                 report.AddSubTitle("ProcedureCode", "ALL PROCEDURES");
             }
@@ -1066,10 +1065,10 @@ namespace KPIReporting.KPIForm
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-            // procedure code combobox
+        // procedure code combobox
         {
-                pc = cmbProc.SelectedItem.ToString();
-                SELECTPROC.Text = "Procedure Code: " + cmbProc.SelectedItem.ToString();
+            pc = cmbProc.SelectedItem.ToString();
+            SELECTPROC.Text = "Procedure Code: " + cmbProc.SelectedItem.ToString();
         }
 
         private void combobox1_SelectedValueChanged(object sender, EventArgs e)
@@ -1112,7 +1111,15 @@ namespace KPIReporting.KPIForm
 
         private void DateRangeCheck_CheckedChanged(object sender, EventArgs e)
         {
-            SELECTDATE.Text = "Date Range: " + dateStartPick.Value.ToShortDateString() + " - " + dateEndPick.Value.ToShortDateString();
+            if (DateRangeCheck.Checked == true)
+            {
+                SELECTDATE.Text = "Date Range: " + dateStartPick.Value.ToShortDateString() + " - " +
+                                 dateEndPick.Value.ToShortDateString();
+            }
+            else
+            {
+                SELECTDATE.Text = "Date Range: (DEFAULT ALL)";
+            }
         }
     }
 }
