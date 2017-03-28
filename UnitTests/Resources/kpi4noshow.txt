@@ -1,0 +1,32 @@
+/* Truncate all involved tables */
+TRUNCATE TABLE opendental.patient;
+TRUNCATE TABLE opendental.procedurelog;
+TRUNCATE TABLE opendental.appointment;
+
+/* Add custom procedure codes */
+INSERT INTO `opendental`.`procedurecode` (`CodeNum`, `ProcCode`, `Descript`) VALUES ('88888', '0', 'Fake code');
+INSERT INTO `opendental`.`procedurecode` (`CodeNum`, `ProcCode`, `Descript`) VALUES ('99999', '99999', 'No Show');
+
+/* Insert one patient who should show up for missing an appointment */
+INSERT INTO `opendental`.`procedurelog` (`PatNum`, `AptNum`, `CodeNum`, `ProcDate`) VALUES ('1', '1', '99999', '2016-12-25');
+INSERT INTO `opendental`.`appointment` (`AptNum`, `PatNum`, `ProcDescript`) VALUES ('1', '1', 'fix teeth');
+INSERT INTO `opendental`.`patient` (`PatNum`, `LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('1', 'Test', 'Patient', '1', '1', '1990-07-21', 'T6E1R1', '1');
+
+/* Insert one patient who should NOT show up - Fake procedurecode */
+INSERT INTO `opendental`.`procedurelog` (`PatNum`, `AptNum`, `CodeNum`, `ProcDate`) VALUES ('2', '2', '88888', '2016-12-25');
+INSERT INTO `opendental`.`appointment` (`AptNum`, `PatNum`, `ProcDescript`) VALUES ('2', '2', 'fix teeth');
+INSERT INTO `opendental`.`patient` (`PatNum`, `LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('2', 'Test', 'Patient', '2', '1', '1990-07-21', 'T6E1R1', '1');
+
+/* Insert one patient who should NOT show up - Wrong procedurecode */
+INSERT INTO `opendental`.`procedurelog` (`PatNum`, `AptNum`, `CodeNum`, `ProcDate`) VALUES ('3', '3', '404', '2016-12-25');
+INSERT INTO `opendental`.`appointment` (`AptNum`, `PatNum`, `ProcDescript`) VALUES ('3', '3', 'fix teeth');
+INSERT INTO `opendental`.`patient` (`PatNum`, `LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('3', 'Test', 'Patient', '3', '1', '1990-07-21', 'T6E1R1', '1');
+
+/* Insert one patient who should NOT show up - no procedure log */
+INSERT INTO `opendental`.`appointment` (`AptNum`, `PatNum`, `ProcDescript`) VALUES ('4', '4', 'fix teeth');
+INSERT INTO `opendental`.`patient` (`PatNum`, `LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('4', 'Test', 'Patient', '4', '1', '1990-07-21', 'T6E1R1', '1');
+
+/* Insert one patient who should NOT show up - procedure log too far in past*/
+INSERT INTO `opendental`.`procedurelog` (`PatNum`, `AptNum`, `CodeNum`, `ProcDate`) VALUES ('5', '5', '99999', '2009-12-25');
+INSERT INTO `opendental`.`appointment` (`AptNum`, `PatNum`, `ProcDescript`) VALUES ('5', '5', 'fix teeth');
+INSERT INTO `opendental`.`patient` (`PatNum`, `LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('5', 'Test', 'Patient', '5', '1', '1990-07-21', 'T6E1R1', '1');
