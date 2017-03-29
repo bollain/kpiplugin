@@ -43,65 +43,62 @@ namespace KPIReporting.KPIForm
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKPIMore));
-			this.label1 = new System.Windows.Forms.Label();
-			this.listKPI = new OpenDental.UI.ListBoxClickable();
-			this.butClose = new OpenDental.UI.Button();
-			this.SuspendLayout();
-			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(291, 304);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(118, 18);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "KPI List";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			// 
-			// listLists
-			// 
-			this.listKPI.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.listKPI.FormattingEnabled = true;
-			this.listKPI.ItemHeight = 15;
-			this.listKPI.Location = new System.Drawing.Point(294, 87);
-			this.listKPI.Name = "listKPI";
-			this.listKPI.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.listKPI.Size = new System.Drawing.Size(204, 214);
-			this.listKPI.TabIndex = 1;
-			this.listKPI.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listKPI_MouseDown);
-			// 
-			// butClose
-			// 
-			this.butClose.AdjustImageLocation = new System.Drawing.Point(0, 0);
-			this.butClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.butClose.Autosize = true;
-			this.butClose.BtnShape = OpenDental.UI.enumType.BtnShape.Rectangle;
-			this.butClose.BtnStyle = OpenDental.UI.enumType.XPStyle.Silver;
-			this.butClose.CornerRadius = 4F;
-			this.butClose.Location = new System.Drawing.Point(583, 562);
-			this.butClose.Name = "butClose";
-			this.butClose.Size = new System.Drawing.Size(75, 26);
-			this.butClose.TabIndex = 0;
-			this.butClose.Text = "Close";
-			this.butClose.Click += new System.EventHandler(this.butClose_Click);
-			// 
-			// FormKPIMore
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(680, 612);
-			this.Controls.Add(this.listKPI);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.butClose);
-			//this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon"))); TODOKPI - Figure out why this breaks ID900
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.Name = "FormKPIMore";
-			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Key Performance Indicators";
-			this.Load += new System.EventHandler(this.FormKPIMore_Load);
-			this.ResumeLayout(false);
-			this.PerformLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listKPI = new OpenDental.UI.ListBoxClickable();
+            this.butClose = new OpenDental.UI.Button();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(33, 775);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(306, 43);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "KPI List";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // listKPI
+            // 
+            this.listKPI.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listKPI.FormattingEnabled = true;
+            this.listKPI.ItemHeight = 15;
+            this.listKPI.Location = new System.Drawing.Point(39, 43);
+            this.listKPI.Name = "listKPI";
+            this.listKPI.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listKPI.Size = new System.Drawing.Size(804, 664);
+            this.listKPI.TabIndex = 1;
+            this.listKPI.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listKPI_MouseDown);
+            // 
+            // butClose
+            // 
+            this.butClose.AdjustImageLocation = new System.Drawing.Point(0, 0);
+            this.butClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.butClose.Autosize = true;
+            this.butClose.BtnShape = OpenDental.UI.enumType.BtnShape.Rectangle;
+            this.butClose.BtnStyle = OpenDental.UI.enumType.XPStyle.Silver;
+            this.butClose.CornerRadius = 4F;
+            this.butClose.Location = new System.Drawing.Point(617, 756);
+            this.butClose.Name = "butClose";
+            this.butClose.Size = new System.Drawing.Size(224, 62);
+            this.butClose.TabIndex = 0;
+            this.butClose.Text = "Close";
+            this.butClose.Click += new System.EventHandler(this.butClose_Click);
+            // 
+            // FormKPIMore
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(13, 31);
+            this.ClientSize = new System.Drawing.Size(884, 1034);
+            this.Controls.Add(this.listKPI);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.butClose);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FormKPIMore";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "s";
+            this.Load += new System.EventHandler(this.FormKPIMore_Load);
+            this.ResumeLayout(false);
 
 		}
 		#endregion
@@ -150,9 +147,13 @@ namespace KPIReporting.KPIForm
                     FormKPICancel FormC = new FormKPICancel();
                     FormC.ShowDialog();
                     break;
-                case 5:
+                case 5:	//Non-Productive Practice Time
+                    FormKPINonProductivePracticeTime FormNPPT = new FormKPINonProductivePracticeTime();
+                    FormNPPT.ShowDialog();
                     break;
-                case 6:
+                case 6://Provider Down-time
+                    FormKPIDowntime FormDT = new FormKPIDowntime();
+                    FormDT.ShowDialog();
                     break;
                 case 7://New patients
                     FormKPINewPatients FormAR7 = new FormKPINewPatients(); 

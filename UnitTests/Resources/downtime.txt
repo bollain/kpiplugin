@@ -1,0 +1,44 @@
+/* Truncate all involved tables */
+TRUNCATE TABLE unittest.patient;
+TRUNCATE TABLE unittest.appointment;
+TRUNCATE TABLE unittest.procedurelog;
+TRUNCATE TABLE unittest.provider;
+
+
+
+
+
+/*insert provider 
+INSERT INTO `unittest`.`provider` (`ProvNum`,`Abbr`, `LName`, `FName`, `MI`) VALUES('10','PHD', 'Albert', 'Einstein', 'H');
+
+/* Insert patient with procedure code 99999*/
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('1','120', '99998', '2016-12-25');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`) VALUES('Test', 'Patient', 'A', '1', '1990-07-21', 'T6E1R1');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('1','120', '5','//XXXXXXXX//','10', '2016-12-25');
+
+/* Insert patient with procedure code 99998 */
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('1','121', '99998', '2016-06-06');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`) VALUES('Test2', 'Patient2', 'B', '1', '1989-07-21', 'T6E1R1');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('7','121', '5','//XXXX','10', '2016-06-06');
+
+/*Amanda TooLongAgo - Patient with broken appointment date before start of range  */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`) VALUES('TooLongAgo', 'Amanda', '1', '1976-03-22', 'A5A5A5');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('2','122', '99998', '2013-12-25');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('2','122', '5','//XX//','10', '2013-12-25');
+
+/*Tom Future- Patient with broken appointment date after end of range*/
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`) VALUES('Future', 'Tom', '0', '1982-06-28', 'T6E1R1');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('3','123', '99998', '2017-12-25');
+
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('3','123', '5','//XX//','10', '2017-12-25');
+
+/*Mary WrongCode - Patient with procedure code that is not 99999 or 99998*/
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`) VALUES('WrongCode', 'Mary', '1', '1999-10-28', 'T6E1R1');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('4', '124','30000', '2017-02-12');
+
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('4','124', '5','//XX//','10', '2017-02-12');
+
+
+/*Erica NoLog- Patient with no procedurelog at all */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`) VALUES('NoLog', 'Erica', '1', '1959-10-28', 'T6E1R1');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('6','126', '5','//XX//','10', '2016-05-25');

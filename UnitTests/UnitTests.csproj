@@ -54,8 +54,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DatabaseTools.cs" />
+    <Compile Include="DowntimeTest.cs" />
     <Compile Include="KPI1 - Active Recall.cs" />
     <Compile Include="KPI2 - Perio Recall.cs" />
+    <Compile Include="NonProductivePracticeTimeTest.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -67,7 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\backlogrecall.txt" />
+    <Content Include="Resources\downtime.txt" />
     <Content Include="Resources\dump.txt" />
+    <Content Include="Resources\nonproductivepracticetime.txt" />
     <Content Include="Resources\preferences.txt" />
     <Content Include="Resources\procedurecodes.txt" />
   </ItemGroup>
