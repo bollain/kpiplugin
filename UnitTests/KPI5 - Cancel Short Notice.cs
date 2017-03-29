@@ -20,7 +20,7 @@ namespace UnitTests
             DatabaseTools.SetDbConnection("", "localhost", "3306", "root", "", false);
             DatabaseTools.FreshFromDump("localhost", "3306", "root", "", false);
             //Inject data
-            var seedData = File.ReadAllText(@"..\..\Resources\kpicancelshortnotice.txt");
+            var seedData = File.ReadAllText(@"..\..\Resources\kpi5cancelshortnotice.txt");
             DatabaseTools.ExecuteSqlScript("localhost", "3306", "root", "", seedData);
         }
 
