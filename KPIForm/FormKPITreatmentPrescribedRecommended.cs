@@ -928,76 +928,107 @@ namespace KPIReporting.KPIForm
         }
 
 
-        private void butOK_Click(object sender, System.EventArgs e)
+         private void butOK_Click(object sender, System.EventArgs e)
         {
             DataTable tablePats = new DataTable();
-            if (DateRangeCheck.Checked == true)
+            System.Diagnostics.Debug.WriteLine("SelectedPatNum is : " + SelectedPatNum);
+            if (DateRangeCheck.Checked == false)
             {
-                if (InitialPatNum != 0)
+                System.Diagnostics.Debug.WriteLine("No Date");
+                if (SelectedPatNum != 0)
                 {
-                    if (pc != null)
-                    {
-                        // YYY
-                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentYYY(dateStartPick.Value.Date, dateEndPick.Value.Date, pc, SelectedPatNum);
-                    }
-                    else if (pc == null)
-                    {
-                        // YYN
-                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentYYN(dateStartPick.Value.Date, dateEndPick.Value.Date, SelectedPatNum);
-                    }
-
-                    else if (InitialPatNum == 0)
-                    {
-                        if (pc != null)
-                        {
-                            // YNY
-                            tablePats = KPI.KPIRecTreatment.GetRecTreatmentYNY(dateStartPick.Value.Date, dateEndPick.Value.Date, pc);
-                        }
-
-                        else if (pc == null)
-                        {
-                            // YNN
-                            tablePats = KPI.KPIRecTreatment.GetRecTreatmentYNN(dateStartPick.Value.Date, dateEndPick.Value.Date);
-                        }
-                    }
-                }
-            }
+                    System.Diagnostics.Debug.WriteLine("Using PatNum");
+                    System.Diagnostics.Debug.WriteLine("SelectedPatNum is NOT zero : " + SelectedPatNum);
 
 
-            else if (DateRangeCheck.Checked == false)
-            {
-                if (InitialPatNum != 0)
-                {
+
                     if (pc != null)
                     {
                         //NYY
-                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentNYY(SelectedPatNum, pc);
+                        System.Diagnostics.Debug.WriteLine("Using ProcCode");
+                        tablePats = KPIRecTreatment.GetRecTreatmentNYY(SelectedPatNum, pc);
                     }
 
                     else if (pc == null)
                     {
                         //NYN
-                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentNYN(SelectedPatNum);
+                        System.Diagnostics.Debug.WriteLine("No ProcCode");
+                        tablePats = KPIRecTreatment.GetRecTreatmentNYN(SelectedPatNum);
                     }
                 }
-                else if (InitialPatNum == 0)
+                else if (SelectedPatNum == 0)
+                
                 {
+                    System.Diagnostics.Debug.WriteLine("No PatNum");
+                    System.Diagnostics.Debug.WriteLine("SelectedPatNum is zero : " + SelectedPatNum);
+
+
                     if (pc != null)
                     {
                         // NNY
-                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentNNY(pc);
+                        System.Diagnostics.Debug.WriteLine("Using ProcCode");
+                        tablePats = KPIRecTreatment.GetRecTreatmentNNY(pc);
 
                     }
 
                     else if (pc == null)
                     {
                         // NNN
-                        tablePats = KPI.KPIRecTreatment.GetRecTreatmentNNN();
+                        System.Diagnostics.Debug.WriteLine("Nothing");
+                        tablePats = KPIRecTreatment.GetRecTreatmentNNN();
 
                     }
                 }
             }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Using Date");
+                System.Diagnostics.Debug.WriteLine("SelectedPatNum is : " + SelectedPatNum);
 
+
+                if (SelectedPatNum != 0)
+                {
+                    System.Diagnostics.Debug.WriteLine("Using PatNum");
+                    System.Diagnostics.Debug.WriteLine("SelectedPatNum is NOT zero : " + SelectedPatNum);
+
+
+                    if (pc != null)
+                    {
+                        // YYY
+                        System.Diagnostics.Debug.WriteLine("Using ProcCode");
+                        System.Diagnostics.Debug.WriteLine("SelectedPatNum is : " + SelectedPatNum);
+
+                        tablePats = KPIRecTreatment.GetRecTreatmentYYY(dateStartPick.Value.Date, dateEndPick.Value.Date, pc, SelectedPatNum);
+                    }
+                    else if (pc == null)
+                    {
+                        // YYN
+                        System.Diagnostics.Debug.WriteLine("No ProcCode");
+                        tablePats = KPIRecTreatment.GetRecTreatmentYYN(dateStartPick.Value.Date, dateEndPick.Value.Date, SelectedPatNum);
+                    }
+
+                else if (SelectedPatNum == 0)
+                    {
+                        System.Diagnostics.Debug.WriteLine("No PatNum");
+                        System.Diagnostics.Debug.WriteLine("SelectedPatNum is zero : " + SelectedPatNum);
+
+
+                        if (pc != null)
+                        {
+                            // YNY
+                            System.Diagnostics.Debug.WriteLine("Using ProcCode");
+                            tablePats = KPIRecTreatment.GetRecTreatmentYNY(dateStartPick.Value.Date, dateEndPick.Value.Date, pc);
+                        }
+
+                        else if (pc == null)
+                        {
+                            // YNN
+                            System.Diagnostics.Debug.WriteLine("No ProcCode");
+                            tablePats = KPIRecTreatment.GetRecTreatmentYNN(dateStartPick.Value.Date, dateEndPick.Value.Date);
+                        }
+                    }
+                }
+            }
 
 
             ReportComplex report = new ReportComplex(true, false);
