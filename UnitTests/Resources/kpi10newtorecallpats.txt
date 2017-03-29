@@ -1,6 +1,11 @@
 /* Truncate all involved tables */
 TRUNCATE TABLE unittest.patient;
 TRUNCATE TABLE unittest.procedurelog;
+TRUNCATE TABLE unittest.recalltype;
+TRUNCATE TABLE unittest.recalltrigger;
+
+INSERT INTO `unittest`.`recalltrigger` (`RecallTypeNum`, `CodeNum`) VALUES ('1', '404');
+INSERT INTO `unittest`.`recalltype` (`RecallTypeNum`, `Description`) VALUES ('1', 'Prophy');
 
 /* Insert 1 patient who should qualify as New to Recall Patient */
 INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `ProcDate`) VALUES ('1', '402', '2017-02-21');
