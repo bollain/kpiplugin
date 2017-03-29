@@ -19,17 +19,17 @@ namespace KPIReporting.KPIForm
 		}
 
 		private void FormKPIPerioRecall_Load(object sender,EventArgs e) {
-			dateStart.SelectionStart=DateTime.Today;
-			dateEnd.SelectionStart=DateTime.Today.AddYears(1);
+			dateStart.Value=DateTime.Today;
+			dateEnd.Value=DateTime.Today.AddYears(1);
 		}
 
 		private void butOK_Click(object sender,EventArgs e) {
-			DataTable tablePats=KPIPerioRecall.GetPerioRecall(dateStart.SelectionStart,dateEnd.SelectionStart);
+			DataTable tablePats=KPIPerioRecall.GetPerioRecall(dateStart.Value,dateEnd.Value);
 
             ReportComplex report=new ReportComplex(true,false);
 			report.ReportName=Lan.g(this,"Patients on Perio Recall");
 			report.AddTitle("Title",Lan.g(this, "Patients on Perio Recall"));
-			report.AddSubTitle("Date",dateStart.SelectionStart.ToShortDateString()+" - "+dateEnd.SelectionStart.ToShortDateString());
+			report.AddSubTitle("Date",dateStart.Value.ToShortDateString()+" - "+dateEnd.Value.ToShortDateString());
 			QueryObject query;
             query = report.AddQuery(tablePats, "", "", SplitByKind.None, 0);
             query.AddColumn("Name",150,FieldValueType.String);
