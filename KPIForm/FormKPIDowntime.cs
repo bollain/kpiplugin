@@ -34,7 +34,6 @@ namespace KPIReporting.KPIForm
             query = report.AddQuery(tableProvs, "", "", SplitByKind.None, 0);
             query.AddColumn("Provider Number", 90, FieldValueType.String);
             query.AddColumn("Total Down-time", 100, FieldValueType.String);
-            query.AddColumn("Patients with Broken Appointments", 100, FieldValueType.String);
             report.AddPageNum();
             if (!report.SubmitQueries())
             { 

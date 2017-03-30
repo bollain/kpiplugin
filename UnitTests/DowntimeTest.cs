@@ -29,7 +29,8 @@ namespace UnitTests
             
            
             Assert.IsNotNull(test);
-            Assert.AreEqual("01:00:00", test.Rows[0][1]);
+            Assert.AreEqual("00:20:00", test.Rows[0][1]);
+            Assert.AreEqual("00:40:00", test.Rows[1][1]);
 
 
 
