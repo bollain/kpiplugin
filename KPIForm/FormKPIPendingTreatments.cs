@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using OpenDentBusiness;
+using KPIReporting.KPI;
+using OpenDental;
 using OpenDental.ReportingComplex;
 
-namespace OpenDental.KPI_Reports
+namespace KPIReporting.KPIForm
 {
     public partial class FormKPIPendingTreatments : Form
     {

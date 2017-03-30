@@ -1,4 +1,6 @@
-﻿namespace OpenDental.KPI_Reports
+﻿using OpenDental;
+
+namespace KPIReporting.KPIForm
 {
     partial class FormKPICompletedCases
     {
