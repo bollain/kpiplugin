@@ -77,6 +77,8 @@ namespace KPIReporting.KPIForm
             }
 
             _percentage = 0;
+            dateStartPick.Value = DateTime.Today.AddYears(-1);
+
         }
 
         private void fill_cmbProc()
@@ -115,9 +117,20 @@ namespace KPIReporting.KPIForm
                 MessageBox.Show("Please Select a Procedure Code.");
             }
             else {
-                _percentage = KPI.KPIConversionRate.GetConversionRate(dateStartPick.Value.Date, dateEndPick.Value.Date, _pc);
-                MessageBox.Show("Conversion rate for " + _pc + " between " + dateStartPick.Value.ToShortDateString() + " and " + dateEndPick.Value.ToShortDateString() + " is: " + _percentage
-                        + Environment.NewLine + "Press Ctrl + C to copy this value.");
+                _percentage = KPIConversionRate.GetConversionRate(dateStartPick.Value.Date, dateEndPick.Value.Date, _pc);
+                if (_percentage == 9999)
+                {
+                    MessageBox.Show("No Procedures to query");
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Conversion rate for " + _pc + " between " + dateStartPick.Value.ToShortDateString() + " and " + dateEndPick.Value.ToShortDateString() + " is: " + _percentage
+                           + Environment.NewLine + "Press Ctrl + C to copy this value.");
+                    DialogResult = DialogResult.OK;
+
+                }
+
             }
             
         }
