@@ -19,7 +19,7 @@ using KPIReporting.KPI;
 
 namespace KPIReporting.KPIForm
 {
-    ///<summary>All this dialog does is set the patnum and it is up to the calling form to do an immediate refresh, or possibly just change the patnum back to what it was.  So the other patient fields must remain intact during all logic in this form, especially if SelectionModeOnly.</summary>
+   ///<summary>All this dialog does is set the patnum and it is up to the calling form to do an immediate refresh, or possibly just change the patnum back to what it was.  So the other patient fields must remain intact during all logic in this form, especially if SelectionModeOnly.</summary>
     public partial class FormKPIRecTreatment : ODForm
     {
         private System.Windows.Forms.Label LNameLabel;
@@ -239,6 +239,13 @@ namespace KPIReporting.KPIForm
             {
                 fill_cmbProc();
             }
+           if (pc != "") { pc = "";}
+           if (SelectedPatNum != 0)
+            {
+                SelectedPatNum = 0;
+            }
+
+            dateStartPick.Value = DateTime.Today.AddYears(-1);
         }
 
         ///<summary>This used to be called all the time, now only needs to be called on load.</summary>
@@ -839,7 +846,7 @@ namespace KPIReporting.KPIForm
             {
                 FillGrid(limit);//in case data was entered while thread was running.
             }
-            gridMain.SetSelected(0, true);
+           gridMain.SetSelected(0, true);
             for (int i = 0; i < PtDataTable.Rows.Count; i++)
             {
                 if (PIn.Long(PtDataTable.Rows[i][0].ToString()) == InitialPatNum)
@@ -928,7 +935,7 @@ namespace KPIReporting.KPIForm
         }
 
 
-         private void butOK_Click(object sender, System.EventArgs e)
+        private void butOK_Click(object sender, System.EventArgs e)
         {
             DataTable tablePats = new DataTable();
             System.Diagnostics.Debug.WriteLine("SelectedPatNum is : " + SelectedPatNum);
@@ -942,14 +949,14 @@ namespace KPIReporting.KPIForm
 
 
 
-                    if (pc != null)
+                    if (pc != "")
                     {
                         //NYY
                         System.Diagnostics.Debug.WriteLine("Using ProcCode");
                         tablePats = KPIRecTreatment.GetRecTreatmentNYY(SelectedPatNum, pc);
                     }
 
-                    else if (pc == null)
+                    else if (pc == "")
                     {
                         //NYN
                         System.Diagnostics.Debug.WriteLine("No ProcCode");
@@ -963,7 +970,7 @@ namespace KPIReporting.KPIForm
                     System.Diagnostics.Debug.WriteLine("SelectedPatNum is zero : " + SelectedPatNum);
 
 
-                    if (pc != null)
+                    if (pc != "")
                     {
                         // NNY
                         System.Diagnostics.Debug.WriteLine("Using ProcCode");
@@ -971,7 +978,7 @@ namespace KPIReporting.KPIForm
 
                     }
 
-                    else if (pc == null)
+                    else if (pc == "")
                     {
                         // NNN
                         System.Diagnostics.Debug.WriteLine("Nothing");
@@ -992,43 +999,47 @@ namespace KPIReporting.KPIForm
                     System.Diagnostics.Debug.WriteLine("SelectedPatNum is NOT zero : " + SelectedPatNum);
 
 
-                    if (pc != null)
+                    if (pc != "")
                     {
                         // YYY
                         System.Diagnostics.Debug.WriteLine("Using ProcCode");
                         System.Diagnostics.Debug.WriteLine("SelectedPatNum is : " + SelectedPatNum);
 
-                        tablePats = KPIRecTreatment.GetRecTreatmentYYY(dateStartPick.Value.Date, dateEndPick.Value.Date, pc, SelectedPatNum);
+                        tablePats = KPIRecTreatment.GetRecTreatmentYYY(dateStartPick.Value.Date, dateEndPick.Value.Date,
+                            pc, SelectedPatNum);
                     }
-                    else if (pc == null)
+                    else if (pc == "")
                     {
                         // YYN
                         System.Diagnostics.Debug.WriteLine("No ProcCode");
-                        tablePats = KPIRecTreatment.GetRecTreatmentYYN(dateStartPick.Value.Date, dateEndPick.Value.Date, SelectedPatNum);
+                        tablePats = KPIRecTreatment.GetRecTreatmentYYN(dateStartPick.Value.Date, dateEndPick.Value.Date,
+                            SelectedPatNum);
                     }
+                }
 
                 else if (SelectedPatNum == 0)
+                {
+                    System.Diagnostics.Debug.WriteLine("No PatNum");
+                    System.Diagnostics.Debug.WriteLine("SelectedPatNum is zero : " + SelectedPatNum);
+
+
+                    if (pc != "")
                     {
-                        System.Diagnostics.Debug.WriteLine("No PatNum");
-                        System.Diagnostics.Debug.WriteLine("SelectedPatNum is zero : " + SelectedPatNum);
+                        // YNY
+                        System.Diagnostics.Debug.WriteLine("Using ProcCode");
+                        tablePats = KPIRecTreatment.GetRecTreatmentYNY(dateStartPick.Value.Date, dateEndPick.Value.Date,
+                            pc);
+                    }
 
-
-                        if (pc != null)
-                        {
-                            // YNY
-                            System.Diagnostics.Debug.WriteLine("Using ProcCode");
-                            tablePats = KPIRecTreatment.GetRecTreatmentYNY(dateStartPick.Value.Date, dateEndPick.Value.Date, pc);
-                        }
-
-                        else if (pc == null)
-                        {
-                            // YNN
-                            System.Diagnostics.Debug.WriteLine("No ProcCode");
-                            tablePats = KPIRecTreatment.GetRecTreatmentYNN(dateStartPick.Value.Date, dateEndPick.Value.Date);
-                        }
+                    else if (pc == "")
+                    {
+                        // YNN
+                        System.Diagnostics.Debug.WriteLine("No ProcCode");
+                        tablePats = KPIRecTreatment.GetRecTreatmentYNN(dateStartPick.Value.Date, dateEndPick.Value.Date);
                     }
                 }
             }
+        
 
 
             ReportComplex report = new ReportComplex(true, false);
@@ -1053,12 +1064,12 @@ namespace KPIReporting.KPIForm
                 report.AddSubTitle("Name", "ALL PATIENTS");
             }
 
-            if (pc != null)
+            if (pc != "")
             {
                 report.AddSubTitle("ProcedureCode", SELECTPROC.Text);
             }
 
-            else if (pc == null)
+            else if (pc =="")
             {
                 report.AddSubTitle("ProcedureCode", "ALL PROCEDURES");
             }
@@ -1077,7 +1088,8 @@ namespace KPIReporting.KPIForm
             }
             FormReportComplex FormR = new FormReportComplex(report);
             FormR.ShowDialog();
-            //DialogResult=DialogResult.OK;
+            DialogResult=DialogResult.OK;
+            
         }
 
         private void butCancel_Click(object sender, System.EventArgs e)
@@ -1096,10 +1108,10 @@ namespace KPIReporting.KPIForm
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        // procedure code combobox
+            // procedure code combobox
         {
-            pc = cmbProc.SelectedItem.ToString();
-            SELECTPROC.Text = "Procedure Code: " + cmbProc.SelectedItem.ToString();
+                pc = cmbProc.SelectedItem.ToString();
+                SELECTPROC.Text = "Procedure Code: " + cmbProc.SelectedItem.ToString();
         }
 
         private void combobox1_SelectedValueChanged(object sender, EventArgs e)
