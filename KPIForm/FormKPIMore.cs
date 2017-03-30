@@ -151,8 +151,12 @@ namespace KPIReporting.KPIForm
                     FormC.ShowDialog();
                     break;
                 case 5:
+                    FormKPINonProductivePracticeTime FormNPPT = new FormKPINonProductivePracticeTime();
+                    FormNPPT.ShowDialog();
                     break;
                 case 6:
+                    FormKPIDowntime FormDT = new FormKPIDowntime();
+                    FormDT.ShowDialog();
                     break;
                 case 7://New patients
                     FormKPINewPatients FormAR7 = new FormKPINewPatients(); 
