@@ -1,7 +1,7 @@
 ﻿namespace KPIReporting.KPIForm
 {
 
-    public partial class FormKPIConversionRate
+     public partial class FormKPIConversionRate
     {
 
         /// <summary>
@@ -168,7 +168,7 @@
             this.cmbProc.Size = new System.Drawing.Size(200, 21);
             this.cmbProc.TabIndex = 29;
             this.cmbProc.SelectedIndexChanged += new System.EventHandler(this.cmbProc_SelectedIndexChanged);
-
+            
             // 
             // FormKPIConversionRate
             // 
