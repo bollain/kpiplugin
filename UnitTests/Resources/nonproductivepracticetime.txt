@@ -1,0 +1,51 @@
+/* Truncate all involved tables */
+TRUNCATE TABLE unittest.patient;
+TRUNCATE TABLE unittest.appointment;
+TRUNCATE TABLE unittest.procedurelog;
+TRUNCATE TABLE unittest.provider;
+
+
+
+
+
+/*insert provider 
+INSERT INTO `unittest`.`provider` (`ProvNum`, `LName`, `FName`, `MI`) VALUES('1', 'Albert', 'Brian', 'L');
+INSERT INTO `unittest`.`provider` (`ProvNum`, `LName`, `FName`, `MI`) VALUES('2', 'Jones', 'Tina', 'A');
+INSERT INTO `unittest`.`provider` (`ProvNum`, `LName`, `FName`, `MI`) VALUES('3', 'Lexington', 'Sarah', 'K');
+INSERT INTO `unittest`.`provider` (`ProvNum`, `LName`, `FName`, `MI`) VALUES('4', 'Bently', 'Bruce', 'A');
+
+/* Insert patient with procedure code 99999*/
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('1','120', '99998', '2016-12-25');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('Test', 'Patient', 'A', '1', '1990-07-21', 'T6E1R1', '1');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('1','120', '5','//XXXXXXXX//','1', '2016-12-25');
+
+/* Insert patient with procedure code 99998 */
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('1','121', '99998', '2016-06-06');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('Test2', 'Patient2', 'B', '1', '1989-07-21', 'T6E1R1', '4');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('7','121', '5','//XXXX','4', '2016-06-06');
+
+/*Amanda TooLongAgo - Patient with broken appointment date before start of range  */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('TooLongAgo', 'Amanda', '1', '1976-03-22', 'A5A5A5', '1');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('2','122', '99998', '2013-12-25');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('2','122', '5','//XX//','1', '2013-12-25');
+
+/*Tom Future- Patient with broken appointment date after end of range*/
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('Future', 'Tom', '0', '1982-06-28', 'T6E1R1', '1');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('3','123', '99998', '2017-12-25');
+
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('3','123', '5','//XX//','1', '2017-12-25');
+
+/*Mary WrongCode - Patient with procedure code that is not 99999 or 99998*/
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('WrongCode', 'Mary', '1', '1999-10-28', 'T6E1R1', '1');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('4', '124','30000', '2017-02-12');
+
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('4','124', '5','//XX//','1', '2017-02-12');
+
+/*Marsha NoProvDt - Patient with no provider downtime*/
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('NoProvDt', 'Marsha', '1', '1995-03-28', 'T6E1R1', '1');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`,`AptNum`, `CodeNum`, `ProcDate`) VALUES('5','125', '99998', '2017-01-01');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('5','125', '5','////','1', '2017-01-01');
+
+/*Erica NoLog- Patient with no procedurelog at all */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('NoLog', 'Erica', '1', '1959-10-28', 'T6E1R1', '1');
+INSERT INTO `unittest`.`appointment` (`PatNum`, `AptNum`,`AptStatus`, `Pattern`, `ProvNum`,`AptDateTime`) VALUES ('6','126', '5','//XX//','1', '2016-05-25');
