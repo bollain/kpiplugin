@@ -8,7 +8,7 @@ using KPIReporting.KPI;
 
 namespace KPIReporting.KPI
 {
-    public class KPIRecTreatment
+     public class KPIRecTreatment
     {
 
         ///<summary>If not using clinics then supply an empty list of clinicNums. dateStart and dateEnd can be MinVal/MaxVal to indicate "forever".</summary>
@@ -34,7 +34,7 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
+                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND "+ POut.DateT(dateEnd)+ @"
                        AND rc.ProcCode = " + "'" + POut.String(pc) + "'" + @"
                        AND p.PatNum = " + POut.Long(pnum) + @"
                 ORDER BY r.ProcDate";
@@ -77,7 +77,7 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
+                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND "+ POut.DateT(dateEnd)+ @"
                       AND  p.PatNum = " + POut.Long(pnum) + @"
                 ORDER BY r.ProcDate";
 
@@ -119,7 +119,7 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
+                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND "+ POut.DateT(dateEnd)+ @"
                        AND rc.ProcCode = " + "'" + POut.String(pc) + "'" + @"
                 ORDER BY r.ProcDate";
 
@@ -162,8 +162,10 @@ namespace KPIReporting.KPI
                 JOIN treatplan t ON t.PatNum = p.PatNum
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
-                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
+                WHERE r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND "+ POut.DateT(dateEnd)+ @"
                 ORDER BY r.ProcDate";
+
+            System.Diagnostics.Debug.WriteLine(command);
 
             DataTable raw = ReportsComplex.GetTable(command);
             Patient pat;
@@ -207,6 +209,7 @@ namespace KPIReporting.KPI
                 JOIN treatplanattach tpa ON tpa.ProcNum = r.ProcNum AND tpa.TreatPlanNum = t.TreatPlanNum
                 JOIN procedurecode rc ON rc.CodeNum = r.CodeNum
                 ORDER BY r.ProcDate";
+            System.Diagnostics.Debug.WriteLine(command);
 
             DataTable raw = ReportsComplex.GetTable(command);
             Patient pat;
