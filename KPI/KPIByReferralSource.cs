@@ -52,7 +52,7 @@ namespace KPIReporting.KPI {
                 row["Referral Source"] = referralsource;
                 table.Rows.Add(row);
 			}
-            return resort(table, "Referral Source", "DESC");
+            return resort(table, "Referral Source", "ASC");
 		}
 
         private static string genderFormat(string gNum)

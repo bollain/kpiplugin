@@ -20,25 +20,25 @@ namespace KPIReporting.KPIForm
 
         private void FormKPINewPatients_Load(object sender, EventArgs e)
         {
-            dateStart.SelectionStart = DateTime.Today.AddMonths(-1); //default one month
-            dateEnd.SelectionStart = DateTime.Today;
+            dtpStart.Value = DateTime.Today.AddMonths(-1); //default one month
+            dtpEnd.Value = DateTime.Today;
         }
 
         private void butOK_Click(object sender, EventArgs e)
         {
-            DataTable tablePats = KPINewPatients.GetNewPatients(dateStart.SelectionStart, dateEnd.SelectionStart);
+            DataTable tablePats = KPINewPatients.GetNewPatients(dtpStart.Value, dtpEnd.Value);
 
             ReportComplex report = new ReportComplex(true, false);
             report.ReportName = Lan.g(this, "New Patients");
             report.AddTitle("Title", Lan.g(this, "New Patients"));
-            report.AddSubTitle("Date", dateStart.SelectionStart.ToShortDateString() + " - " + dateEnd.SelectionStart.ToShortDateString());
+            report.AddSubTitle("Date", dtpStart.Value.ToShortDateString() + " - " + dtpEnd.Value.ToShortDateString());
             QueryObject query;
             query = report.AddQuery(tablePats, "", "", SplitByKind.None, 0);
             query.AddColumn("Name", 150, FieldValueType.String);
             query.AddColumn("Gender", 60, FieldValueType.String);
             query.AddColumn("Age", 40, FieldValueType.String);
             query.AddColumn("Date of Service", 100, FieldValueType.String);
-            //query.AddGroupSummaryField("Patient Count:", "Name", "Provider", SummaryOperation.Count);
+            query.AddGroupSummaryField("Patient Count:", "Name", "Date of Service", SummaryOperation.Count);
             report.AddPageNum();
             if (!report.SubmitQueries())
             {
@@ -46,7 +46,7 @@ namespace KPIReporting.KPIForm
             }
             FormReportComplex FormR = new FormReportComplex(report);
             FormR.ShowDialog();
-            //DialogResult=DialogResult.OK;		
+            //DialogResult=DialogResult.OK;     
         }
 
         private void butCancel_Click(object sender, EventArgs e)

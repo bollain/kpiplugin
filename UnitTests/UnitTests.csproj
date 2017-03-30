@@ -56,7 +56,10 @@
     <Compile Include="DatabaseTools.cs" />
     <Compile Include="DowntimeTest.cs" />
     <Compile Include="KPI1 - Active Recall.cs" />
+    <Compile Include="KPI10 - New to Recall.cs" />
     <Compile Include="KPI2 - Perio Recall.cs" />
+    <Compile Include="KPI8 - New Patients.cs" />
+    <Compile Include="KPI9 - New By Referral.cs" />
     <Compile Include="KPI4 - No Show.cs" />
     <Compile Include="KPI5 - Cancel Short Notice.cs" />
     <Compile Include="NonProductivePracticeTimeTest.cs" />
