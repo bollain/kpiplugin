@@ -29,7 +29,7 @@ namespace UnitTests
         [TestMethod]
         public void GetNYY()
         {
-            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNYY(20, 'T3541');
+            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNYY(20, "T3541");
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
@@ -40,7 +40,7 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = 'T3541';
+            _testPat["Procedure"] = "T3541";
 
             expected_dt.Rows.Add(_testPat);
 
@@ -65,19 +65,19 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = '~GRP';
+            _testPat["Procedure"] = "~GRP";
 
             DataRow _testPat2 = expected_dt.NewRow();
-            _testPat2["Procedure"] = 'T3541';
+            _testPat2["Procedure"] = "T3541";
 
             DataRow _testPat3 = expected_dt.NewRow();
-            _testPat3["Procedure"] = 'T6357';
+            _testPat3["Procedure"] = "T6357";
 
             DataRow _testPat4 = expected_dt.NewRow();
-            _testPat4["Procedure"] = 'T1254';
+            _testPat4["Procedure"] = "T1254";
 
             DataRow _testPat5 = expected_dt.NewRow();
-            _testPat5["Procedure"] = 'T6531';
+            _testPat5["Procedure"] = "T6531";
 
 
             expected_dt.Rows.Add(_testPat);
@@ -102,7 +102,7 @@ namespace UnitTests
         [TestMethod]
         public void GetNNY()
         {
-            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNYY('T3541');
+            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNYY("T3541");
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
@@ -191,19 +191,19 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = 'T6357';
+            _testPat["Procedure"] = "T6357";
 
             DataRow _testPat2 = expected_dt.NewRow();
-            _testPat2["Procedure"] = 'T6531';
+            _testPat2["Procedure"] = "T6531";
 
             DataRow _testPat3 = expected_dt.NewRow();
-            _testPat3["Procedure"] = 'T1254';
+            _testPat3["Procedure"] = "T1254";
 
             DataRow _testPat4 = expected_dt.NewRow();
-            _testPat4["Procedure"] = 'T3541';
+            _testPat4["Procedure"] = "T3541";
 
             DataRow _testPat5 = expected_dt.NewRow();
-            _testPat5["Procedure"] = 'T3541';
+            _testPat5["Procedure"] = "T3541";
 
 
             expected_dt.Rows.Add(_testPat);
