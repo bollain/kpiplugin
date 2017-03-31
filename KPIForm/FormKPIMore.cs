@@ -118,7 +118,8 @@ namespace KPIReporting.KPIForm
                 Lan.g(this,"List of New Patients"),
                 Lan.g(this,"New Patients by Referral Source"),
                 Lan.g(this,"New Patients to Recall Patients"),
-                Lan.g(this,"Case Presentation")
+                Lan.g(this,"Case Presentation"),
+                Lan.g(this, "Conversion Rate")
             });
 		}
 		private void listKPI_MouseDown(object sender,MouseEventArgs e) {
@@ -174,6 +175,12 @@ namespace KPIReporting.KPIForm
                     //SecurityLogs.MakeLogEntry(Permissions.Reports,9,"New Patients to Recall Patients"); TODOKPI ID1000
                     break;
                 case 10:
+                    FormKPIRecTreatment FormAR10 = new FormKPIRecTreatment();
+                    FormAR10.ShowDialog();
+                    break;
+                case 11:
+                    FormKPIConversionRate FormAR11 = new FormKPIConversionRate();
+                    FormAR11.ShowDialog();
                     break;
                 default:
                     return;
