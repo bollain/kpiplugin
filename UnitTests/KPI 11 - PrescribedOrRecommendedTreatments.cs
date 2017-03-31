@@ -102,7 +102,7 @@ namespace UnitTests
         [TestMethod]
         public void GetNNY()
         {
-            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNYY("T3541");
+            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNNY("T3541");
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
