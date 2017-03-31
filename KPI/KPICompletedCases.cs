@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
+using OpenDentBusiness;
 
-namespace OpenDentBusiness {
+namespace KPIReporting.KPI {
 	public class KPICompletedCases {
 
 		///<summary>If not using clinics then supply an empty list of clinicNums. dateStart and dateEnd can be MinVal/MaxVal to indicate "forever".</summary>

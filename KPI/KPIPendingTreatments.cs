@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
+using OpenDentBusiness;
 
-namespace OpenDentBusiness {
+namespace KPIReporting.KPI {
     public class KPIPendingTreatments
     {
 

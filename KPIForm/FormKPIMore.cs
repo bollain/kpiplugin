@@ -118,7 +118,8 @@ namespace KPIReporting.KPIForm
                 Lan.g(this,"List of New Patients"),
                 Lan.g(this,"New Patients by Referral Source"),
                 Lan.g(this,"New Patients to Recall Patients"),
-                Lan.g(this,"Case Presentation")
+                Lan.g(this,"Completed Cases"),
+                Lan.g(this, "Pending Treatments")
             });
 		}
 		private void listKPI_MouseDown(object sender,MouseEventArgs e) {
@@ -170,6 +171,12 @@ namespace KPIReporting.KPIForm
                     //SecurityLogs.MakeLogEntry(Permissions.Reports,9,"New Patients to Recall Patients"); TODOKPI ID1000
                     break;
                 case 10:
+                    FormKPICompletedCases FormAR10 = new FormKPICompletedCases();
+                    FormAR10.ShowDialog();
+                    break;
+                case 11:
+                    FormKPIPendingTreatments FormAR11 = new FormKPIPendingTreatments();
+                    FormAR11.ShowDialog();
                     break;
                 default:
                     return;
