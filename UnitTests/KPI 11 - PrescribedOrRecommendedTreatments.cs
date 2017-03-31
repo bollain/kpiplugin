@@ -65,7 +65,7 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = "~GRP";
+            _testPat["Procedure"] = "~GRP~";
 
             DataRow _testPat2 = expected_dt.NewRow();
             _testPat2["Procedure"] = "T3541";
@@ -155,7 +155,7 @@ namespace UnitTests
         [TestMethod]
         public void GetYYY()
         {
-            DataTable real_dt = KPIRecTreatment.GetRecTreatmentYYY(Convert.ToDateTime("2017-03-02"), Convert.ToDateTime("2017-03-30"),20, "T3541");
+            DataTable real_dt = KPIRecTreatment.GetRecTreatmentYYY(Convert.ToDateTime("2017-03-02"), Convert.ToDateTime("2017-03-30"),"T3541", 20);
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
