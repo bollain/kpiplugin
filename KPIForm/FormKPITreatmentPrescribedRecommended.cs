@@ -969,7 +969,7 @@ namespace KPIReporting.KPIForm
                     }
                 }
                 else if (SelectedPatNum == 0)
-                
+
                 {
                     System.Diagnostics.Debug.WriteLine("No PatNum");
                     System.Diagnostics.Debug.WriteLine("SelectedPatNum is zero : " + SelectedPatNum);
@@ -1011,7 +1011,7 @@ namespace KPIReporting.KPIForm
                         System.Diagnostics.Debug.WriteLine("SelectedPatNum is : " + SelectedPatNum);
 
                         tablePats = KPIRecTreatment.GetRecTreatmentYYY(dateStartPick.Value.Date, dateEndPick.Value.Date,
-                            pc, SelectedPatNum);
+                            SelectedPatNum, pc);
                     }
                     else if (pc == "")
                     {
@@ -1044,7 +1044,7 @@ namespace KPIReporting.KPIForm
                     }
                 }
             }
-        
+
 
 
             ReportComplex report = new ReportComplex(true, false);
@@ -1094,7 +1094,7 @@ namespace KPIReporting.KPIForm
             FormReportComplex FormR = new FormReportComplex(report);
             FormR.ShowDialog();
             DialogResult=DialogResult.OK;
-            
+
         }
 
         private void butCancel_Click(object sender, System.EventArgs e)
