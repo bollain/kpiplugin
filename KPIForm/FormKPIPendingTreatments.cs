@@ -18,8 +18,10 @@ namespace KPIReporting.KPIForm
 
         private void FormKPIPendingTreatments_Load(object sender, EventArgs e)
         {
-            dateStart.SelectionStart = DateTime.Today;
-            dateEnd.SelectionStart = DateTime.Today.AddYears(1);
+            // dateStart.SelectionStart = DateTime.Today;
+            // dateEnd.SelectionStart = DateTime.Today.AddYears(1);
+            dtpStart.Value = DateTime.Today.AddYears(-1);
+            dtpEnd.Value = DateTime.Today;
         }
 
         private void butOK_Click(object sender, EventArgs e)
@@ -46,7 +48,8 @@ namespace KPIReporting.KPIForm
             ";
 
 
-            tablePats = StretchKPICustomForm.GetPatients(dateStart.SelectionStart, dateEnd.SelectionStart, patQuery);
+            //   tablePats = StretchKPICustomForm.GetPatients(dateStart.SelectionStart, dateEnd.SelectionStart, patQuery);
+            tablePats = StretchKPICustomForm.GetPatients(dtpStart.Value, dtpEnd.Value, patQuery);
 
             for (int i = 0; i < tablePats.Rows.Count; i++)
             {
@@ -78,8 +81,11 @@ namespace KPIReporting.KPIForm
 
                 String iPatNum = iPat["PatNum"].ToString();
 
-                DataTable procsForPat = KPIPendingTreatments.GetPendingTreatmentProcsPerPat(dateStart.SelectionStart, 
-                    dateEnd.SelectionStart, iPatNum);
+                //   DataTable procsForPat = KPIPendingTreatments.GetPendingTreatmentProcsPerPat(dateStart.SelectionStart, 
+                //         dateEnd.SelectionStart, iPatNum);
+
+                   DataTable procsForPat = KPIPendingTreatments.GetPendingTreatmentProcsPerPat(dtpStart.Value, dtpEnd.Value, iPatNum);
+
 
                 QueryObject procsQ = report.AddQuery(procsForPat, "", "", SplitByKind.None, 0);
                 procsQ.AddColumn("Procedure Code", 100, FieldValueType.String);

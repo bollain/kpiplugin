@@ -19,8 +19,10 @@ namespace KPIReporting.KPIForm
 
         private void FormKPICompletedCases_Load(object sender, EventArgs e)
         {
-            dateStart.SelectionStart = DateTime.Today;
-            dateEnd.SelectionStart = DateTime.Today.AddYears(1);
+            //dateStart.SelectionStart = DateTime.Today.AddYears(-1);
+            //dateEnd.SelectionStart = DateTime.Today;
+            dtpStart.Value = DateTime.Today.AddYears(-1);
+            dtpEnd.Value = DateTime.Today;
         }
 
         private void butOK_Click(object sender, EventArgs e)
@@ -28,7 +30,8 @@ namespace KPIReporting.KPIForm
             ReportComplex report = new ReportComplex(true, false);
             report.ReportName = Lan.g(this, "Completed Cases");
             report.AddTitle("Title", Lan.g(this, "Completed Cases"));
-            report.AddSubTitle("Date", dateStart.SelectionStart.ToShortDateString() + " - " + dateEnd.SelectionStart.ToShortDateString());
+            // report.AddSubTitle("Date", dateStart.SelectionStart.ToShortDateString() + " - " + dateEnd.SelectionStart.ToShortDateString());
+            report.AddSubTitle("Date", dtpStart.Value.ToShortDateString() + " - " + dtpEnd.Value.ToShortDateString());
 
             DataTable tablePats;
             // tablePats = KPICompletedCases.GetCompletedCases(dateStart.SelectionStart, dateEnd.SelectionStart);
@@ -45,12 +48,13 @@ namespace KPIReporting.KPIForm
 
 
            // tablePats = StretchKPICustomForm.GetPatients(dateStart.SelectionStart, dateEnd.SelectionStart, patQuery);
-            tablePats = KPICompletedCases.GetCompletedCasesPats(dateStart.SelectionStart, dateEnd.SelectionStart);
-            for (int i = 0; i < tablePats.Rows.Count; i++)
+           // tablePats = KPICompletedCases.GetCompletedCasesPats(dateStart.SelectionStart, dateEnd.SelectionStart);
+            tablePats = KPICompletedCases.GetCompletedCasesPats(dtpStart.Value, dtpEnd.Value);
+
+                for (int i = 0; i < tablePats.Rows.Count; i++)
             {
                 DataTable onePat = new DataTable();
                 DataTable localPat = tablePats.Clone();
-
 
                 DataRow iPat = tablePats.Rows[i];
                 //onePat.ImportRow(iPat);
@@ -68,8 +72,9 @@ namespace KPIReporting.KPIForm
 
                 String iPatNum = iPat["PatNum"].ToString();
 
-                DataTable procsForPat = KPICompletedCases.GetCompletedCasesPerPat(dateStart.SelectionStart,
-                    dateEnd.SelectionStart, iPatNum);
+                // DataTable procsForPat = KPICompletedCases.GetCompletedCasesPerPat(dateStart.SelectionStart,
+                //     dateEnd.SelectionStart, iPatNum);
+                DataTable procsForPat = KPICompletedCases.GetCompletedCasesPerPat(dtpStart.Value, dtpEnd.Value, iPatNum);
 
                 QueryObject procsQ = report.AddQuery(procsForPat, "", "", SplitByKind.None, 0);
                 procsQ.AddColumn("Date of Service", 100, FieldValueType.String);
