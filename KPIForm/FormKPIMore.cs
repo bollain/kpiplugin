@@ -258,9 +258,13 @@ namespace KPIReporting.KPIForm
                     FormKPIConversionRate FormAR11 = new FormKPIConversionRate();
                     FormAR11.ShowDialog();
                     break;
-                case 2://ROB
+                case 2://Pending Treatments
+                    FormKPIPendingTreatments FormAR12 = new FormKPIPendingTreatments();
+                    FormAR12.ShowDialog();
                     break;
-                case 3://ROB
+                case 3://Completed cases
+                    FormKPICompletedCases FormAR13 = new FormKPICompletedCases();
+                    FormAR13.ShowDialog();
                     break;
                 default:
                     return;
@@ -318,8 +322,8 @@ namespace KPIReporting.KPIForm
             lBCTreatmentCases.Items.AddRange(new string[] {
                 Lan.g(this, "Case Presentation"),
                 Lan.g(this, "Conversion Rate"),
-                Lan.g(this, "ROB"),
-                Lan.g(this, "ROB")
+                Lan.g(this, "Pending Treatments"),
+                Lan.g(this, "Completed Cases")
             });
 
             lBCNewPat.Items.AddRange(new string[] {

@@ -58,6 +58,7 @@
     <Compile Include="KPI 11 - PrescribedOrRecommendedTreatments.cs" />
     <Compile Include="KPI1 - Active Recall.cs" />
     <Compile Include="KPI10 - New to Recall.cs" />
+    <Compile Include="KPI13+14 - Pending+CompletedCases.cs" />
     <Compile Include="KPI2 - Perio Recall.cs" />
     <Compile Include="KPI8 - New Patients.cs" />
     <Compile Include="KPI9 - New By Referral.cs" />
