@@ -15,11 +15,10 @@ using OpenDental;
 using OpenDental.ReportingComplex;
 using Button = OpenDental.UI.Button;
 using CodeBase;
-using KPIReporting.KPI;
 
-namespace KPIReporting.KPIForm
+namespace OpenDental
 {
-   ///<summary>All this dialog does is set the patnum and it is up to the calling form to do an immediate refresh, or possibly just change the patnum back to what it was.  So the other patient fields must remain intact during all logic in this form, especially if SelectionModeOnly.</summary>
+    ///<summary>All this dialog does is set the patnum and it is up to the calling form to do an immediate refresh, or possibly just change the patnum back to what it was.  So the other patient fields must remain intact during all logic in this form, especially if SelectionModeOnly.</summary>
     public partial class FormKPIRecTreatment : ODForm
     {
         private System.Windows.Forms.Label LNameLabel;
@@ -95,6 +94,8 @@ namespace KPIReporting.KPIForm
         private ComputerPref _computerPref;
         private int pnum;
         private string pc;
+        private string dsVAL;
+        private string deVAL;
         ///<summary></summary>
         public FormKPIRecTreatment() : this(null)
         {
@@ -246,6 +247,9 @@ namespace KPIReporting.KPIForm
             }
 
             dateStartPick.Value = DateTime.Today.AddYears(-1);
+            dsVAL = dateStartPick.Value.ToShortDateString();
+            deVAL = dateEndPick.Value.ToShortDateString();
+
         }
 
         ///<summary>This used to be called all the time, now only needs to be called on load.</summary>
@@ -1127,10 +1131,17 @@ namespace KPIReporting.KPIForm
                 MessageBox.Show("Date End cannot be before Date Start");
 
             }
+            else if (DateRangeCheck.Checked == true && dateEndPick.Value > dateStartPick.Value)
+            {
+                dsVAL = dateStartPick.Value.ToShortDateString();
+                SELECTDATE.Text = "Date Range: " + dsVAL + " - " + deVAL;
+            }
+
             else
             {
-                SELECTDATE.Text = "Date Range: " + dateStartPick.Value.ToShortDateString() + " - " + dateEndPick.Value.ToShortDateString();
+                dsVAL = dateStartPick.Value.ToShortDateString();
             }
+
 
         }
 
@@ -1141,10 +1152,16 @@ namespace KPIReporting.KPIForm
                 MessageBox.Show("Date End cannot be before Date Start");
 
             }
+            else if (DateRangeCheck.Checked == true && dateEndPick.Value > dateStartPick.Value)
+            {
+                deVAL = dateEndPick.Value.ToShortDateString();
+                SELECTDATE.Text = "Date Range: " + dsVAL + " - " + deVAL;
+            }
             else
             {
-                SELECTDATE.Text = "Date Range: " + dateStartPick.Value.ToShortDateString() + " - " + dateEndPick.Value.ToShortDateString();
+                deVAL = dateEndPick.Value.ToShortDateString();
             }
+
         }
 
         private void label14_Click_1(object sender, EventArgs e)
@@ -1156,13 +1173,18 @@ namespace KPIReporting.KPIForm
         {
             if (DateRangeCheck.Checked == true)
             {
-                SELECTDATE.Text = "Date Range: " + dateStartPick.Value.ToShortDateString() + " - " +
-                                 dateEndPick.Value.ToShortDateString();
+                SELECTDATE.Text = "Date Range: " + dsVAL + " - " + deVAL;
+
             }
             else
             {
                 SELECTDATE.Text = "Date Range: (DEFAULT ALL)";
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
