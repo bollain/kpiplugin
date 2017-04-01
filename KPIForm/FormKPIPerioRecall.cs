@@ -32,11 +32,11 @@ namespace KPIReporting.KPIForm
 			report.AddSubTitle("Date",dateStart.Value.ToShortDateString()+" - "+dateEnd.Value.ToShortDateString());
 			QueryObject query;
             query = report.AddQuery(tablePats, "", "", SplitByKind.None, 0);
-            query.AddColumn("Name",150,FieldValueType.String);
+            query.AddColumn("Name",90,FieldValueType.String);
 			query.AddColumn("Gender", 60, FieldValueType.String);
             query.AddColumn("Age", 40, FieldValueType.String);
             query.AddColumn("Postal Code",90,FieldValueType.String);
-			query.AddColumn("Date of Next Appointment",130,FieldValueType.String);
+			query.AddColumn("Date of Next Appointment",70,FieldValueType.String);
             query.AddColumn("Frequency", 100, FieldValueType.String);
             query.AddColumn("HygienistID", 60, FieldValueType.String);
             query.AddColumn("Primary Provider",80,FieldValueType.String);
