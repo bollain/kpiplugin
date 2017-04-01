@@ -1,4 +1,6 @@
-﻿namespace OpenDental
+﻿using OpenDental;
+
+namespace KPIReporting.KPIForm
 
 {
 
