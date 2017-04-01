@@ -4,17 +4,16 @@ using OpenDental;
 
 namespace KPIReporting.KPIForm
 {
-    /// <summary>
-    /// Summary description for FormKPIMore.
-    /// </summary>
-    public class FormKPIMore : System.Windows.Forms.Form
-    {
-        private OpenDental.UI.Button butClose;
-        private Label lblNewPat;
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.Container components = null;
+	/// <summary>
+	/// Summary description for FormKPIMore.
+	/// </summary>
+	public class FormKPIMore:System.Windows.Forms.Form {
+		private OpenDental.UI.Button butClose;
+		private Label lblNewPat;
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.Container components = null;
         private OpenDental.UI.ListBoxClickable lBCNewPat;
         private OpenDental.UI.ListBoxClickable lBCRecall;
         private OpenDental.UI.ListBoxClickable lBCTreatmentCases;
@@ -23,38 +22,34 @@ namespace KPIReporting.KPIForm
         private Label lblTreatmentCases;
         private OpenDental.UI.ListBoxClickable lBCProductivity;
 
-        ///<summary></summary>
-        public FormKPIMore()
-        {
-            //
-            // Required for Windows Form Designer support
-            //
-            InitializeComponent();
-            Lan.F(this);
-        }
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (components != null)
-                {
-                    components.Dispose();
-                }
-            }
-            base.Dispose(disposing);
-        }
+		///<summary></summary>
+		public FormKPIMore() {
+			//
+			// Required for Windows Form Designer support
+			//
+			InitializeComponent();
+			Lan.F(this);
+		}
 
-        #region Windows Form Designer generated code
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		protected override void Dispose(bool disposing) {
+			if(disposing) {
+				if(components != null) {
+					components.Dispose();
+				}
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Windows Form Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent() {
             this.lblNewPat = new System.Windows.Forms.Label();
             this.lBCProductivity = new OpenDental.UI.ListBoxClickable();
             this.butClose = new OpenDental.UI.Button();
@@ -187,7 +182,9 @@ namespace KPIReporting.KPIForm
             this.Load += new System.EventHandler(this.FormKPIMore_Load);
             this.ResumeLayout(false);
 
-        }
+
+		}
+
 
         private void listNewPat_MouseDown(object sender, MouseEventArgs e)
         {
@@ -292,6 +289,7 @@ namespace KPIReporting.KPIForm
                     FormKPINonProductivePracticeTime FormNPPT = new FormKPINonProductivePracticeTime();
                     FormNPPT.ShowDialog();
                     break;
+
                 case 3: //Downtime
                     FormKPIDowntime FormDT = new FormKPIDowntime();
                     FormDT.ShowDialog();
@@ -302,9 +300,9 @@ namespace KPIReporting.KPIForm
         }
         #endregion
 
-        private void FormKPIMore_Load(object sender, EventArgs e)
-        {
-            lBCProductivity.Items.AddRange(new string[] { //Delete this comment on deliver: STEP 1 Add report to list
+        private void FormKPIMore_Load(object sender,EventArgs e) {
+			lBCProductivity.Items.AddRange(new string[] { //Delete this comment on deliver: STEP 1 Add report to list
+
                 Lan.g(this, "Patients who missed their appointment"),
                 Lan.g(this, "Patients who cancelled short notice"),
                 Lan.g(this, "Total Non-Productive Practice Time"),
@@ -331,10 +329,10 @@ namespace KPIReporting.KPIForm
             });
         }
 
-        private void butClose_Click(object sender, System.EventArgs e)
-        {
-            Close();
-        }
+
+		private void butClose_Click(object sender,System.EventArgs e) {
+			Close();
+		}
 
         private void listKPI_MouseDown(object sender, MouseEventArgs e)
         {

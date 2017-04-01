@@ -1,0 +1,18 @@
+/* Truncate all involved tables */
+TRUNCATE TABLE unittest.patient;
+TRUNCATE TABLE unittest.procedurelog;
+
+/* Insert 1 patient who should qualify as New Patient */
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `ProcDate`) VALUES ('1', '402', '2017-03-21');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES ('Test', 'Patient', '1', '0', '1988-07-21', 'T6E1R1', '1');
+
+/*Amanda TooLongAgo - Patient with latest procedure date outside default New Patient range */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('TooLongAgo', 'Amanda', '1', '1976-03-22', 'A5A5A5', '1');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `ProcDate`) VALUES('2', '401', '2013-12-25');
+
+/*Mary WrongCode - Patient with procedure code that is not 01101/01102/01103 */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('WrongCode', 'Mary', '1', '1999-10-28', 'T6E1R1', '1');
+INSERT INTO `unittest`.`procedurelog` (`PatNum`, `CodeNum`, `ProcDate`) VALUES('3', '404', '2017-12-25');
+
+/*Erica NoLog- Patient with no procedurelog at all */
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `Gender`, `Birthdate`, `Zip`, `PriProv`) VALUES('NoLog', 'Erica', '1', '1959-10-28', 'T6E1R1', '1');

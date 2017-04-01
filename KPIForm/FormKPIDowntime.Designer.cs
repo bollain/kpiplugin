@@ -2,7 +2,7 @@
 
 namespace KPIReporting.KPIForm
 {
-   partial class FormKPIByReferralSource
+    partial class FormKPIDowntime
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,12 @@ namespace KPIReporting.KPIForm
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRpActivePatients));
             this.butOK = new OpenDental.UI.Button();
             this.butCancel = new OpenDental.UI.Button();
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.labelDTPStart = new System.Windows.Forms.Label();
-            this.labelDTPEnd = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label_title = new System.Windows.Forms.Label();
+            this.label_to = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // butOK
@@ -81,53 +79,41 @@ namespace KPIReporting.KPIForm
             this.dtpStart.Location = new System.Drawing.Point(85, 37);
             this.dtpStart.Name = "dateStart";
             this.dtpStart.TabIndex = 56;
+            // label_title
             // 
-            // labelDTPEnd
+            this.label_title.Location = new System.Drawing.Point(12, 7);
+            this.label_title.Name = "label_title";
+            this.label_title.Size = new System.Drawing.Size(492, 16);
+            this.label_title.TabIndex = 6;
+            this.label_title.Text = "Used to calculate provider down-time within the date range.";
             // 
-            this.labelDTPEnd.Location = new System.Drawing.Point(12, 70);
-            this.labelDTPEnd.Name = "labelDTPEnd";
-            this.labelDTPEnd.Size = new System.Drawing.Size(72, 23);
-            this.labelDTPEnd.TabIndex = 58;
-            this.labelDTPEnd.Text = "End date:";
-            this.labelDTPEnd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // label_to
             // 
-            // labelDTPStart
+            this.label_to.Location = new System.Drawing.Point(12, 70);
+            this.label_to.Name = "label_to";
+            this.label_to.Size = new System.Drawing.Size(72, 23);
+            this.label_to.TabIndex = 58;
+            this.label_to.Text = "End Date";
+            this.label_to.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+
             // 
-            this.labelDTPStart.Location = new System.Drawing.Point(12, 40);
-            this.labelDTPStart.Name = "labelDTPStart";
-            this.labelDTPStart.Size = new System.Drawing.Size(72, 23);
-            this.labelDTPStart.TabIndex = 59;
-            this.labelDTPStart.Text = "Start date:";
-            this.labelDTPStart.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // FormKPIDowntime
             // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(12, 7);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(492, 16);
-            this.label3.TabIndex = 72;
-            this.label3.Text = "Used to get a list of all new patients by referral source within the" +
-    " date range.";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // FormKPINewPatients
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(347, 140);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dtpEnd);
+            this.Controls.Add(this.label_to);
+            this.Controls.Add(this.label_title);
             this.Controls.Add(this.dtpStart);
-            this.Controls.Add(this.labelDTPStart);
-            this.Controls.Add(this.labelDTPEnd);
-            this.Controls.Add(this.butOK);
+            this.Controls.Add(this.dtpEnd);
             this.Controls.Add(this.butCancel);
-            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Controls.Add(this.butOK);
             this.MinimumSize = new System.Drawing.Size(347, 140);
-            this.Name = "FormKPIByReferralSource";
+            this.Name = "FormKPIDowntime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "New Patients by Referral Source";
-            this.Load += new System.EventHandler(this.FormKPIByReferralSource_Load);
+            this.Text = "Provider Down-time";
+            this.Load += new System.EventHandler(this.FormKPIDowntime_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -135,10 +121,9 @@ namespace KPIReporting.KPIForm
 
         private OpenDental.UI.Button butOK;
         private OpenDental.UI.Button butCancel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.DateTimePicker dtpEnd;
-        private System.Windows.Forms.Label labelDTPStart;
-        private System.Windows.Forms.Label labelDTPEnd;
+        private System.Windows.Forms.DateTimePicker dtpStart;
+        private System.Windows.Forms.Label label_title;
+        private System.Windows.Forms.Label label_to;
     }
 }
