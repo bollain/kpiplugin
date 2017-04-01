@@ -32,7 +32,7 @@ namespace KPIReporting.KPIForm
             report.ReportName = Lan.g(this, "Pending Treatments");
             report.AddTitle("Title", Lan.g(this, "Pending Treatments"));
             // report.AddSubTitle("Date", dateStart.SelectionStart.ToShortDateString() + " - " + dateEnd.SelectionStart.ToShortDateString());
-
+	    report.AddSubTitle("Date", dtpStart.Value.ToShortDateString() + " - " + dtpEnd.Value.ToShortDateString());
             DataTable tablePats;
             // tablePats = KPIPendingTreatments.GetPendingTreatmentPats(dateStart.SelectionStart, dateEnd.SelectionStart);
             String patQuery = @"
@@ -124,7 +124,7 @@ namespace KPIReporting.KPIForm
             report.AddPageNum();
 
             */
-
+	    report.AddPageNum();
             if (!report.SubmitQueries())
             {
                 return;
