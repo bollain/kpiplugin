@@ -22,6 +22,7 @@ namespace KPIReporting.KPIForm
         private Label lblTreatmentCases;
         private OpenDental.UI.ListBoxClickable lBCProductivity;
 
+
 		///<summary></summary>
 		public FormKPIMore() {
 			//
@@ -181,7 +182,9 @@ namespace KPIReporting.KPIForm
             this.Load += new System.EventHandler(this.FormKPIMore_Load);
             this.ResumeLayout(false);
 
+
 		}
+
 
         private void listNewPat_MouseDown(object sender, MouseEventArgs e)
         {
@@ -286,6 +289,7 @@ namespace KPIReporting.KPIForm
                     FormKPINonProductivePracticeTime FormNPPT = new FormKPINonProductivePracticeTime();
                     FormNPPT.ShowDialog();
                     break;
+
                 case 3: //Downtime
                     FormKPIDowntime FormDT = new FormKPIDowntime();
                     FormDT.ShowDialog();
@@ -298,6 +302,7 @@ namespace KPIReporting.KPIForm
 
         private void FormKPIMore_Load(object sender,EventArgs e) {
 			lBCProductivity.Items.AddRange(new string[] { //Delete this comment on deliver: STEP 1 Add report to list
+
                 Lan.g(this, "Patients who missed their appointment"),
                 Lan.g(this, "Patients who cancelled short notice"),
                 Lan.g(this, "Total Non-Productive Practice Time"),
@@ -323,6 +328,7 @@ namespace KPIReporting.KPIForm
                 Lan.g(this,"New Patients to Recall Patients")
             });
         }
+
 
 		private void butClose_Click(object sender,System.EventArgs e) {
 			Close();
