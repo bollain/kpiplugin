@@ -1011,7 +1011,7 @@ namespace KPIReporting.KPIForm
                         System.Diagnostics.Debug.WriteLine("SelectedPatNum is : " + SelectedPatNum);
 
                         tablePats = KPIRecTreatment.GetRecTreatmentYYY(dateStartPick.Value.Date, dateEndPick.Value.Date,
-                            pc, SelectedPatNum);
+                            SelectedPatNum, pc);
                     }
                     else if (pc == "")
                     {
