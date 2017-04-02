@@ -29,7 +29,7 @@ namespace UnitTests
         [TestMethod]
         public void GetNYY()
         {
-            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNYY(20, '01202');
+            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNYY(20, "01202");
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
@@ -40,7 +40,7 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = '01202';
+            _testPat["Procedure"] = "01202";
 
             expected_dt.Rows.Add(_testPat);
 
@@ -65,13 +65,13 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = '01202';
+            _testPat["Procedure"] = "01202";
 
             DataRow _testPat2 = expected_dt.NewRow();
-            _testPat2["Procedure"] = '01202';
+            _testPat2["Procedure"] = "01202";
 
             DataRow _testPat3 = expected_dt.NewRow();
-            _testPat3["Procedure"] = '01202';
+            _testPat3["Procedure"] = "01202";
 
 
 
@@ -96,7 +96,7 @@ namespace UnitTests
         [TestMethod]
         public void GetNNY()
         {
-            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNNY('01202');
+            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNNY("01202");
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
@@ -198,13 +198,13 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = '01202';
+            _testPat["Procedure"] = "01202";
 
             DataRow _testPat2 = expected_dt.NewRow();
-            _testPat2["Procedure"] = '01202';
+            _testPat2["Procedure"] = "01202";
 
             DataRow _testPat3 = expected_dt.NewRow();
-            _testPat3["Procedure"] = '01202';
+            _testPat3["Procedure"] = "01202'";
 
 
             expected_dt.Rows.Add(_testPat);
