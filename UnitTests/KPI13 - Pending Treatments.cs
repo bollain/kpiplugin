@@ -28,10 +28,23 @@ namespace UnitTests
         public void GetPendingTreatments()
         {
             // DataTable real_dt = KPIActiveRecall.GetActiveRecall(Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-03-20"));
-            DataTable patsFor13 = KPIPendingTreatments.GetPendingTreatmentPats(
-                Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-04-05"));
-
-
+            // DataTable patsFor13 = KPIPendingTreatments.GetPendingTreatmentPats(
+            //    Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-04-05"));
+            String patQuery = @"
+				SELECT DISTINCT p.PatNum, p.LName, p.FName, p.MiddleI, 
+                           p.HmPhone, p.WkPhone, p.WirelessPhone, p.Email
+                FROM procedurelog pl
+                JOIN procedurecode pc ON pl.CodeNum = pc.CodeNum
+                JOIN appointment a ON a.AptNum = pl.PlannedAptNum
+                JOIN patient p ON a.PatNum = p.PatNum
+                WHERE pl.AptNum = 0
+                AND a.AptStatus = 6
+                AND pc.ProcCode != 01202
+            ";
+            
+            
+            DataTable patsFor13 = StretchKPICustomForm.GetPatients(dtpStart.Value, dtpEnd.Value, patQuery);
+        
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
