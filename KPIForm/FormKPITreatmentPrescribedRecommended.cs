@@ -137,19 +137,12 @@ namespace KPIReporting.KPIForm
         ///<summary></summary>
         public void FormRecTreatment_Load(object sender, System.EventArgs e)
         {
-            if (!PrefC.GetBool(PrefName.DockPhonePanelShow))
-            {
-                labelCountry.Visible = false;
-                textCountry.Visible = false;
-            }
-            if (!PrefC.GetBool(PrefName.DistributorKey))
-            {
-                textRegKey.Visible = false;
-            }
-            if (SelectionModeOnly)
-            {
-                groupAddPt.Visible = false;
-            }
+          
+            labelCountry.Visible = false;
+            textCountry.Visible = false;
+            textRegKey.Visible = false;
+            
+          
             //Cannot add new patients from OD select patient interface.  Patient must be added from HL7 message.
             if (HL7Defs.IsExistingHL7Enabled())
             {
@@ -172,40 +165,13 @@ namespace KPIReporting.KPIForm
             {
                 comboBillingType.Items.Add(DefC.Short[(int)DefCat.BillingTypes][i].ItemName);
             }
-            if (PrefC.GetBool(PrefName.EasyHidePublicHealth))
-            {
-                comboSite.Visible = false;
-                labelSite.Visible = false;
-            }
-            else
-            {
-                comboSite.Items.Add(Lan.g(this, "All"));
-                comboSite.SelectedIndex = 0;
-                for (int i = 0; i < SiteC.List.Length; i++)
-                {
-                    comboSite.Items.Add(SiteC.List[i].Description);
-                }
-            }
-            if (PrefC.GetBool(PrefName.EasyNoClinics))
-            {
-                labelClinic.Visible = false;
-                comboClinic.Visible = false;
-            }
-            else
-            {
-                //if the current user is restricted to a clinic (or in the future many clinics), All will refer to only those clinics the user has access to. May only be one clinic.
-                comboClinic.Items.Add(Lan.g(this, "All"));
-                comboClinic.SelectedIndex = 0;
-                _listClinics = Clinics.GetForUserod(Security.CurUser);//could be only one if the user is restricted
-                for (int i = 0; i < _listClinics.Count; i++)
-                {
-                    comboClinic.Items.Add(_listClinics[i].Abbr);
-                    if (Clinics.ClinicNum == _listClinics[i].ClinicNum)
-                    {
-                        comboClinic.SelectedIndex = i + 1;
-                    }
-                }
-            }
+           
+            comboSite.Visible = false;
+            labelSite.Visible = false;
+   
+            labelClinic.Visible = false;
+            comboClinic.Visible = false;
+     
             FillSearchOption();
             SetGridCols();
             if (ExplicitPatNums != null && ExplicitPatNums.Count > 0)
@@ -260,7 +226,7 @@ namespace KPIReporting.KPIForm
             switch (_computerPref.PatSelectSearchMode)
             {
                 case SearchMode.Default:
-                    checkRefresh.Checked = !PrefC.GetBool(PrefName.PatientSelectUsesSearchButton);//Use global preference
+                    checkRefresh.Checked = true;//!PrefC.GetBool(PrefName.PatientSelectUsesSearchButton);//Use global preference
                     break;
                 case SearchMode.RefreshWhileTyping:
                     checkRefresh.Checked = true;
@@ -641,10 +607,10 @@ namespace KPIReporting.KPIForm
                 billingType = DefC.Short[(int)DefCat.BillingTypes][comboBillingType.SelectedIndex - 1].DefNum;
             }
             long siteNum = 0;
-            if (!PrefC.GetBool(PrefName.EasyHidePublicHealth) && comboSite.SelectedIndex != 0)
-            {
-                siteNum = SiteC.List[comboSite.SelectedIndex - 1].SiteNum;
-            }
+//            if (!PrefC.GetBool(PrefName.EasyHidePublicHealth) && comboSite.SelectedIndex != 0)
+//            {
+//                siteNum = SiteC.List[comboSite.SelectedIndex - 1].SiteNum;
+//            }
 
             DateTime birthdate = PIn.Date(textBirthdate.Text); //this will frequently be minval.
             if (birthdate == null)
@@ -652,24 +618,24 @@ namespace KPIReporting.KPIForm
                 return;
             }
             string clinicNums = "";
-            if (!PrefC.GetBool(PrefName.EasyNoClinics))
-            {
-                if (comboClinic.SelectedIndex == 0)
-                {
-                    for (int i = 0; i < _listClinics.Count; i++)
-                    {
-                        if (i > 0)
-                        {
-                            clinicNums += ",";
-                        }
-                        clinicNums += _listClinics[i].ClinicNum;
-                    }
-                }
-                else
-                {
-                    clinicNums = _listClinics[comboClinic.SelectedIndex - 1].ClinicNum.ToString();
-                }
-            }
+//            if (!PrefC.GetBool(PrefName.EasyNoClinics))
+//            {
+//                if (comboClinic.SelectedIndex == 0)
+//                {
+//                    for (int i = 0; i < _listClinics.Count; i++)
+//                    {
+//                        if (i > 0)
+//                        {
+//                            clinicNums += ",";
+//                        }
+//                        clinicNums += _listClinics[i].ClinicNum;
+//                    }
+//                }
+//                else
+//                {
+//                    clinicNums = _listClinics[comboClinic.SelectedIndex - 1].ClinicNum.ToString();
+//                }
+//            }
             _fillGridThread = new ODThread(new ODThread.WorkerDelegate((ODThread o) => {
                 PtDataTable = Patients.GetPtDataTable(limit, textLName.Text, textFName.Text, textHmPhone.Text,
                     textAddress.Text, checkHideInactive.Checked, textCity.Text, textState.Text,
