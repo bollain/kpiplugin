@@ -11,7 +11,7 @@ using OpenDentBusiness;
 namespace UnitTests
 {
     [TestClass]
-    public class KPI1314
+    public class KPI14
     {
         [TestInitialize]
         public void Initialize()
