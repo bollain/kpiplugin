@@ -47,9 +47,9 @@ namespace KPIReporting.KPI
                 pat = new Patient();
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
-                pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
-                row["Name"] = pat.GetNameLF();
+                row["Name"] = pat.LName + ", " + pat.FName;
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
                 row["Priority"] = raw.Rows[i]["Priority"].ToString();
                 row["Status of Pre-Authorization"] = raw.Rows[i]["ProcStatus"];
@@ -89,9 +89,9 @@ namespace KPIReporting.KPI
                 pat = new Patient();
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
-                pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
-                row["Name"] = pat.GetNameLF();
+                row["Name"] = pat.LName + ", " + pat.FName;
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
                 row["Priority"] = raw.Rows[i]["Priority"].ToString();
                 row["Status of Pre-Authorization"] = raw.Rows[i]["ProcStatus"];
@@ -132,9 +132,9 @@ namespace KPIReporting.KPI
                 pat = new Patient();
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
-                pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
-                row["Name"] = pat.GetNameLF();
+                row["Name"] = pat.LName + ", " + pat.FName;
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
                 row["Priority"] = raw.Rows[i]["Priority"].ToString();
                 row["Status of Pre-Authorization"] = raw.Rows[i]["ProcStatus"];
@@ -175,9 +175,9 @@ namespace KPIReporting.KPI
                 pat = new Patient();
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
-                pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
-                row["Name"] = pat.GetNameLF();
+                row["Name"] = pat.LName + ", " + pat.FName;
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
                 row["Priority"] = raw.Rows[i]["Priority"].ToString();
                 row["Status of Pre-Authorization"] = raw.Rows[i]["ProcStatus"];
@@ -219,9 +219,9 @@ namespace KPIReporting.KPI
                 pat = new Patient();
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
-                pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
-                row["Name"] = pat.GetNameLF();
+                row["Name"] = pat.LName + ", " + pat.FName;
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
                 row["Priority"] = raw.Rows[i]["Priority"].ToString();
                 row["Status of Pre-Authorization"] = raw.Rows[i]["ProcStatus"];
@@ -263,9 +263,9 @@ namespace KPIReporting.KPI
                 pat = new Patient();
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
-                pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
-                row["Name"] = pat.GetNameLF();
+                row["Name"] = pat.LName + ", " + pat.FName;
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
                 row["Priority"] = raw.Rows[i]["Priority"].ToString();
                 row["Status of Pre-Authorization"] = raw.Rows[i]["ProcStatus"];
@@ -307,9 +307,9 @@ namespace KPIReporting.KPI
                 pat = new Patient();
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
-                pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
-                row["Name"] = pat.GetNameLF();
+                row["Name"] = pat.LName + ", " + pat.FName;
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
                 row["Priority"] = raw.Rows[i]["Priority"].ToString();
                 row["Status of Pre-Authorization"] = raw.Rows[i]["ProcStatus"];
@@ -351,9 +351,9 @@ namespace KPIReporting.KPI
                 pat = new Patient();
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
-                pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
-                row["Name"] = pat.GetNameLF();
+                row["Name"] = pat.LName + ", " + pat.FName;
                 row["Procedure"] = raw.Rows[i]["ProcCode"].ToString();
                 row["Priority"] = raw.Rows[i]["Priority"].ToString();
                 row["Status of Pre-Authorization"] = raw.Rows[i]["ProcStatus"];
