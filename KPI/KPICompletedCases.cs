@@ -80,7 +80,7 @@ namespace KPIReporting.KPI {
                 //			pat.Preferred=raw.Rows[i]["Preferred"].ToString();
                 // row["Name"]=pat.GetNameLF();
                 row["Name"] = raw.Rows[i]["FName"].ToString() + " " + raw.Rows[i]["MiddleI"].ToString() +
-                 ". " + raw.Rows[i]["LName"].ToString();
+                 " " + raw.Rows[i]["LName"].ToString();
                 //		row["Primary Provider"]=Providers.GetAbbr(PIn.Long(raw.Rows[i]["PriProv"].ToString()));
                 //        row["Sex"] = raw.Rows[i]["Gender"].ToString();
                 //		row["Postal Code"]=raw.Rows[i]["Zip"].ToString();
