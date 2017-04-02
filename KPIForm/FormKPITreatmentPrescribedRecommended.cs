@@ -141,8 +141,10 @@ namespace KPIReporting.KPIForm
             labelCountry.Visible = false;
             textCountry.Visible = false;
             textRegKey.Visible = false;
-            
-          
+            groupAddPt.Visible = true;
+
+
+
             //Cannot add new patients from OD select patient interface.  Patient must be added from HL7 message.
             if (HL7Defs.IsExistingHL7Enabled())
             {
