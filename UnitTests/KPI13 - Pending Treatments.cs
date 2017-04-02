@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Data;
 using System.Reflection;
@@ -25,16 +25,12 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void GetPatientsOnActiveRecall()
+        public void GetPendingTreatments()
         {
             // DataTable real_dt = KPIActiveRecall.GetActiveRecall(Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-03-20"));
             DataTable patsFor13 = KPIPendingTreatments.GetPendingTreatmentPats(
                 Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-04-05"));
 
-            DataTable patsFor14 = KPICompletedCases.GetCompletedCasesPats(
-                Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-04-05"));
-            DataTable patsFor14dateOutOfRange = KPICompletedCases.GetCompletedCasesPats(
-                Convert.ToDateTime("2018-03-20"), Convert.ToDateTime("2019-04-05"));
 
             DataTable expected_dt = new DataTable();
 
@@ -64,8 +60,6 @@ namespace UnitTests
 
            // Assert.IsNotNull(real_dt);
             Assert.AreEqual(1, patsFor13.Rows.Count);
-            Assert.AreEqual(3, patsFor14.Rows.Count);
-            Assert.AreEqual(0, patsFor14dateOutOfRange.Rows.Count);
             // Assert.AreEqual(real_dt.Rows[0]["Name"], expected_dt.Rows[0]["Name"]);
 
         }
