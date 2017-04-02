@@ -12,7 +12,7 @@ namespace KPIReporting.KPI
     {
 
         ///<summary>If not using clinics then supply an empty list of clinicNums. dateStart and dateEnd can be MinVal/MaxVal to indicate "forever".</summary>
-        public static DataTable GetRecTreatmentYYY(DateTime dateStart, DateTime dateEnd, String pc, long pnum)
+        public static DataTable GetRecTreatmentYYY(DateTime dateStart, DateTime dateEnd, long pnum, String pc)
         {
             if (RemotingClient.RemotingRole == RemotingRole.ClientWeb)
             {

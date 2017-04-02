@@ -29,7 +29,7 @@ namespace UnitTests
         [TestMethod]
         public void GetNYY()
         {
-            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNYY(20, "T3541");
+            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNYY(20, '01202');
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
@@ -40,12 +40,12 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = "T3541";
+            _testPat["Procedure"] = '01202';
 
             expected_dt.Rows.Add(_testPat);
 
             Assert.IsNotNull(real_dt);
-            Assert.AreEqual(1, real_dt.Rows.Count);
+            Assert.AreEqual(3, real_dt.Rows.Count);
             Assert.AreEqual(real_dt.Rows[0]["Procedure"], expected_dt.Rows[0]["Procedure"]);
 
         }
@@ -65,35 +65,29 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = "~GRP~";
+            _testPat["Procedure"] = '01202';
 
             DataRow _testPat2 = expected_dt.NewRow();
-            _testPat2["Procedure"] = "T3541";
+            _testPat2["Procedure"] = '01202';
 
             DataRow _testPat3 = expected_dt.NewRow();
-            _testPat3["Procedure"] = "T6357";
+            _testPat3["Procedure"] = '01202';
 
-            DataRow _testPat4 = expected_dt.NewRow();
-            _testPat4["Procedure"] = "T1254";
 
-            DataRow _testPat5 = expected_dt.NewRow();
-            _testPat5["Procedure"] = "T6531";
 
 
             expected_dt.Rows.Add(_testPat);
             expected_dt.Rows.Add(_testPat2);
             expected_dt.Rows.Add(_testPat3);
-            expected_dt.Rows.Add(_testPat4);
-            expected_dt.Rows.Add(_testPat5);
+
 
 
             Assert.IsNotNull(real_dt);
-            Assert.AreEqual(5, real_dt.Rows.Count);
+            Assert.AreEqual(3, real_dt.Rows.Count);
             Assert.AreEqual(real_dt.Rows[0]["Procedure"], expected_dt.Rows[0]["Procedure"]);
             Assert.AreEqual(real_dt.Rows[1]["Procedure"], expected_dt.Rows[1]["Procedure"]);
             Assert.AreEqual(real_dt.Rows[2]["Procedure"], expected_dt.Rows[2]["Procedure"]);
-            Assert.AreEqual(real_dt.Rows[3]["Procedure"], expected_dt.Rows[3]["Procedure"]);
-            Assert.AreEqual(real_dt.Rows[4]["Procedure"], expected_dt.Rows[4]["Procedure"]);
+
 
 
         }
@@ -102,7 +96,7 @@ namespace UnitTests
         [TestMethod]
         public void GetNNY()
         {
-            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNNY("T3541");
+            DataTable real_dt = KPIRecTreatment.GetRecTreatmentNNY('01202');
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
@@ -113,21 +107,34 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = "T3541";
+            _testPat["Procedure"] = "01202";
 
             DataRow _testPat2 = expected_dt.NewRow();
-            _testPat2["Procedure"] = "T3541";
+            _testPat2["Procedure"] = "01202";
 
             DataRow _testPat3 = expected_dt.NewRow();
-            _testPat3["Procedure"] = "T3541";
+            _testPat3["Procedure"] = "01202";
+
+            DataRow _testPat4 = expected_dt.NewRow();
+            _testPat4["Procedure"] = "01202";
+
+            DataRow _testPat5 = expected_dt.NewRow();
+            _testPat5["Procedure"] = "01202";
+
+            DataRow _testPat6 = expected_dt.NewRow();
+            _testPat6["Procedure"] = "01202";
 
             expected_dt.Rows.Add(_testPat);
             expected_dt.Rows.Add(_testPat2);
             expected_dt.Rows.Add(_testPat3);
+            expected_dt.Rows.Add(_testPat4);
+            expected_dt.Rows.Add(_testPat5);
+            expected_dt.Rows.Add(_testPat6);
+
 
 
             Assert.IsNotNull(real_dt);
-            Assert.AreEqual(3, real_dt.Rows.Count);
+            Assert.AreEqual(6, real_dt.Rows.Count);
             Assert.AreEqual(real_dt.Rows[0]["Procedure"], expected_dt.Rows[0]["Procedure"]);
 
         }
@@ -147,7 +154,7 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             Assert.IsNotNull(real_dt);
-            Assert.AreEqual(10, real_dt.Rows.Count);
+            Assert.AreEqual(6, real_dt.Rows.Count);
 
         }
 
@@ -155,7 +162,7 @@ namespace UnitTests
         [TestMethod]
         public void GetYYY()
         {
-            DataTable real_dt = KPIRecTreatment.GetRecTreatmentYYY(Convert.ToDateTime("2017-03-02"), Convert.ToDateTime("2017-03-30"),"T3541", 20);
+            DataTable real_dt = KPIRecTreatment.GetRecTreatmentYYY(Convert.ToDateTime("2017-03-15"), Convert.ToDateTime("2017-03-30"),20, "01202");
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
@@ -166,12 +173,12 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = "T3541";
+            _testPat["Procedure"] = "01202";
 
             expected_dt.Rows.Add(_testPat);
 
             Assert.IsNotNull(real_dt);
-            Assert.AreEqual(1, real_dt.Rows.Count);
+            Assert.AreEqual(2, real_dt.Rows.Count);
             Assert.AreEqual(real_dt.Rows[0]["Procedure"], expected_dt.Rows[0]["Procedure"]);
 
         }
@@ -191,35 +198,25 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = "T6357";
+            _testPat["Procedure"] = '01202';
 
             DataRow _testPat2 = expected_dt.NewRow();
-            _testPat2["Procedure"] = "T6531";
+            _testPat2["Procedure"] = '01202';
 
             DataRow _testPat3 = expected_dt.NewRow();
-            _testPat3["Procedure"] = "T1254";
-
-            DataRow _testPat4 = expected_dt.NewRow();
-            _testPat4["Procedure"] = "T3541";
-
-            DataRow _testPat5 = expected_dt.NewRow();
-            _testPat5["Procedure"] = "T3541";
+            _testPat3["Procedure"] = '01202';
 
 
             expected_dt.Rows.Add(_testPat);
             expected_dt.Rows.Add(_testPat2);
             expected_dt.Rows.Add(_testPat3);
-            expected_dt.Rows.Add(_testPat4);
-            expected_dt.Rows.Add(_testPat5);
 
 
             Assert.IsNotNull(real_dt);
-            Assert.AreEqual(5, real_dt.Rows.Count);
+            Assert.AreEqual(3, real_dt.Rows.Count);
             Assert.AreEqual(real_dt.Rows[0]["Procedure"], expected_dt.Rows[0]["Procedure"]);
             Assert.AreEqual(real_dt.Rows[1]["Procedure"], expected_dt.Rows[1]["Procedure"]);
             Assert.AreEqual(real_dt.Rows[2]["Procedure"], expected_dt.Rows[2]["Procedure"]);
-            Assert.AreEqual(real_dt.Rows[3]["Procedure"], expected_dt.Rows[3]["Procedure"]);
-            Assert.AreEqual(real_dt.Rows[4]["Procedure"], expected_dt.Rows[4]["Procedure"]);
 
         }
 
@@ -227,7 +224,7 @@ namespace UnitTests
         [TestMethod]
         public void GetYNY()
         {
-          DataTable real_dt = KPIRecTreatment.GetRecTreatmentYNY(Convert.ToDateTime("2017-03-02"), Convert.ToDateTime("2017-03-30"),"T3541");
+          DataTable real_dt = KPIRecTreatment.GetRecTreatmentYNY(Convert.ToDateTime("2017-03-02"), Convert.ToDateTime("2017-03-30"),"01202");
             DataTable expected_dt = new DataTable();
 
             expected_dt.Clear();
@@ -238,20 +235,20 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             DataRow _testPat = expected_dt.NewRow();
-            _testPat["Procedure"] = "T3541";
+            _testPat["Procedure"] = "01202";
 
             DataRow _testPat2 = expected_dt.NewRow();
-            _testPat2["Procedure"] = "T3541";
+            _testPat2["Procedure"] = "01202";
 
             DataRow _testPat3 = expected_dt.NewRow();
-            _testPat3["Procedure"] = "T3541";
+            _testPat3["Procedure"] = "01202";
 
             expected_dt.Rows.Add(_testPat);
             expected_dt.Rows.Add(_testPat2);
             expected_dt.Rows.Add(_testPat3);
 
             Assert.IsNotNull(real_dt);
-            Assert.AreEqual(3, real_dt.Rows.Count);
+            Assert.AreEqual(6, real_dt.Rows.Count);
             Assert.AreEqual(real_dt.Rows[0]["Procedure"], expected_dt.Rows[0]["Procedure"]);
             Assert.AreEqual(real_dt.Rows[1]["Procedure"], expected_dt.Rows[1]["Procedure"]);
             Assert.AreEqual(real_dt.Rows[2]["Procedure"], expected_dt.Rows[2]["Procedure"]);
@@ -274,7 +271,7 @@ namespace UnitTests
             expected_dt.Columns.Add("Status of Pre-Authorization");
 
             Assert.IsNotNull(real_dt);
-            Assert.AreEqual(10, real_dt.Rows.Count);
+            Assert.AreEqual(6, real_dt.Rows.Count);
 
         }
     }
