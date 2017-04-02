@@ -131,8 +131,7 @@ namespace KPIReporting.KPIForm
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(492, 16);
             this.label3.TabIndex = 72;
-            this.label3.Text = "List of all patients with pending treatments. Does not include Recare Exams (Procedure code 01202)." 
-                + " Excludes treatments with scheduled appointments";
+            this.label3.Text = "List of all patients with pending treatments.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // FormKPIPendingTreatments
