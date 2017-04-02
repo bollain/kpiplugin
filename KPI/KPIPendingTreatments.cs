@@ -175,7 +175,7 @@ WHERE r.AptDateTime = (
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
                 // row["Name"]=pat.GetNameLF();
                 row["Name"] = raw.Rows[i]["FName"].ToString() + " " + raw.Rows[i]["MiddleI"].ToString() + 
-                ". " + raw.Rows[i]["LName"].ToString();
+                " " + raw.Rows[i]["LName"].ToString();
                 pat.HmPhone = raw.Rows[i]["HmPhone"].ToString();
                 pat.WkPhone = raw.Rows[i]["WkPhone"].ToString();
                 pat.WirelessPhone = raw.Rows[i]["WirelessPhone"].ToString();
