@@ -2,9 +2,9 @@
 ## Allow Zero Datetime = True
 
 /* Truncate all involved tables */
-## TRUNCATE TABLE opendental.patient;
-## TRUNCATE TABLE opendental.procedurelog;
-## TRUNCATE TABLE opendental.appointment;
+TRUNCATE TABLE unittest.patient;
+TRUNCATE TABLE unittest.procedurelog;
+TRUNCATE TABLE unittest.appointment;
 
 
 /*Insert Patient Info*/
@@ -39,14 +39,14 @@ VALUES ('4', '1302', '2017-03-30', '65', '2', '1', '0', '0', '2017-03-30', '1', 
 /* KPI 14 CHECK: 	Should be no entries (pre-complete procs dont count) */ 
 
 /* Create 2 Planned Appts */ 
-INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`, `ProcsColored`) 
-VALUES ('1', '1301', '6', '//XX//', '19', '1', 'Recare Exam', '<span color="-16777216">Recare Exam</span>');
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
+VALUES ('1', '1301', '6', '//XX//', '19', '1', 'Recare Exam');
 UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
 WHERE ProcNum = '1'
 AND PatNum = '1301';
 
-INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`, `ProcsColored`) 
-VALUES ('2', '1301', '6', '//XX//', '19', '1', 'Ex,Path,Gen', '<span color="-16777216">Ex,Path,Gen</span>');
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
+VALUES ('2', '1301', '6', '//XX//', '19', '1', 'Ex,Path,Gen');
 UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
 WHERE ProcNum = '2'
 AND PatNum = '1301';
@@ -75,16 +75,14 @@ INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee
 VALUES ('10', '1303', '2017-03-30', '75', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '594');
 
 /* Create 2 MORE Planned Appts */ 
-INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`, `ProcsColored`) 
-VALUES ('3', '1303', '6', '//XXXXXX//', '19', '1', "7PA's, RCT1U, Xray, Max Guide", 
-	`<span color="-16777216">7PA's</span><span color="-16777216">RCT1U</span><span color="-16777216">Xray, Max Guide</span>`);
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
+VALUES ('3', '1303', '6', '//XXXXXX//', '19', '1', "7PA's, RCT1U, Xray, Max Guide");
 UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
 WHERE ProcNum in ('5', '6', '7') 
 AND PatNum = '1303';
 
-INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`, `ProcsColored`) 
-VALUES ('4', '1303', '6', '////XX//', '19', '1', "Tx Plan, add'l units, Aesthetic Recontour, add'l unit, Repair Oral Habit Appliance, 1 unit + Lab", 
-	`<span color="-16777216">Tx Plan, add'l units</span><span color="-16777216">Aesthetic Recontour, add'l unit</span><span color="-16777216">Repair Oral Habit Appliance, 1 unit + Lab</span>`);
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
+VALUES ('4', '1303', '6', '////XX//', '19', '1', "Tx Plan, add'l units, Aesthetic Recontour, add'l unit, Repair Oral Habit Appliance, 1 unit + Lab");
 UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
 WHERE ProcNum in ('8', '9', '10') 
 AND PatNum = '1303';
@@ -101,9 +99,8 @@ WHERE AptNum in ('3', '4');
 
 
 /* Create a SCHEDULED appt for 1303, attaching procs 5,6,7 */ 
-INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `Op`, `ProvNum`, `ProcDescript`, `ProcsColored`) 
-VALUES ('7', '1303', '1', '//XXXXXX//', '19', '2', '1', "7PA's, RCT1U, Xray, Max Guide", 
-	`<span color="-16777216">7PA's</span><span color="-16777216">RCT1U</span><span color="-16777216">Xray, Max Guide</span>`);
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `Op`, `ProvNum`, `ProcDescript`) 
+VALUES ('7', '1303', '1', '//XXXXXX//', '19', '2', '1', "7PA's, RCT1U, Xray, Max Guide");
 UPDATE `unittest`.`procedurelog` SET AptNum = '7'
 WHERE ProcNum in ('5', '6', '7') 
 AND PatNum = '1303';
@@ -128,10 +125,9 @@ INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee
 VALUES ('16', '1304', '2017-03-30', '72', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '505');
 
 /* Create a PlannedApt for above procs */
-INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`, `ProcsColored`) 
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
 VALUES ('8', '1304', '6', '////XXXXXX//', '19', '1', "Mand Surg Template, Biopsy Hard, Aspirate, Wax-up, add'l units + Lab, Consult, 
-	add'l units, Topical Appl'n, Antimicrobial, add'l units, Bruxism Appliance, Mandibular + Lab", 
-	`<span color="-16777216">7PA's</span><span color="-16777216">RCT1U</span><span color="-16777216">Xray, Max Guide</span>`);
+	add'l units, Topical Appl'n, Antimicrobial, add'l units, Bruxism Appliance, Mandibular + Lab");
 UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
 WHERE ProcNum in ('11', '12', '13', '14','15', '16') 
 AND PatNum = '1304';
