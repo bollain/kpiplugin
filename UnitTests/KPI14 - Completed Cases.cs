@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Data;
 using System.Reflection;
@@ -7,11 +7,11 @@ using OpenDental;
 using KPIReporting.KPI;
 using OpenDentBusiness;
 
-
 namespace UnitTests
 {
     [TestClass]
-    public class KPI14   {
+    public class KPI14
+    {
         [TestInitialize]
         public void Initialize()
         {
@@ -21,63 +21,27 @@ namespace UnitTests
             //Inject data
             var seedData = File.ReadAllText(@"..\..\Resources\kpi14completedcasesPT1.txt");
             DatabaseTools.ExecuteSqlScript("localhost", "3306", "root", "", seedData);
-        }
 
+        }
         [TestMethod]
         public void GetCompletedCases()
         {
-
-            DataTable patsFor14 = KPICompletedCases.GetCompletedCasesPats(
-                Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-04-05"));
-            DataTable patsFor14dateOutOfRange = KPICompletedCases.GetCompletedCasesPats(
-                Convert.ToDateTime("2018-03-20"), Convert.ToDateTime("2019-04-05"));
+            DataTable compcasesFor14;
+            DataTable patsFor14;
+            patsFor14 = KPICompletedCases.GetCompletedCasesPats(
+                 Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-04-05"));
 
             Assert.AreEqual(0, patsFor14.Rows.Count);
-            Assert.AreEqual(0, patsFor14dateOutOfRange.Rows.Count);
-
+            
             var seedData2 = File.ReadAllText(@"..\..\Resources\kpi14completedcasesPT2.txt");
             DatabaseTools.ExecuteSqlScript("localhost", "3306", "root", "", seedData2);
 
-            patsFor14 = KPICompletedCases.GetCompletedCasesPats(
-                Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-04-05"));
-            patsFor14dateOutOfRange = KPICompletedCases.GetCompletedCasesPats(
-                Convert.ToDateTime("2018-03-20"), Convert.ToDateTime("2019-04-05"));
-
-            Assert.AreEqual(0, patsFor14.Rows.Count);
-            Assert.AreEqual(0, patsFor14dateOutOfRange.Rows.Count);
-
-
-
-            /*
-            DataTable expected_dt = new DataTable();
-            expected_dt.Clear();
-            expected_dt.Columns.Add("PatNum");
-            expected_dt.Columns.Add("Name");
-            expected_dt.Columns.Add("Home Phone");
-            expected_dt.Columns.Add("Work Phone");
-            expected_dt.Columns.Add("Cell Phone");     
-            expected_dt.Columns.Add("Email"); 
-            */
-
-            /*
-            DataRow _testPat = expected_dt.NewRow();
-            _testPat["Name"] = "Test, Patient 1";
-            _testPat["Gender"] = "F";
-            var birthdate = Convert.ToDateTime("1990-07-21");
-            var age = DateTime.UtcNow.Year - birthdate.Year;
-            if (birthdate > DateTime.UtcNow.AddYears(-age)) age--;
-            _testPat["Age"] = age.ToString();
-            _testPat["Postal Code"] = "T6E1R1";
-            _testPat["Date of Service"] = "25/12/2016";
-            _testPat["Frequency"] = "1y";
-            _testPat["Primary Provider"] = "DOC";
-            */
-
-            // expected_dt.Rows.Add(_testPat);
-
-            // Assert.IsNotNull(real_dt);
-
-            // Assert.AreEqual(real_dt.Rows[0]["Name"], expected_dt.Rows[0]["Name"]);
+            var startDate = new DateTime(2016, 3, 20);
+            var endDate = new DateTime(2017, 4, 5);
+            var patsFor14a = KPICompletedCases.GetCompletedCasesPats(startDate, endDate);
+            Assert.IsNotNull(patsFor14a);
+            Assert.AreEqual(1, patsFor14a.Rows.Count);
+            
 
         }
     }

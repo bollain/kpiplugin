@@ -59,7 +59,6 @@
     <Compile Include="KPI1 - Active Recall.cs" />
     <Compile Include="KPI10 - New to Recall.cs" />
     <Compile Include="KPI13 - Pending Treatments.cs" />
-    <Compile Include="KPI14 - Completed Cases.cs" />
     <Compile Include="KPI2 - Perio Recall.cs" />
     <Compile Include="KPI8 - New Patients.cs" />
     <Compile Include="KPI9 - New By Referral.cs" />
@@ -74,6 +73,7 @@
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KPI3 - Backlog Recall.cs" />
+    <Compile Include="KPI14 - Completed Cases.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\backlogrecall.txt" />
