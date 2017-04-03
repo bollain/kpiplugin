@@ -23,18 +23,18 @@ namespace KPIReporting.KPIForm
 
         private void FormKPIBacklogRecall_Load(object sender, EventArgs e)
         {
-            dateStart.SelectionStart = DateTime.Today.AddYears(-1);
-            dateEnd.SelectionStart = DateTime.Today;
+            dtpStart.Value = DateTime.Today.AddYears(-1);
+            dtpEnd.Value = DateTime.Today;
         }
 
         private void butOK_Click(object sender, EventArgs e)
         {
-            DataTable tablePats = KPIRecallBacklog.GetRecallBacklog(dateStart.SelectionStart, dateEnd.SelectionStart);
+            DataTable tablePats = KPIRecallBacklog.GetRecallBacklog(dtpStart.Value, dtpEnd.Value);
 
             ReportComplex report = new ReportComplex(true, false);
             report.ReportName = Lan.g(this, "Backlog of Recall Patients");
             report.AddTitle("Title", Lan.g(this, "Backlog of Recall Patients"));
-            report.AddSubTitle("Date", dateStart.SelectionStart.ToShortDateString() + " - " + dateEnd.SelectionStart.ToShortDateString());
+            report.AddSubTitle("Date", dtpStart.Value.ToShortDateString() + " - " + dtpEnd.Value.ToShortDateString());
             QueryObject query;
             query = report.AddQuery(tablePats, "", "", SplitByKind.None, 0);
             query.AddColumn("Name", 150, FieldValueType.String);

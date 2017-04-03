@@ -1,8 +1,7 @@
-﻿using OpenDental;
-
+﻿
 namespace KPIReporting.KPIForm
 {
-    partial class FormKPIBacklogRecall
+    partial class FormKPINonProductivePracticeTime
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +29,12 @@ namespace KPIReporting.KPIForm
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRpActivePatients));
             this.butOK = new OpenDental.UI.Button();
             this.butCancel = new OpenDental.UI.Button();
-            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
-            this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.labelDTPStart = new System.Windows.Forms.Label();
-            this.labelDTPEnd = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label_title = new System.Windows.Forms.Label();
+            this.label_to = new System.Windows.Forms.Label();
+            this.dateStart = new System.Windows.Forms.DateTimePicker();
+            this.dateEnd = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // butOK
@@ -53,7 +50,7 @@ namespace KPIReporting.KPIForm
             this.butOK.Size = new System.Drawing.Size(75, 24);
             this.butOK.TabIndex = 3;
             this.butOK.Text = "&OK";
-            this.butOK.Click += new System.EventHandler(this.butOK_Click);
+            this.butOK.Click += new System.EventHandler(this.but_OK_Click);
             // 
             // butCancel
             // 
@@ -68,75 +65,64 @@ namespace KPIReporting.KPIForm
             this.butCancel.Size = new System.Drawing.Size(75, 24);
             this.butCancel.TabIndex = 2;
             this.butCancel.Text = "&Cancel";
-            this.butCancel.Click += new System.EventHandler(this.butCancel_Click);
+            this.butCancel.Click += new System.EventHandler(this.but_Cancel_Click);
             // 
-            // dtpend
+            // label_title
             // 
-            this.dtpEnd.Location = new System.Drawing.Point(85, 67);
-            this.dtpEnd.Name = "dateEnd";
-            this.dtpEnd.TabIndex = 57;
+            this.label_title.Location = new System.Drawing.Point(12, 7);
+            this.label_title.Name = "label_title";
+            this.label_title.Size = new System.Drawing.Size(492, 16);
+            this.label_title.TabIndex = 72;
+            this.label_title.Text = "Used to calculate total non-productive practice time within the date range.";
             // 
-            // dtpstart
+            // label_to
             // 
-            this.dtpStart.Location = new System.Drawing.Point(85, 37);
-            this.dtpStart.Name = "dateStart";
-            this.dtpStart.TabIndex = 56;
+            this.label_to.Location = new System.Drawing.Point(12, 70);
+            this.label_to.Name = "label_to";
+            this.label_to.Size = new System.Drawing.Size(72, 23);
+            this.label_to.TabIndex = 58;
+            this.label_to.Text = "TO";
+            this.label_to.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // labelDTPend
+            // dateStart
             // 
-            this.labelDTPEnd.Location = new System.Drawing.Point(12, 70);
-            this.labelDTPEnd.Name = "labelDTPEnd";
-            this.labelDTPEnd.Size = new System.Drawing.Size(72, 23);
-            this.labelDTPEnd.TabIndex = 58;
-            this.labelDTPEnd.Text = "End date:";
-            this.labelDTPEnd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.dateStart.Location = new System.Drawing.Point(85, 37);
+            this.dateStart.Name = "dateStart";
+            this.dateStart.TabIndex = 56;
             // 
-            // labelDTPStart
+            // dateEnd
             // 
-            this.labelDTPStart.Location = new System.Drawing.Point(12, 40);
-            this.labelDTPStart.Name = "labelDTPStart";
-            this.labelDTPStart.Size = new System.Drawing.Size(72, 23);
-            this.labelDTPStart.TabIndex = 59;
-            this.labelDTPStart.Text = "Start date:";
-            this.labelDTPStart.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.dateEnd.Location = new System.Drawing.Point(85, 67);
+            this.dateEnd.Name = "dateEnd";
+            this.dateEnd.TabIndex = 57;
             // 
-            // label3
+            // FormKPINonProductivePracticeTime
             // 
-            this.label3.Location = new System.Drawing.Point(12, 7);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(492, 16);
-            this.label3.TabIndex = 72;
-            this.label3.Text = "Used to get a list of all patients on backlog recall within the" +
-    " date range.";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // FormKPIBacklogRecall
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(347, 140);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dtpEnd);
-            this.Controls.Add(this.dtpStart);
-            this.Controls.Add(this.labelDTPStart);
-            this.Controls.Add(this.labelDTPEnd);
-            this.Controls.Add(this.butOK);
+            this.Controls.Add(this.dateEnd);
+            this.Controls.Add(this.dateStart);
+            this.Controls.Add(this.label_to);
+            this.Controls.Add(this.label_title);
             this.Controls.Add(this.butCancel);
+            this.Controls.Add(this.butOK);
             this.MinimumSize = new System.Drawing.Size(347, 140);
-            this.Name = "FormKPIBacklogRecall";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Backlog of recall patients";
-            this.Load += new System.EventHandler(this.FormKPIBacklogRecall_Load);
+            this.Name = "FormKPINonProductivePracticeTime";
+            this.Text = "Non-Productive Practice Time";
+            this.Load += new System.EventHandler(this.FormKPINonProductivePracticeTime_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
         private OpenDental.UI.Button butOK;
         private OpenDental.UI.Button butCancel;
-        private System.Windows.Forms.DateTimePicker dtpStart;
-        private System.Windows.Forms.DateTimePicker dtpEnd;
-        private System.Windows.Forms.Label labelDTPStart;
-        private System.Windows.Forms.Label labelDTPEnd;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_title;
+        private System.Windows.Forms.Label label_to;
+        private System.Windows.Forms.DateTimePicker dateStart;
+        private System.Windows.Forms.DateTimePicker dateEnd;
     }
 }

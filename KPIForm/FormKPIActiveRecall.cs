@@ -14,17 +14,17 @@ namespace KPIReporting.KPIForm {
 		}
 
 		private void FormKPIActiveRecall_Load(object sender,EventArgs e) {
-			dateStart.SelectionStart=DateTime.Today.AddYears(-1);
-			dateEnd.SelectionStart=DateTime.Today;
-		}
+            dtpStart.Value = DateTime.Today.AddYears(-1);
+			dtpEnd.Value = DateTime.Today;
+        }
 
 		private void butOK_Click(object sender,EventArgs e) {
-			DataTable tablePats=KPIActiveRecall.GetActiveRecall(dateStart.SelectionStart,dateEnd.SelectionStart);
+			DataTable tablePats=KPIActiveRecall.GetActiveRecall(dtpStart.Value, dtpEnd.Value);
 
             ReportComplex report=new ReportComplex(true,false);
 			report.ReportName=Lan.g(this,"Patients on Active Recall");
 			report.AddTitle("Title",Lan.g(this, "Patients on Active Recall"));
-			report.AddSubTitle("Date",dateStart.SelectionStart.ToShortDateString()+" - "+dateEnd.SelectionStart.ToShortDateString());
+			report.AddSubTitle("Date", dtpStart.Value.ToShortDateString()+" - "+ dtpEnd.Value.ToShortDateString());
 			QueryObject query;
             query = report.AddQuery(tablePats, "", "", SplitByKind.None, 0);
             query.AddColumn("Name",150,FieldValueType.String);
@@ -47,6 +47,5 @@ namespace KPIReporting.KPIForm {
 		private void butCancel_Click(object sender,EventArgs e) {
 			DialogResult=DialogResult.Cancel;
 		}
-
-	}
+    }
 }

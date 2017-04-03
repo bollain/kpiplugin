@@ -82,6 +82,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KPIForm\FormKPICancel.Designer.cs" />
+    <Compile Include="KPIForm\FormKPICompletedCases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPICompletedCases.Designer.cs" />
+    <Compile Include="KPIForm\FormKPIConversionRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPIConversionRate.designer.cs" />
+    <Compile Include="KPIForm\FormKPIDowntime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPIDowntime.Designer.cs" />
     <Compile Include="KPIForm\FormKPIMore.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,26 +105,49 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KPIForm\FormKPINewToRecall.Designer.cs" />
+    <Compile Include="KPIForm\FormKPINonProductivePracticeTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPINonProductivePracticeTime.Designer.cs" />
     <Compile Include="KPIForm\FormKPINoShowAppt.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KPIForm\FormKPINoShowAppt.Designer.cs" />
+    <Compile Include="KPIForm\FormKPIPendingTreatments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPIPendingTreatments.designer.cs" />
     <Compile Include="KPIForm\FormKPIPerioRecall.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KPIForm\FormKPIPerioRecall.Designer.cs" />
+    <Compile Include="KPIForm\FormKPITreatmentPrescribedRecommended.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KPIForm\FormKPITreatmentPrescribedRecommended.Designer.cs" />
     <Compile Include="KPI\KPIActiveRecall.cs" />
     <Compile Include="KPI\KPIByReferralSource.cs" />
     <Compile Include="KPI\KPICancel.cs" />
+    <Compile Include="KPI\KPICompletedCases.cs" />
+    <Compile Include="KPI\KPIConversionRate.cs" />
+    <Compile Include="KPI\KPIDowntime.cs" />
     <Compile Include="KPI\KPINewPatients.cs" />
     <Compile Include="KPI\KPINewToRecall.cs" />
+    <Compile Include="KPI\KPINonProductivePracticeTime.cs" />
     <Compile Include="KPI\KPINoShowAppt.cs" />
+    <Compile Include="KPI\KPIPendingTreatments.cs" />
     <Compile Include="KPI\KPIPerioRecall.cs" />
     <Compile Include="KPI\KPIRecallBacklog.cs" />
+    <Compile Include="KPI\StretchKPICustomForm.cs" />
+    <Compile Include="KPI\KPITreatmentPrescribedRecommended.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FreshOD\CodeBase\xCodeBase.csproj">
+      <Project>{18f7bc78-4b99-48d3-a1f1-0d13a63e3cf9}</Project>
+      <Name>xCodeBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FreshOD\OpenDental\OpenDental.csproj">
       <Project>{8136317d-c936-49b6-9e31-d90f02d2f207}</Project>
       <Name>OpenDental</Name>

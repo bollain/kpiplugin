@@ -1,0 +1,40 @@
+// Truncate Tables
+
+TRUNCATE TABLE unittestpatient;
+TRUNCATE TABLE unittestprocedurelog;
+TRUNCATE TABLE unittesttreatplan;
+TRUNCATE TABLE unittesttreatplanattach;
+
+// Kevin Bieksa
+
+INSERT INTO patient (LName, FName, MiddleI, PatNum) VALUES ('Bieksa', 'Kevin', 'F', 1, 1, '2010-01-01', '1');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-20', 1, 20, 21, 'T3541');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-23', 1, 20, 22, 'T1254');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-24', 1, 20, 23, 'T6531');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-21', 1, 20, 24,'T2345');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-10', 1, 20, 25, 'T7966');
+INSERT INTO treatplan (PatNum, TreatPlanNum) VALUES (20, 21);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (21,21, 0);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (22,21, 0);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (23,21, 0);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (24,21, 0);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (25,21, 0);
+
+
+// Henrik Sedin
+
+INSERT INTO patient (LName, FName, MiddleI, PatNum) VALUES ('Sedin', 'Henrik', '', 2, 1, '2010-01-01', '1');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-23', 1, 21, 26, 'T3541');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-24', 1, 21, 27, 'T1254');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-19', 1, 21, 28, 'T6531');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-13', 1, 21, 29,'T2345');
+INSERT INTO procedurelog (ProcDate, ProcStatus, PatNum, ProcNum , CodeNum) VALUES ('2017-03-13', 1, 21, 30, 'T7966');
+INSERT INTO treatplan (PatNum, TreatPlanNum) VALUES (21, 22);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (26,22, 0);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (27,22, 0);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (28,22, 0);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (29,22, 0);
+INSERT INTO treatplanattach (ProcNum, TreatPlanNum, Priority) VALUES (30,22, 0);
+
+
+1 row(s) affected, 25 warning(s): 1364 Field 'Guarantor' doesn't have a default value 1364 Field 'PriProv' doesn't have a default value 1364 Field 'SecProv' doesn't have a default value 1364 Field 'FeeSched' doesn't have a default value 1364 Field 'BillingType' doesn't have a default value 1364 Field 'SchoolName' doesn't have a default value 1364 Field 'EmployerNum' doesn't have a default value 1364 Field 'ClinicNum' doesn't have a default value 1364 Field 'Premed' doesn't have a default value 1364 Field 'PreferConfirmMethod' doesn't have a default value 1364 Field 'PreferContactMethod' doesn't have a default value 1364 Field 'PreferRecallMethod' doesn't have a default value 1364 Field 'SchedDayOfWeek' doesn't have a default value 1364 Field 'PayPlanDue' doesn't have a default value 1364 Field 'SiteNum' doesn't have a default value 1364 Field 'ResponsParty' doesn't have a default value 1364 Field 'CanadianEligibilityCode' doesn't have a default value 1364 Field 'AskToArriveEarly' doesn't have a default value 1364 Field 'PreferContactConfidential' doesn't have a default value 1364 Field 'SuperFamily' doesn't have a default value 1364 Field 'TxtMsgOk' doesn't have a default value 1364 Field 'SmokingSnoMed' doesn't have a default value 1364 Field 'Country' doesn't have a default value 1364 Field 'SecUserNumEntry' doesn't have a default value 1364 Field 'HasSuperBilling' doesn't have a default value
