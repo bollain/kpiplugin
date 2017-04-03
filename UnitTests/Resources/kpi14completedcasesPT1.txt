@@ -1,0 +1,12 @@
+﻿## Convert Zero Datetime=True
+## Allow Zero Datetime = True
+
+/* Truncate all involved tables */
+TRUNCATE TABLE unittest.patient;
+TRUNCATE TABLE unittest.procedurelog;
+TRUNCATE TABLE unittest.appointment;
+
+
+/*Insert Patient Info*/
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('ATestKPI14', 'Try1', '11', '1', '1990-07-21', 'T6E1R1', '1', '1401');
