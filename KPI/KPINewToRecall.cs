@@ -36,8 +36,7 @@ namespace KPIReporting.KPI
 									INNER JOIN procedurecode c2 ON c2.CodeNum = l2.CodeNum
 								WHERE (c2.ProcCode = 01101 OR c2.ProcCode = 01102 OR c2.ProcCode = 01103) AND
 										l2.ProcDate < l.ProcDate AND
-                                        l2.ProcDate > (DATE_SUB(l.ProcDate,INTERVAL 1 YEAR)))
-            GROUP BY p.PatNum";
+                                        l2.ProcDate > (DATE_SUB(l.ProcDate,INTERVAL 1 YEAR)))";
 
             DataTable rawrecall = ReportsComplex.GetTable(command);
 
