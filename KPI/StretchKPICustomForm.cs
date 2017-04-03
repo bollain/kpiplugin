@@ -21,23 +21,9 @@ namespace KPIReporting.KPI
             table.Columns.Add("Work Phone");
             table.Columns.Add("Wireless Phone");
             table.Columns.Add("Email");
-            // table.Columns.Add("Procedure Code");
-            // table.Columns.Add("Treatment Planned");
 
 
             DataRow row;
-
-            string command = @"
-				SELECT DISTINCT p.PatNum, p.LName, p.FName, p.MiddleI, 
-                           p.HmPhone, p.WkPhone, p.WirelessPhone, p.Email
-                FROM procedurelog pl
-                JOIN procedurecode pc ON pl.CodeNum = pc.CodeNum
-                JOIN appointment a ON a.AptNum = pl.PlannedAptNum
-                JOIN patient p ON a.PatNum = p.PatNum
-                WHERE pl.AptNum = 0
-                AND a.AptStatus = 6
-                AND pc.ProcCode != 01202
-            ";
 
             DataTable raw = ReportsComplex.GetTable(query);
             Patient pat;
@@ -48,8 +34,8 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                // row["Name"] = pat.GetNameLF();
-		row["Name"] = raw.Rows[i]["FName"].ToString() + " " + raw.Rows[i]["MiddleI"].ToString() +
+
+		        row["Name"] = raw.Rows[i]["FName"].ToString() + " " + raw.Rows[i]["MiddleI"].ToString() +
                  " " + raw.Rows[i]["LName"].ToString();		    
                 pat.HmPhone = raw.Rows[i]["HmPhone"].ToString();
                 pat.WkPhone = raw.Rows[i]["WkPhone"].ToString();
@@ -83,23 +69,8 @@ namespace KPIReporting.KPI
             table.Columns.Add("Work Phone");
             table.Columns.Add("Wireless Phone");
             table.Columns.Add("Email");
-            // table.Columns.Add("Procedure Code");
-            // table.Columns.Add("Treatment Planned");
-
 
             DataRow row;
-
-            string command = @"
-				SELECT DISTINCT p.PatNum, p.LName, p.FName, p.MiddleI, 
-                           p.HmPhone, p.WkPhone, p.WirelessPhone, p.Email
-                FROM procedurelog pl
-                JOIN procedurecode pc ON pl.CodeNum = pc.CodeNum
-                JOIN appointment a ON a.AptNum = pl.PlannedAptNum
-                JOIN patient p ON a.PatNum = p.PatNum
-                WHERE pl.AptNum = 0
-                AND a.AptStatus = 6
-                AND pc.ProcCode != 01202
-            ";
 
             DataTable raw = ReportsComplex.GetTable(query);
             Patient pat;
@@ -110,7 +81,6 @@ namespace KPIReporting.KPI
                 pat.LName = raw.Rows[i]["LName"].ToString();
                 pat.FName = raw.Rows[i]["FName"].ToString();
                 pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
-                // row["Name"]=pat.GetNameLF();
                 row["Name"] = raw.Rows[i]["FName"].ToString() + " " + raw.Rows[i]["MiddleI"].ToString() +
                  " " + raw.Rows[i]["LName"].ToString();
                 pat.HmPhone = raw.Rows[i]["HmPhone"].ToString();
