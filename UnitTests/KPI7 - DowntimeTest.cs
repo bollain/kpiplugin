@@ -8,7 +8,7 @@ using KPIReporting.KPI;
 namespace UnitTests
 {
     [TestClass]
-    public class NonProductivePracticeTimeTest
+    public class DowntimeTest
     {
         [TestInitialize]
         public void Initialize()
@@ -17,18 +17,23 @@ namespace UnitTests
             DatabaseTools.SetDbConnection("", "localhost", "3306", "root", "", false);
             DatabaseTools.FreshFromDump("localhost", "3306", "root", "", false);
             //Inject data
-            var seedData = File.ReadAllText(@"..\..\Resources\nonproductivepracticetime.txt");
+            var seedData = File.ReadAllText(@"..\..\Resources\downtime.txt");
             DatabaseTools.ExecuteSqlScript("localhost", "3306", "root", "", seedData);
         }
 
         [TestMethod]
-        public void GetTotalNonProductivePracticeTime()
+        public void GetProviderDowntime()
         {
-            var startDate = new DateTime(2014, 3, 20);
-            var endDate = new DateTime(2017, 3, 20);
-            DataTable test = KPIReporting.KPI.KPINonProductivePracticeTime.GetNonProductivePracticeTime(startDate, endDate);
+
+            DataTable test = KPIReporting.KPI.KPIDowntime.GetDowntime(Convert.ToDateTime("2014-03-20"), Convert.ToDateTime("2017-03-20"));
+
+
             Assert.IsNotNull(test);
-            Assert.AreEqual(1, test.Rows.Count);
+            Assert.AreEqual("00:20:00", test.Rows[0][1]);
+            Assert.AreEqual("00:40:00", test.Rows[1][1]);
+
+
+
         }
     }
 }

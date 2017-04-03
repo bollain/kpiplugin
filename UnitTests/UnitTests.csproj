@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -54,7 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DatabaseTools.cs" />
-    <Compile Include="DowntimeTest.cs" />
+    <Compile Include="KPI7 - DowntimeTest.cs" />
     <Compile Include="KPI 11 - PrescribedOrRecommendedTreatments.cs" />
     <Compile Include="KPI1 - Active Recall.cs" />
     <Compile Include="KPI10 - New to Recall.cs" />
@@ -65,7 +65,7 @@
     <Compile Include="KPI9 - New By Referral.cs" />
     <Compile Include="KPI4 - No Show.cs" />
     <Compile Include="KPI5 - Cancel Short Notice.cs" />
-    <Compile Include="NonProductivePracticeTimeTest.cs" />
+    <Compile Include="KPI6 - Non-Productive Practice Time.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
