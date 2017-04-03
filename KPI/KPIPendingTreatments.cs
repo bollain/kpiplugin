@@ -18,6 +18,25 @@ namespace KPIReporting.KPI {
 
         */
         ///<summary>If not using clinics then supply an empty list of clinicNums. dateStart and dateEnd can be MinVal/MaxVal to indicate "forever".</summary>
+
+        private static String  patQuery = @"
+				SELECT DISTINCT p.PatNum, p.LName, p.FName, p.MiddleI, 
+                           p.HmPhone, p.WkPhone, p.WirelessPhone, p.Email
+                FROM procedurelog pl
+                JOIN procedurecode pc ON pl.CodeNum = pc.CodeNum
+                JOIN appointment a ON a.AptNum = pl.PlannedAptNum
+                JOIN patient p ON a.PatNum = p.PatNum
+                WHERE pl.AptNum = 0
+                AND a.AptStatus = 6
+                AND pc.ProcCode != 01202
+            ";
+
+        public static String getPatQuery()
+        {
+            return patQuery;
+        }
+
+
         public static DataTable GetPendingTreatments(DateTime dateStart, DateTime dateEnd)
         {
             if (RemotingClient.RemotingRole == RemotingRole.ClientWeb)
@@ -93,6 +112,9 @@ namespace KPIReporting.KPI {
                 return "Unknown";
             }
         }
+
+       // public static String GetQueryPats() 
+
 
         public static DataTable GetPendingTreatmentPats(DateTime dateStart, DateTime dateEnd)
         {
