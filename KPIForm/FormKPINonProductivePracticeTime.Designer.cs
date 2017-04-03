@@ -35,6 +35,7 @@ namespace KPIReporting.KPIForm
             this.label_to = new System.Windows.Forms.Label();
             this.dateStart = new System.Windows.Forms.DateTimePicker();
             this.dateEnd = new System.Windows.Forms.DateTimePicker();
+            this.labelDTPStart = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // butOK
@@ -81,8 +82,17 @@ namespace KPIReporting.KPIForm
             this.label_to.Name = "label_to";
             this.label_to.Size = new System.Drawing.Size(72, 23);
             this.label_to.TabIndex = 58;
-            this.label_to.Text = "TO";
+            this.label_to.Text = "End date:";
             this.label_to.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelDTPStart
+            // 
+            this.labelDTPStart.Location = new System.Drawing.Point(12, 40);
+            this.labelDTPStart.Name = "labelDTPStart";
+            this.labelDTPStart.Size = new System.Drawing.Size(72, 23);
+            this.labelDTPStart.TabIndex = 59;
+            this.labelDTPStart.Text = "Start date:";
+            this.labelDTPStart.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // dateStart
             // 
@@ -103,6 +113,7 @@ namespace KPIReporting.KPIForm
             this.Controls.Add(this.dateEnd);
             this.Controls.Add(this.dateStart);
             this.Controls.Add(this.label_to);
+            this.Controls.Add(this.labelDTPStart);
             this.Controls.Add(this.label_title);
             this.Controls.Add(this.butCancel);
             this.Controls.Add(this.butOK);
@@ -122,6 +133,7 @@ namespace KPIReporting.KPIForm
         private OpenDental.UI.Button butCancel;
         private System.Windows.Forms.Label label_title;
         private System.Windows.Forms.Label label_to;
+        private System.Windows.Forms.Label labelDTPStart;
         private System.Windows.Forms.DateTimePicker dateStart;
         private System.Windows.Forms.DateTimePicker dateEnd;
     }
