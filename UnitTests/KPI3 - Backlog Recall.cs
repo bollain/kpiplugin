@@ -25,10 +25,10 @@ namespace UnitTests
         public void GetPatientsOnRecall()
         {
             var startDate = new DateTime(2016, 3, 20);
-            var endDate = new DateTime(2017, 3, 20);
+            var endDate = new DateTime(2017, 4, 2);
             DataTable test = KPIRecallBacklog.GetRecallBacklog(startDate, endDate);
             Assert.IsNotNull(test);
-            Assert.AreEqual(23, test.Rows.Count);
+            Assert.AreEqual(1, test.Rows.Count);
         }
     }
 }

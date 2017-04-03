@@ -29,7 +29,8 @@ namespace KPIReporting.KPI
 	                INNER JOIN procedurelog r ON r.PatNum = p.PatNum
 	                INNER JOIN procedureCode c ON r.CodeNum = c.CodeNum
                     INNER JOIN recall q ON p.PatNum = q.PatNum
-                    INNER JOIN appointment a ON r.PatNum = a.PatNum  WHERE c.ProcCode=01202 AND a.AptStatus=6 AND
+                    INNER JOIN plannedappt pa on pa.PatNum = p.PatNum
+                    INNER JOIN appointment a ON r.PatNum = a.PatNum  WHERE c.ProcCode=01202 AND a.AptStatus=6 AND r.PlannedAptNum = pa.AptNum AND r.AptNum = 0 AND
                     r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + 
                 @" GROUP BY p.PatNUm";
 
