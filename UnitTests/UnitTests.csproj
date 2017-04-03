@@ -54,7 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DatabaseTools.cs" />
-    <Compile Include="KPI7 - DowntimeTest.cs" />
+    <Compile Include="DowntimeTest.cs" />
     <Compile Include="KPI 11 - PrescribedOrRecommendedTreatments.cs" />
     <Compile Include="KPI1 - Active Recall.cs" />
     <Compile Include="KPI10 - New to Recall.cs" />
@@ -64,7 +64,7 @@
     <Compile Include="KPI9 - New By Referral.cs" />
     <Compile Include="KPI4 - No Show.cs" />
     <Compile Include="KPI5 - Cancel Short Notice.cs" />
-    <Compile Include="KPI6 - Non-Productive Practice Time.cs" />
+    <Compile Include="NonProductivePracticeTimeTest.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,6 +99,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FreshOD\OpenDental\OpenDental.csproj">
+      <Project>{8136317d-c936-49b6-9e31-d90f02d2f207}</Project>
+      <Name>OpenDental</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FreshOD\OpenDentBusiness\OpenDentBusiness.csproj">
+      <Project>{3d0fc76e-803c-4de2-bdb1-47d63a4e2357}</Project>
+      <Name>OpenDentBusiness</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KPIReporting.csproj">
       <Project>{b4466e32-9259-4719-8d30-4400dc5095ee}</Project>
       <Name>KPIReporting</Name>
