@@ -19,7 +19,7 @@ namespace UnitTests
             DatabaseTools.SetDbConnection("", "localhost", "3306", "root", "", false);
             DatabaseTools.FreshFromDump("localhost", "3306", "root", "", false);
             //Inject data
-            var seedData = File.ReadAllText(@"..\..\Resources\kpi1314pendingcompletetreatments.txt");
+            var seedData = File.ReadAllText(@"..\..\Resources\kpi14completedcasesPT1.txt");
             DatabaseTools.ExecuteSqlScript("localhost", "3306", "root", "", seedData);
         }
 
@@ -32,15 +32,32 @@ namespace UnitTests
             DataTable patsFor14dateOutOfRange = KPICompletedCases.GetCompletedCasesPats(
                 Convert.ToDateTime("2018-03-20"), Convert.ToDateTime("2019-04-05"));
 
-            DataTable expected_dt = new DataTable();
+            Assert.AreEqual(0, patsFor14.Rows.Count);
+            Assert.AreEqual(0, patsFor14dateOutOfRange.Rows.Count);
 
+            var seedData2 = File.ReadAllText(@"..\..\Resources\kpi14completedcasesPT2.txt");
+            DatabaseTools.ExecuteSqlScript("localhost", "3306", "root", "", seedData2);
+
+            patsFor14 = KPICompletedCases.GetCompletedCasesPats(
+                Convert.ToDateTime("2016-03-20"), Convert.ToDateTime("2017-04-05"));
+            patsFor14dateOutOfRange = KPICompletedCases.GetCompletedCasesPats(
+                Convert.ToDateTime("2018-03-20"), Convert.ToDateTime("2019-04-05"));
+
+            Assert.AreEqual(0, patsFor14.Rows.Count);
+            Assert.AreEqual(0, patsFor14dateOutOfRange.Rows.Count);
+
+
+
+            /*
+            DataTable expected_dt = new DataTable();
             expected_dt.Clear();
             expected_dt.Columns.Add("PatNum");
             expected_dt.Columns.Add("Name");
             expected_dt.Columns.Add("Home Phone");
             expected_dt.Columns.Add("Work Phone");
             expected_dt.Columns.Add("Cell Phone");     
-            expected_dt.Columns.Add("Email");                   
+            expected_dt.Columns.Add("Email"); 
+            */
 
             /*
             DataRow _testPat = expected_dt.NewRow();
@@ -58,9 +75,8 @@ namespace UnitTests
 
             // expected_dt.Rows.Add(_testPat);
 
-           // Assert.IsNotNull(real_dt);
-            Assert.AreEqual(3, patsFor14.Rows.Count);
-            Assert.AreEqual(0, patsFor14dateOutOfRange.Rows.Count);
+            // Assert.IsNotNull(real_dt);
+
             // Assert.AreEqual(real_dt.Rows[0]["Name"], expected_dt.Rows[0]["Name"]);
 
         }

@@ -1,0 +1,35 @@
+﻿## Convert Zero Datetime=True
+## Allow Zero Datetime = True
+
+/* Truncate all involved tables */
+TRUNCATE TABLE unittest.patient;
+TRUNCATE TABLE unittest.procedurelog;
+TRUNCATE TABLE unittest.appointment;
+
+
+/*Insert Patient Info*/
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('ATestKPI14', 'Try1', '11', '1', '1990-07-21', 'T6E1R1', '1', '1401');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('BTestKPI14', 'Try2', '12', '1', '1965-07-21', 'T6E1R1', '1', '1402');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('CTestKPI14', 'Try3', '13', '1', '1977-07-21', 'T6E1R1', '1', '1403');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('DTestKPI14', 'Try4', '14', '1', '1944-07-21', 'T6E1R1', '1', '1404');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('ETestKPI14', 'Try5', '15', '1', '1988-07-21', 'T6E1R1', '1', '1405');
+
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('FTestKPI14', 'Try6', '21', '1', '1990-07-21', 'T6E1R1', '1', '1406');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('GTestKPI14', 'Try7', '22', '1', '1965-07-21', 'T6E1R1', '1', '1407');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('HTestKPI14', 'Try8', '23', '1', '1977-07-21', 'T6E1R1', '1', '1408');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('ITestKPI14', 'Try9', '24', '1', '1944-07-21', 'T6E1R1', '1', '1409');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('JTestKPI14', 'Try10', '25', '1', '1988-07-21', 'T6E1R1', '1', '1410');
+
+/* KPI CHECK: 	Should be no entries*/ 
+
+

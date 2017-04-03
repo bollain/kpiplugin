@@ -1,0 +1,157 @@
+﻿## Convert Zero Datetime=True
+## Allow Zero Datetime = True
+
+/* Truncate all involved tables */
+TRUNCATE TABLE unittest.patient;
+TRUNCATE TABLE unittest.procedurelog;
+TRUNCATE TABLE unittest.appointment;
+
+
+/*Insert Patient Info*/
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('ATestKPI13', 'Try1', '11', '1', '1990-07-21', 'T6E1R1', '1', '1301');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('BTestKPI13', 'Try2', '12', '1', '1965-07-21', 'T6E1R1', '1', '1302');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('CTestKPI13', 'Try3', '13', '1', '1977-07-21', 'T6E1R1', '1', '1303');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('DTestKPI13', 'Try4', '14', '1', '1944-07-21', 'T6E1R1', '1', '1304');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('ETestKPI13', 'Try5', '15', '1', '1988-07-21', 'T6E1R1', '1', '1305');
+
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('FTestKPI13', 'Try6', '21', '1', '1990-07-21', 'T6E1R1', '1', '1306');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('GTestKPI13', 'Try7', '22', '1', '1965-07-21', 'T6E1R1', '1', '1307');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('HTestKPI13', 'Try8', '23', '1', '1977-07-21', 'T6E1R1', '1', '1308');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('ITestKPI13', 'Try9', '24', '1', '1944-07-21', 'T6E1R1', '1', '1309');
+INSERT INTO `unittest`.`patient` (`LName`, `FName`, `MiddleI`, `Gender`, `Birthdate`, `Zip`, `PriProv`, `PatNum`) 
+VALUES ('JTestKPI13', 'Try10', '25', '1', '1988-07-21', 'T6E1R1', '1', '1310');
+
+/* KPI CHECK: 	Should be no entries*/ 
+
+
+/* Create Treatments */ 
+/* 2 procs from Pat1302 is complete by default*/ 
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`, `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('1', '1301', '2017-03-30', '65', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '404');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`, `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('2', '1301', '2017-03-30', '144', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '410');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`, `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('3', '1302', '2017-03-30', '144', '2', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '414');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`,  `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('4', '1302', '2017-03-30', '65', '2', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '415');
+
+
+/* KPI 13 CHECK: 	Should be no entries */ 
+/* KPI 14 CHECK: 	Should be no entries (pre-complete procs dont count) */ 
+
+/* Create 2 Planned Appts */ 
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
+VALUES ('1', '1301', '6', '//XX//', '19', '1', 'Recare Exam');
+UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
+WHERE ProcNum = '1'
+AND PatNum = '1301';
+
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
+VALUES ('2', '1301', '6', '//XX//', '19', '1', 'Ex,Path,Gen');
+UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
+WHERE ProcNum = '2'
+AND PatNum = '1301';
+
+UPDATE `unittest`.`appointment` 
+SET AptDateTime = NULL, DateTStamp = NULL, DateTimeArrived = NULL, 
+DateTimeSeated = NULL, DateTimeDismissed = NULL, DateTimeAskedToArrive = NULL
+WHERE AptNum in ('1', '2');
+
+
+/* KPI13 CHECK: 	Should be ONE pat, ONE proc (proc code 01202 is ommitted) */ 
+
+
+/* Create MORE Treatments */ 
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`, `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('5', '1303', '2017-03-30', '130', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '431');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`, `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('6', '1303', '2017-03-30', '0', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '1234');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`, `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('7', '1303', '2017-03-30', '0', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '478');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`,  `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('8', '1303', '2017-03-30', '72', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '531');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`,  `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('9', '1303', '2017-03-30', '68', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '586');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`,  `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('10', '1303', '2017-03-30', '75', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '594');
+
+/* Create 2 MORE Planned Appts */ 
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
+VALUES ('3', '1303', '6', '//XXXXXX//', '19', '1', "7PA's, RCT1U, Xray, Max Guide");
+UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
+WHERE ProcNum in ('5', '6', '7') 
+AND PatNum = '1303';
+
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
+VALUES ('4', '1303', '6', '////XX//', '19', '1', "Tx Plan, add'l units, Aesthetic Recontour, add'l unit, Repair Oral Habit Appliance, 1 unit + Lab");
+UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
+WHERE ProcNum in ('8', '9', '10') 
+AND PatNum = '1303';
+
+UPDATE `unittest`.`appointment` 
+SET AptDateTime = NULL, DateTStamp = NULL, DateTimeArrived = NULL, 
+DateTimeSeated = NULL, DateTimeDismissed = NULL, DateTimeAskedToArrive = NULL
+WHERE AptNum in ('3', '4');
+
+
+
+
+/* KPI13 CHECK: 	Should be TWO pat, SEVEN proc (proc code 01202 is ommitted) */ 
+
+
+/* Create a SCHEDULED appt for 1303, attaching procs 5,6,7 */ 
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `Op`, `ProvNum`, `ProcDescript`) 
+VALUES ('7', '1303', '1', '//XXXXXX//', '19', '2', '1', "7PA's, RCT1U, Xray, Max Guide");
+UPDATE `unittest`.`procedurelog` SET AptNum = '7'
+WHERE ProcNum in ('5', '6', '7') 
+AND PatNum = '1303';
+
+/* KPI13 CHECK: 	Should be TWO pat, FOUR proc (scheduled appts dont count)*/ 
+
+
+
+
+/* Create MUCH MORE Treatments for KPI14 */ 
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`, `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('11', '1304', '2017-03-30', '62', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '584');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`, `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('12', '1304', '2017-03-30', '72', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '534');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`, `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('13', '1304', '2017-03-30', '353', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '601');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`,  `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('14', '1304', '2017-03-30', '72', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '481');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`,  `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('15', '1304', '2017-03-30', '72', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '489');
+INSERT INTO `unittest`.`procedurelog` (`ProcNum`, `PatNum`, `ProcDate`, `ProcFee`, `ProcStatus`, `ProvNum`,  `AptNum`, `PlannedAptNum`, `DateEntryC`, `UnitQty`, `DateTP`, `CodeNum`) 
+VALUES ('16', '1304', '2017-03-30', '72', '1', '1', '0', '0', '2017-03-30', '1', '2017-03-30', '505');
+
+/* Create a PlannedApt for above procs */
+INSERT INTO `unittest`.`appointment` (`AptNum`, `PatNum`, `AptStatus`, `Pattern`, `Confirmed`, `ProvNum`, `ProcDescript`) 
+VALUES ('8', '1304', '6', '////XXXXXX//', '19', '1', "Mand Surg Template, Biopsy Hard, Aspirate, Wax-up, add'l units + Lab, Consult, 
+	add'l units, Topical Appl'n, Antimicrobial, add'l units, Bruxism Appliance, Mandibular + Lab");
+UPDATE `unittest`.`procedurelog` SET PlannedAptNum = '6'
+WHERE ProcNum in ('11', '12', '13', '14','15', '16') 
+AND PatNum = '1304';
+
+
+
+
+
+
+/* Set 4 of 6 treatments to complete */ 
+UPDATE `unittest`.`procedurelog`
+SET ProcStatus = 2
+WHERE ProcNum in ('11', '12', '13', '14')
+AND PatNum = '1304'
+
+/* KPI14 CHECK: 	Should be ONE pat FOUR completed cases */
+/* KPI14 CHECK: 	Test w/ dates outside range. Should be no entries */
