@@ -25,7 +25,8 @@ namespace KPIReporting.KPI
                 INNER JOIN procedurelog r ON r.PatNum = p.PatNum 
                 INNER JOIN procedurecode c ON c.CodeNum = r.CodeNum
                 WHERE (c.ProcCode = 01101 OR c.ProcCode = 01102 OR c.ProcCode = 01103) AND
-                (r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")";
+                (r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
+                GROUP BY p.PatNum";
 
             DataTable raw=ReportsComplex.GetTable(command);
 			Patient pat;
