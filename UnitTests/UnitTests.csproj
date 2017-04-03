@@ -87,6 +87,7 @@
     <Content Include="Resources\kpi14completedcases.txt" />
     <Content Include="Resources\kpi14completedcasesPT1.txt" />
     <Content Include="Resources\kpi14completedcasesPT2.txt" />
+    <Content Include="Resources\kpi14completedcasesPT3.txt" />
     <Content Include="Resources\nonproductivepracticetime.txt" />
     <Content Include="Resources\preferences.txt" />
     <Content Include="Resources\procedurecodes.txt" />
