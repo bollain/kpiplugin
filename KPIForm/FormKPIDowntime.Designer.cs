@@ -36,6 +36,7 @@ namespace KPIReporting.KPIForm
             this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.label_title = new System.Windows.Forms.Label();
             this.label_to = new System.Windows.Forms.Label();
+            this.labelDTPStart = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // butOK
@@ -73,12 +74,14 @@ namespace KPIReporting.KPIForm
             this.dtpEnd.Location = new System.Drawing.Point(85, 67);
             this.dtpEnd.Name = "dateEnd";
             this.dtpEnd.TabIndex = 57;
+
             // 
             // dtpStart
             // 
             this.dtpStart.Location = new System.Drawing.Point(85, 37);
             this.dtpStart.Name = "dateStart";
             this.dtpStart.TabIndex = 56;
+
             // label_title
             // 
             this.label_title.Location = new System.Drawing.Point(12, 7);
@@ -95,6 +98,16 @@ namespace KPIReporting.KPIForm
             this.label_to.TabIndex = 58;
             this.label_to.Text = "End Date";
             this.label_to.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // labelDTPStart
+            // 
+            this.labelDTPStart.Location = new System.Drawing.Point(12, 40);
+            this.labelDTPStart.Name = "labelDTPStart";
+            this.labelDTPStart.Size = new System.Drawing.Size(72, 23);
+            this.labelDTPStart.TabIndex = 59;
+            this.labelDTPStart.Text = "Start date:";
+            this.labelDTPStart.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+
 
             // 
             // FormKPIDowntime
@@ -102,6 +115,7 @@ namespace KPIReporting.KPIForm
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(347, 140);
             this.Controls.Add(this.label_to);
+            this.Controls.Add(this.labelDTPStart);
             this.Controls.Add(this.label_title);
             this.Controls.Add(this.dtpStart);
             this.Controls.Add(this.dtpEnd);
@@ -125,5 +139,7 @@ namespace KPIReporting.KPIForm
         private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.Label label_title;
         private System.Windows.Forms.Label label_to;
+        private System.Windows.Forms.Label labelDTPStart;
+
     }
 }
