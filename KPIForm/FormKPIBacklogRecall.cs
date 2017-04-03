@@ -37,14 +37,14 @@ namespace KPIReporting.KPIForm
             report.AddSubTitle("Date", dtpStart.Value.ToShortDateString() + " - " + dtpEnd.Value.ToShortDateString());
             QueryObject query;
             query = report.AddQuery(tablePats, "", "", SplitByKind.None, 0);
-            query.AddColumn("Name", 150, FieldValueType.String);
+            query.AddColumn("Name", 90, FieldValueType.String);
             query.AddColumn("Gender", 60, FieldValueType.String);
-            query.AddColumn("Contact Method", 120, FieldValueType.String);
+            query.AddColumn("Contact Method", 100, FieldValueType.String);
             query.AddColumn("Phone", 100, FieldValueType.String);
             query.AddColumn("Email", 120, FieldValueType.String);
             query.AddColumn("Hygienist ID (Last Appt)", 60, FieldValueType.String);
-            query.AddColumn("Date of Last Recall", 100, FieldValueType.String);
-            query.AddColumn("Due Date", 100, FieldValueType.String);
+            query.AddColumn("Date of Last Recall", 90, FieldValueType.String);
+            query.AddColumn("Due Date", 90, FieldValueType.String);
             query.AddGroupSummaryField("Patient Count", "Gender", "Name", SummaryOperation.Count);
             report.AddPageNum();
             if (!report.SubmitQueries())
