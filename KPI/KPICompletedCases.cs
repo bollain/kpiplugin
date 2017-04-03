@@ -86,10 +86,10 @@ namespace KPIReporting.KPI {
             string command = @"
 				SELECT DISTINCT p.PatNum, p.LName, p.FName, p.MiddleI, 
                            p.HmPhone, p.WkPhone, p.WirelessPhone, p.Email
-                FROM opendental.procedurelog pl
-                JOIN opendental.appointment a ON pl.PlannedAptNum = a.AptNum
-                JOIN opendental.procedurecode pc ON pc.CodeNum = pl.CodeNum
-                JOIN opendental.patient p ON p.PatNum = pl.PatNum
+                FROM procedurelog pl
+                JOIN appointment a ON pl.PlannedAptNum = a.AptNum
+                JOIN procedurecode pc ON pc.CodeNum = pl.CodeNum
+                JOIN patient p ON p.PatNum = pl.PatNum
                 WHERE a.AptStatus = 6
                 AND pl.ProcStatus = 2      
                 AND (pl.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")
