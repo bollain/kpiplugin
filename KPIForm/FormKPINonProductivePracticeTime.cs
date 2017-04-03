@@ -31,7 +31,6 @@ namespace KPIReporting.KPIForm
             QueryObject query;
             query = report.AddQuery(tableProvs, "", "", SplitByKind.None, 0);
             query.AddColumn("Time (Hours:Min:Seconds)", 200, FieldValueType.String);
-            query.AddColumn("Patients with unrescheduled broken appointments", 100, FieldValueType.String);
             report.AddPageNum();
             if (!report.SubmitQueries())
             {

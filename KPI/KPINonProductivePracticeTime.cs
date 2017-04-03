@@ -18,12 +18,10 @@ namespace KPIReporting.KPI
             }
             DataTable table = new DataTable();
             table.Columns.Add("Total Non-Productive Practice Time");
-            table.Columns.Add("Patients with unrescheduled broken appointments");
             DataRow row;
             string command = @"
-            SELECT  sec_to_time(sum(length(appointment.Pattern))*5*60) AS NonProdTime,count(distinct(appointment.PatNum)) AS NPPTBrokeAppt
+            SELECT  sec_to_time(sum(length(appointment.Pattern))*5*60) AS NonProdTime
 				FROM appointment 
-                LEFT JOIN patient ON (patient.PatNum = appointment.PatNum)
                 
                 WHERE EXISTS (	SELECT *
 								FROM procedurelog 
@@ -39,7 +37,6 @@ namespace KPIReporting.KPI
             {
                 row = table.NewRow();
                 row["Total Non-Productive Practice Time"] = raw.Rows[i]["NonProdTime"].ToString();
-                row["Patients with unrescheduled broken appointments"] = raw.Rows[i]["NPPTBrokeAppt"].ToString();
                 table.Rows.Add(row);
             }
             return table;

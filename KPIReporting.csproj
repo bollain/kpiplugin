@@ -148,14 +148,6 @@
       <Project>{18f7bc78-4b99-48d3-a1f1-0d13a63e3cf9}</Project>
       <Name>xCodeBase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FreshOD\OpenDental\OpenDental.csproj">
-      <Project>{8136317d-c936-49b6-9e31-d90f02d2f207}</Project>
-      <Name>OpenDental</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FreshOD\OpenDentBusiness\OpenDentBusiness.csproj">
-      <Project>{3d0fc76e-803c-4de2-bdb1-47d63a4e2357}</Project>
-      <Name>OpenDentBusiness</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
