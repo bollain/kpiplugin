@@ -29,7 +29,8 @@ namespace KPIReporting.KPI {
                     INNER JOIN refattach a ON p.PatNum = a.PatNum
                     INNER JOIN referral r ON a.ReferralNum = r.ReferralNum
                         WHERE (c.ProcCode = 01101 OR c.ProcCode = 01102 OR c.ProcCode = 01103) AND
-                        (l.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @")";
+                        (l.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @") 
+                        GROUP BY p.PatNum";
 
             DataTable raw=ReportsComplex.GetTable(command);        
             Patient pat;
