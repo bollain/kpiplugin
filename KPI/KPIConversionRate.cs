@@ -26,7 +26,7 @@ namespace KPIReporting.KPI
             string command2 = @"
                 SELECT COUNT(*)
                 FROM appointment a
-                JOIN procedurelog pl ON pl.PlannedAptNum = a.NextAptNum 
+                JOIN procedurelog pl ON pl.PlannedAptNum = a.AptNum 
                 JOIN procedurecode x ON x.CodeNum = pl.CodeNum 
                 WHERE x.ProcCode = " + "'" + POut.String(pc) + "'" + @" 
                     AND pl.DateTP BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
