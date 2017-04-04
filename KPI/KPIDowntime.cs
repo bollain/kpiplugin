@@ -37,8 +37,7 @@ namespace KPIReporting.KPI
                 AND appointment.AptStatus = 5
 				AND appointment.AptDateTime BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"
                 GROUP BY appointment.ProvNum";
-            List<Provider> AllProviders = Providers.GetAll();
-            Console.WriteLine(AllProviders.Count);
+
             DataTable raw = ReportsComplex.GetTable(command);
             for (int i = 0; i < raw.Rows.Count; i++)
             {
@@ -48,18 +47,7 @@ namespace KPIReporting.KPI
                 row["Total Down-time"] = raw.Rows[i]["DownTime"].ToString();
                 table.Rows.Add(row);
             }
-            foreach (var provider in AllProviders)
-            {
-                DataRow[] inTable = table.Select(provider.ProvNum.ToString());
-                if (inTable.Length == 0)
-                {
-                    row = table.NewRow();
-                    row["Provider"] = Providers.GetFormalName(provider.ProvNum);
-                    row["Provider Number"] = provider.ProvNum.ToString();
-                    row["Total Down-time"] = "00:20:00";
-                    table.Rows.Add(row);
-                }
-            }
+
             return table;
         }
 
