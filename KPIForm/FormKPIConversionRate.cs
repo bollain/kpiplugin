@@ -125,7 +125,7 @@ namespace KPIReporting.KPIForm
                 }
                 else
                 {
-                    MessageBox.Show("Conversion rate for " + _pc + " between " + dateStartPick.Value.ToShortDateString() + " and " + dateEndPick.Value.ToShortDateString() + " is: " + _percentage
+                    MessageBox.Show("Conversion rate for " + _pc + " between " + dateStartPick.Value.ToShortDateString() + " and " + dateEndPick.Value.ToShortDateString() + " is: " + _percentage + " %."
                            + Environment.NewLine + "Press Ctrl + C to copy this value.");
                     DialogResult = DialogResult.OK;
 
