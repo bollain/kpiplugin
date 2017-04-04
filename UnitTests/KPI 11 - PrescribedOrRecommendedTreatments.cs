@@ -204,7 +204,7 @@ namespace UnitTests
             _testPat2["Procedure"] = "01202";
 
             DataRow _testPat3 = expected_dt.NewRow();
-            _testPat3["Procedure"] = "01202'";
+            _testPat3["Procedure"] = "01202";
 
 
             expected_dt.Rows.Add(_testPat);

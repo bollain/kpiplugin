@@ -93,7 +93,9 @@
     <Compile Include="KPIForm\FormKPIDowntime.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KPIForm\FormKPIDowntime.Designer.cs" />
+    <Compile Include="KPIForm\FormKPIDowntime.Designer.cs">
+      <DependentUpon>FormKPIDowntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="KPIForm\FormKPIMore.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,7 +110,9 @@
     <Compile Include="KPIForm\FormKPINonProductivePracticeTime.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KPIForm\FormKPINonProductivePracticeTime.Designer.cs" />
+    <Compile Include="KPIForm\FormKPINonProductivePracticeTime.Designer.cs">
+      <DependentUpon>FormKPINonProductivePracticeTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="KPIForm\FormKPINoShowAppt.cs">
       <SubType>Form</SubType>
     </Compile>
