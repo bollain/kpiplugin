@@ -10,36 +10,101 @@ namespace KPIReporting.KPI
     {
 
         ///<summary> dateStart and dateEnd can be MinVal/MaxVal to indicate "forever".</summary>
-        public static DataTable GetNonProductivePracticeTime(DateTime dateStart, DateTime dateEnd)
+        public static List<object> GetNonProductivePracticeTime(DateTime dateStart, DateTime dateEnd)
         {
+            List<object> tableAndTotal = new List<object>();
+
             if (RemotingClient.RemotingRole == RemotingRole.ClientWeb)
             {
-                return Meth.GetTable(MethodBase.GetCurrentMethod(), dateStart, dateEnd);
+                tableAndTotal.Add(Meth.GetTable(MethodBase.GetCurrentMethod(), dateStart, dateEnd));
+                tableAndTotal.Add("");
+                return tableAndTotal;
             }
             DataTable table = new DataTable();
-            table.Columns.Add("Total Non-Productive Practice Time");
+            table.Columns.Add("Name");
+            table.Columns.Add("Gender");
+            table.Columns.Add("Age");
+            table.Columns.Add("Postal Code");
+            table.Columns.Add("Date of Service");
+            table.Columns.Add("Primary Provider");
+            table.Columns.Add("Procedure Description");
+            table.Columns.Add("Non-Productive Practice Time");
             DataRow row;
             string command = @"
-            SELECT  sec_to_time(sum(length(appointment.Pattern))*5*60) AS NonProdTime
-				FROM appointment 
-                
-                WHERE EXISTS (	SELECT *
-								FROM procedurelog 
-                                LEFT JOIN procedurecode ON (procedurecode.CodeNum = procedurelog.CodeNum)
-                                WHERE procedurelog.AptNum = appointment.AptNum
-								AND (procedurecode.ProcCode = 99999 OR procedurecode.ProcCode = 99998) 
-                              )
-                AND appointment.AptStatus = 5 
-				AND appointment.AptDateTime BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @"";
+            SELECT p.LName, p.FName, p.MiddleI, p.Gender, p.Zip, p.PriProv, p.Preferred, p.Birthdate, r.ProcDate, a.ProcDescript, a.Pattern
+                FROM patient p 
+                JOIN procedurelog r ON r.PatNum = p.PatNum
+                JOIN procedurecode c ON r.CodeNum = c.CodeNum
+                JOIN appointment a ON a.AptNum = r.AptNum
+                WHERE c.ProcCode = 99999 OR 99998 AND 
+                a.AptStatus = 5 AND 
+                a.AptDateTime BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd);
+
+            int runningTimeTotal = 0;
 
             DataTable raw = ReportsComplex.GetTable(command);
+            Patient pat;
             for (int i = 0; i < raw.Rows.Count; i++)
             {
+                runningTimeTotal = runningTimeTotal + PatternToSeconds(raw.Rows[i]["Pattern"].ToString());
                 row = table.NewRow();
-                row["Total Non-Productive Practice Time"] = raw.Rows[i]["NonProdTime"].ToString();
+                pat = new Patient();
+                pat.LName = raw.Rows[i]["LName"].ToString();
+                pat.FName = raw.Rows[i]["FName"].ToString();
+                pat.MiddleI = raw.Rows[i]["MiddleI"].ToString();
+                pat.Preferred = raw.Rows[i]["Preferred"].ToString();
+                row["Name"] = pat.GetNameLF();
+                row["Primary Provider"] = Providers.GetAbbr(PIn.Long(raw.Rows[i]["PriProv"].ToString()));
+                row["Gender"] = genderFormat(raw.Rows[i]["Gender"].ToString());
+                row["Postal Code"] = raw.Rows[i]["Zip"].ToString();
+                row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
+                row["Procedure Description"] = raw.Rows[i]["ProcDescript"].ToString();
+                row["Age"] = birthdate_to_age(raw.Rows[i]["Birthdate"].ToString());
+                row["Non-Productive Practice Time"] = sec_to_time(PatternToSeconds(raw.Rows[i]["Pattern"].ToString()));
                 table.Rows.Add(row);
             }
-            return table;
+
+            tableAndTotal.Add(table);
+            tableAndTotal.Add(sec_to_time(runningTimeTotal));
+
+            return tableAndTotal;
+        }
+
+        private static int PatternToSeconds(string p) {
+            int sec = p.Length * 60 * 5;
+            return sec;
+        }
+
+        private static string sec_to_time(int sec) {
+            TimeSpan t = TimeSpan.FromSeconds(sec);
+            string time = t.ToString(@"hh\:mm\:ss");
+
+            return time;
+        }
+
+        private static string genderFormat(string gNum)
+        {
+            if (gNum == "0")
+            {
+                return "M";
+            }
+            else if (gNum == "1")
+            {
+                return "F";
+            }
+            else
+            {
+                return "Unknown";
+            }
+        }
+
+        private static int birthdate_to_age(string bd)
+        {
+            DateTime birthdate = Convert.ToDateTime(bd);
+            var today = DateTime.UtcNow;
+            var age = today.Year - birthdate.Year;
+            if (birthdate > today.AddYears(-age)) age--;
+            return age;
         }
 
 
