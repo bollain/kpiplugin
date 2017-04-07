@@ -32,8 +32,7 @@ namespace KPIReporting.KPI
                 JOIN recall r ON r.PatNum = p.PatNum 
                 WHERE r.IsDisabled = 0 AND 
                 r.RecallTypeNum = 3 AND 
-                c.ProcCode > 40000 AND 
-                c.ProcCode < 50000 AND 
+                c.ProcCode = 43400 AND 
                 a.IsHygiene = 1 AND 
                 a.AptDateTime = (SELECT MAX(a2.AptDateTime) 
                 FROM appointment a2 
