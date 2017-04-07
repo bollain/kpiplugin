@@ -24,14 +24,16 @@ namespace KPIReporting.KPI
             table.Columns.Add("Due Date");
             DataRow row;
             string command = @"
-                SELECT p.LName, p.FName, p.MiddleI, p.Preferred, p.Gender, p.PreferContactMethod, p.HmPhone, p.Email, r.ProcDate, c.ProcCode, r.AptNum, a.ProvHyg, a.AptDateTime, q.DateDue
+                SELECT p.LName, p.FName, p.MiddleI, p.Preferred, p.Gender, p.PreferContactMethod, p.HmPhone, p.Email, q.DatePrevious, c.ProcCode, r.AptNum, a.ProvHyg, a.AptDateTime, q.DateDue
                 FROM patient p 
 	                INNER JOIN procedurelog r ON r.PatNum = p.PatNum
 	                INNER JOIN procedureCode c ON r.CodeNum = c.CodeNum
                     INNER JOIN recall q ON p.PatNum = q.PatNum
                     INNER JOIN plannedappt pa on pa.PatNum = p.PatNum
-                    INNER JOIN appointment a ON r.PatNum = a.PatNum  WHERE c.ProcCode=01202 AND a.AptStatus=6 AND r.PlannedAptNum = pa.AptNum AND r.AptNum = 0 AND
-                    r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + 
+                    INNER JOIN appointment a ON r.PatNum = a.PatNum  WHERE c.ProcCode=01202 AND a.AptStatus=6 AND r.PlannedAptNum = pa.AptNum AND r.AptNum = 0
+                    or a.AptStatus=3 AND c.ProcCode=1202
+                    OR a.AptStatus=5 AND c.ProcCode=1202
+                    AND r.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + 
                 @" GROUP BY p.PatNUm";
 
 
@@ -52,7 +54,7 @@ namespace KPIReporting.KPI
                 row["Phone"] = raw.Rows[i]["HmPhone"].ToString();
                 row["Email"] = raw.Rows[i]["Email"].ToString();
                 row["Hygienist ID (Last appointment)"] = raw.Rows[i]["ProvHyg"].ToString();
-                row["Date of Last Recall"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
+                row["Date of Last Recall"] = raw.Rows[i]["DatePrevious"].ToString().Substring(0, 10);
                 row["Due Date"] = raw.Rows[i]["DateDue"].ToString().Substring(0, 10);
                 table.Rows.Add(row);
             }
