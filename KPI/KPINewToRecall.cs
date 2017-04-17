@@ -61,7 +61,15 @@ namespace KPIReporting.KPI
 
                 row["Name"] = pat.GetNameLF();
                 row["Gender"] = genderFormat(rawrecall.Rows[j]["Gender"].ToString());
-                row["Age"] = birthdate_to_age(rawrecall.Rows[j]["Birthdate"].ToString());
+
+                if (birthdate_to_age(rawrecall.Rows[j]["Birthdate"].ToString()) < 150)
+                {
+                    row["Age"] = birthdate_to_age(rawrecall.Rows[j]["Birthdate"].ToString());
+                } else
+                {
+                    row["Age"] = "N/A";
+                }
+
                 row["Type of Recall"] = recalltype;
                 table.Rows.Add(row);
                 
@@ -95,7 +103,13 @@ namespace KPIReporting.KPI
             return age;
         }
 
-
+        public static DataTable resort(DataTable dt, string colName, string direction)
+        {
+            DataTable dtOut = null;
+            dt.DefaultView.Sort = colName + " " + direction;
+            dtOut = dt.DefaultView.ToTable();
+            return dtOut;
+        }
 
     }
 }

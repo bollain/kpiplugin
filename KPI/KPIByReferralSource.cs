@@ -48,7 +48,16 @@ namespace KPIReporting.KPI {
 
                 row["Name"] = pat.GetNameLF();
                 row["Gender"] = genderFormat(raw.Rows[i]["Gender"].ToString());
-                row["Age"] = birthdate_to_age(raw.Rows[i]["Birthdate"].ToString());
+
+                if (birthdate_to_age(raw.Rows[i]["Birthdate"].ToString()) < 150)
+                {
+                    row["Age"] = birthdate_to_age(raw.Rows[i]["Birthdate"].ToString());
+                }
+                else
+                {
+                    row["Age"] = "N/A";
+                }
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString();
                 row["Referral Source"] = referralsource;
                 table.Rows.Add(row);
