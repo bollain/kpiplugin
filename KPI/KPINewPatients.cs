@@ -39,7 +39,16 @@ namespace KPIReporting.KPI
 				pat.Preferred=raw.Rows[i]["Preferred"].ToString();
 				row["Name"]=pat.GetNameLF();
                 row["Gender"] = genderFormat(raw.Rows[i]["Gender"].ToString());
-                row["Age"] = birthdate_to_age(raw.Rows[i]["Birthdate"].ToString());
+
+                if (birthdate_to_age(raw.Rows[i]["Birthdate"].ToString()) < 150)
+                {
+                    row["Age"] = birthdate_to_age(raw.Rows[i]["Birthdate"].ToString());
+                }
+                else
+                {
+                    row["Age"] = "N/A";
+                }
+
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString();
                 table.Rows.Add(row);
 			}
@@ -71,6 +80,12 @@ namespace KPIReporting.KPI
             return age;
         }
 
-
+        public static DataTable resort(DataTable dt, string colName, string direction)
+        {
+            DataTable dtOut = null;
+            dt.DefaultView.Sort = colName + " " + direction;
+            dtOut = dt.DefaultView.ToTable();
+            return dtOut;
+        }
     }
 }
