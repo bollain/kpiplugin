@@ -46,8 +46,15 @@ namespace KPIReporting.KPI
 				row["Postal Code"]=raw.Rows[i]["Zip"].ToString();
                 row["Date of Service"] = raw.Rows[i]["ProcDate"].ToString().Substring(0, 10);
                 row["Procedure Description"] = raw.Rows[i]["ProcDescript"].ToString();
-                row["Age"] = birthdate_to_age(raw.Rows[i]["Birthdate"].ToString());
-				table.Rows.Add(row);
+                if (birthdate_to_age(raw.Rows[i]["Birthdate"].ToString()) < 150)
+                {
+                    row["Age"] = birthdate_to_age(raw.Rows[i]["Birthdate"].ToString());
+                }
+                else
+                {
+                    row["Age"] = "N/A";
+                }
+                table.Rows.Add(row);
 			}
 			return table;
 		}
