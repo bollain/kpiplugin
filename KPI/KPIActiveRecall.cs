@@ -29,7 +29,8 @@ namespace KPIReporting.KPI {
 				WHERE r.ProcDate = (SELECT MAX(r2.ProcDate) 
                 FROM procedurelog r2
                 JOIN procedurecode c ON r2.CodeNum = c.CodeNum 
-                WHERE r.PatNum = r2.PatNum AND
+                WHERE r.PatNum = r2.PatNum AND 
+                r2.PlannedAptNum > 0 AND 
                 c.ProcCode = 01202 AND 
                 r2.ProcDate BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @") AND
                 q.RecallTypeNum = 1 AND 
@@ -71,12 +72,21 @@ namespace KPIReporting.KPI {
             }
         }
 
-        private static int birthdate_to_age(string bd) {
+        private static string birthdate_to_age(string bd) {
             DateTime birthdate = Convert.ToDateTime(bd);
             var today = DateTime.UtcNow;
             var age = today.Year - birthdate.Year;
             if (birthdate > today.AddYears(-age)) age--;
-            return age;
+
+            string sAge = "";
+            if (age > 150)
+            {
+                sAge = "N/A";
+            }
+            else {
+                sAge = age.ToString();
+            }
+            return sAge;
         }
 
 	}

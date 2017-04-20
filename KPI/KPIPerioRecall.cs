@@ -33,12 +33,10 @@ namespace KPIReporting.KPI
                 WHERE r.IsDisabled = 0 AND 
                 r.RecallTypeNum = 3 AND 
                 c.ProcCode = 43400 AND 
-                a.IsHygiene = 1 AND 
                 a.AptDateTime = (SELECT MAX(a2.AptDateTime) 
                 FROM appointment a2 
                 WHERE a2.AptNum = a.AptNum AND 
                 a2.AptDateTime BETWEEN " + POut.DateT(dateStart) + @" AND " + POut.DateT(dateEnd) + @") GROUP BY p.PatNum";
-
 			DataTable raw=ReportsComplex.GetTable(command);
 			Patient pat;
 			for(int i=0;i<raw.Rows.Count;i++) {
@@ -75,12 +73,21 @@ namespace KPIReporting.KPI
             }
         }
 
-        private static int birthdate_to_age(string bd) {
+        private static string birthdate_to_age(string bd) {
             DateTime birthdate = Convert.ToDateTime(bd);
             var today = DateTime.UtcNow;
             var age = today.Year - birthdate.Year;
             if (birthdate > today.AddYears(-age)) age--;
-            return age;
+
+            string sAge = "";
+            if (age > 150)
+            {
+                sAge = "N/A";
+            }
+            else {
+                sAge = age.ToString();
+            }
+            return sAge;
         }
 
 	}
